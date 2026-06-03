@@ -1,4 +1,4 @@
-const CACHE_VERSION = "konum-v1.1.0"; // bunu değiştirince otomatik güncellenir
+const CACHE_VERSION = "konum-v2.0.0"; // bunu değiştirince otomatik güncellenir
 const BASE = "/KonumDefteri";
 const ASSETS = [
   BASE + "/",
