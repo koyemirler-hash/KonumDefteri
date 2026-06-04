@@ -16,115 +16,122 @@ body{color:#e8e8f0;font-family:'Segoe UI',system-ui,sans-serif;overflow-x:hidden
 .page{display:none;flex-direction:column;min-height:100dvh;max-width:430px;margin:0 auto}
 .page.active{display:flex}
 input,textarea,button,select{font-family:inherit}
-input,textarea{background:#1c1c2a;border:1px solid #252535;border-radius:12px;color:#e8e8f0;
-  padding:12px 14px;font-size:14px;width:100%;outline:none;transition:border-color .2s}
+input,textarea{background:#1c1c2a;border:1px solid #252535;border-radius:12px;color:#e8e8f0;padding:12px 14px;font-size:14px;width:100%;outline:none;transition:border-color .2s}
 input:focus,textarea:focus{border-color:#7c6df0}
 textarea{resize:none;line-height:1.6}
-.btn{display:block;width:100%;border:none;border-radius:14px;padding:14px;font-size:15px;
-  font-weight:700;cursor:pointer;text-align:center;transition:opacity .15s}
+.btn{display:block;width:100%;border:none;border-radius:14px;padding:14px;font-size:15px;font-weight:700;cursor:pointer;text-align:center;transition:opacity .15s}
 .btn:active{opacity:.8}
 .btn-primary{background:linear-gradient(135deg,#7c6df0,#9d8ff5);color:#fff}
 .btn-green{background:linear-gradient(135deg,#16a34a,#22c55e);color:#fff}
-.btn-ghost{background:#1c1c2a;border:1px solid #252535;color:#6b7280}
+.btn-ghost{background:#1c1c2a;border:1px solid #252535!important;color:#6b7280}
 .btn-outline{background:transparent;border:1px solid #7c6df0;color:#9d8ff5}
-.btn-danger{background:#15151f;border:1px solid #ef444430;color:#ef4444}
+.btn-danger{background:#15151f;border:1px solid #ef444430!important;color:#ef4444}
+.btn-yellow{background:linear-gradient(135deg,#d97706,#f59e0b);color:#fff}
 .lbl{font-size:11px;color:#7c6df0;letter-spacing:1.5px;text-transform:uppercase;margin-bottom:8px;font-weight:600}
 .card{background:#15151f;border:1px solid #252535;border-radius:16px}
 .section{display:flex;flex-direction:column;gap:14px;padding:18px;overflow-y:auto;flex:1;padding-bottom:100px}
 .header{background:linear-gradient(135deg,#4f46e5,#7c3aed);padding:18px 18px 20px;flex-shrink:0}
 .header-row{display:flex;align-items:center;gap:10px}
-.back-btn{background:rgba(255,255,255,.15);border:none;border-radius:50%;width:36px;height:36px;
-  color:#fff;font-size:18px;cursor:pointer;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.back-btn{background:rgba(255,255,255,.15);border:none;border-radius:50%;width:36px;height:36px;color:#fff;font-size:18px;cursor:pointer;display:flex;align-items:center;justify-content:center;flex-shrink:0}
 .header-title{flex:1;min-width:0}
 .header-sup{font-size:10px;opacity:.6;letter-spacing:2px;text-transform:uppercase}
 .header-main{font-size:19px;font-weight:800;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.search-bar{margin-top:12px;background:rgba(255,255,255,.12);border-radius:12px;
-  padding:8px 14px;display:flex;align-items:center;gap:8px}
+.search-bar{margin-top:12px;background:rgba(255,255,255,.12);border-radius:12px;padding:8px 14px;display:flex;align-items:center;gap:8px}
 .search-bar input{background:none;border:none;color:#fff;font-size:14px;flex:1;padding:0}
 .search-bar input::placeholder{color:rgba(255,255,255,.5)}
 .cat-scroll{display:flex;gap:7px;overflow-x:auto;padding:14px 14px 0;flex-shrink:0}
 .cat-scroll::-webkit-scrollbar{display:none}
 .cat-chip{border:none;border-radius:20px;padding:6px 13px;font-size:12px;cursor:pointer;white-space:nowrap;flex-shrink:0}
 .loc-list{display:flex;flex-direction:column;gap:10px;padding:10px 14px 100px;overflow-y:auto;flex:1}
-.loc-card{background:#15151f;border:1px solid #252535;border-radius:16px;overflow:hidden;
-  display:flex;cursor:pointer;transition:border-color .15s}
+.loc-card{background:#15151f;border:1px solid #252535;border-radius:16px;overflow:hidden;display:flex;cursor:pointer;transition:border-color .15s}
 .loc-card:active{border-color:#7c6df0}
 .loc-thumb{width:72px;height:84px;object-fit:cover;flex-shrink:0}
-.loc-thumb-icon{width:72px;height:84px;display:flex;align-items:center;justify-content:center;
-  font-size:28px;flex-shrink:0;background:rgba(124,109,240,.13)}
+.loc-thumb-icon{width:72px;height:84px;display:flex;align-items:center;justify-content:center;font-size:28px;flex-shrink:0;background:rgba(124,109,240,.13)}
 .loc-info{padding:11px 14px;flex:1;min-width:0}
 .loc-name{font-weight:700;font-size:15px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .loc-note{font-size:12px;color:#6b7280;margin-top:2px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .loc-tags{display:flex;align-items:center;gap:8px;margin-top:7px}
 .loc-cat{background:rgba(124,109,240,.13);color:#9d8ff5;font-size:10px;padding:2px 9px;border-radius:10px}
 .loc-date{font-size:10px;color:#374151}
-.method-btn{background:#15151f;border:1px solid #252535;border-radius:16px;padding:14px 16px;
-  display:flex;align-items:center;gap:14px;cursor:pointer;width:100%;text-align:left;transition:border-color .15s}
+.method-btn{background:#15151f;border:1px solid #252535;border-radius:16px;padding:14px 16px;display:flex;align-items:center;gap:14px;cursor:pointer;width:100%;text-align:left;transition:border-color .15s}
 .method-btn:active{border-color:#7c6df0}
-.method-icon{font-size:28px;width:40px;text-align:center;flex-shrink:0}
-.method-title{color:#e8e8f0;font-weight:700;font-size:15px}
-.method-sub{color:#6b7280;font-size:12px;margin-top:3px}
 .info-box{background:rgba(124,109,240,.1);border:1px solid rgba(124,109,240,.25);border-radius:14px;padding:12px 16px;font-size:12px;color:#6b7280;line-height:1.7}
-.addr-result{background:#1c1c2a;border:1px solid #252535;border-radius:12px;padding:12px 14px;
-  cursor:pointer;width:100%;text-align:left;border-bottom:none}
-.addr-result:last-child{border-bottom:1px solid #252535}
+.info-box b{color:#e8e8f0}
+.addr-box{border:1px solid #252535;border-radius:12px;overflow:hidden}
+.addr-result{background:#1c1c2a;border:none;border-bottom:1px solid #252535;padding:12px 14px;cursor:pointer;width:100%;text-align:left;display:block}
+.addr-result:last-child{border-bottom:none}
+.addr-result:active{background:#252535}
 .addr-result-name{font-weight:600;font-size:14px;color:#e8e8f0}
 .addr-result-full{font-size:11px;color:#6b7280;margin-top:3px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .coord-badge{background:#1c1c2a;border-radius:12px;padding:10px 14px;display:flex;align-items:center;gap:10px}
-.coord-text{font-size:12px;color:#22c55e;font-family:monospace}
-.fab{position:fixed;bottom:0;left:50%;transform:translateX(-50%);width:100%;max-width:430px;
-  padding:12px 18px 28px;background:linear-gradient(transparent,#0d0d12 40%);pointer-events:none;z-index:50}
+.fab{position:fixed;bottom:0;left:50%;transform:translateX(-50%);width:100%;max-width:430px;padding:12px 18px 28px;background:linear-gradient(transparent,#0d0d12 40%);pointer-events:none;z-index:50}
 .fab button{pointer-events:all}
-.toast{position:fixed;top:18px;left:50%;transform:translateX(-50%);padding:10px 20px;
-  border-radius:30px;z-index:9999;font-size:13px;font-weight:600;
-  box-shadow:0 4px 24px rgba(0,0,0,.5);white-space:pre-wrap;text-align:center;
-  max-width:88vw;pointer-events:none;display:none}
+.toast{position:fixed;top:18px;left:50%;transform:translateX(-50%);padding:10px 20px;border-radius:30px;z-index:9999;font-size:13px;font-weight:600;box-shadow:0 4px 24px rgba(0,0,0,.5);white-space:pre-wrap;text-align:center;max-width:88vw;pointer-events:none;display:none}
 .toast.show{display:block}
 .toast.ok{background:#0d2b1a;color:#86efac;border:1px solid #22c55e40}
 .toast.err{background:#3b0d0d;color:#fca5a5;border:1px solid #ef444440}
-.modal-overlay{position:fixed;inset:0;background:rgba(0,0,0,.75);z-index:999;
-  display:none;align-items:center;justify-content:center;padding:20px}
+.modal-overlay{position:fixed;inset:0;background:rgba(0,0,0,.75);z-index:999;display:none;align-items:center;justify-content:center;padding:20px}
 .modal-overlay.show{display:flex}
 .modal{background:#15151f;border:1px solid #252535;border-radius:20px;padding:24px;width:100%;max-width:320px}
+.modal h3{font-size:17px;font-weight:700;margin-bottom:8px}
+.modal p{color:#6b7280;font-size:13px;margin-bottom:20px;line-height:1.5}
+.modal-btns{display:flex;gap:10px}
 .emoji-grid{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:12px}
 .emoji-btn{border-radius:8px;width:36px;height:36px;font-size:18px;cursor:pointer;border:1px solid #252535}
-.cat-item{background:#15151f;border:1px solid #252535;border-radius:14px;padding:13px 16px;
-  display:flex;align-items:center;gap:12px}
-.install-banner{display:none;position:fixed;bottom:88px;left:50%;transform:translateX(-50%);
-  width:calc(100% - 28px);max-width:402px;background:linear-gradient(135deg,#4f46e5,#7c3aed);
-  border-radius:16px;padding:14px 16px;z-index:200;gap:12px;align-items:center;
-  box-shadow:0 8px 32px rgba(124,61,237,.27)}
+.cat-item{background:#15151f;border:1px solid #252535;border-radius:14px;padding:13px 16px;display:flex;align-items:center;gap:12px}
+.install-banner{display:none;position:fixed;bottom:88px;left:50%;transform:translateX(-50%);width:calc(100% - 28px);max-width:402px;background:linear-gradient(135deg,#4f46e5,#7c3aed);border-radius:16px;padding:14px 16px;z-index:200;gap:12px;align-items:center;box-shadow:0 8px 32px rgba(124,61,237,.27)}
 .install-banner.show{display:flex}
-.empty-state{display:flex;flex-direction:column;align-items:center;justify-content:center;
-  flex:1;color:#374151;padding:40px}
+.empty-state{display:flex;flex-direction:column;align-items:center;justify-content:center;flex:1;color:#374151;padding:40px}
+.link-hint{font-size:11px;color:#22c55e;margin-top:6px;display:none}
 </style>
 <script type="module">
 import{initializeApp}from"https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
 import{getAuth,GoogleAuthProvider,signInWithPopup,signInWithRedirect,getRedirectResult,signOut,onAuthStateChanged}from"https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
-import{getFirestore,collection,addDoc,deleteDoc,doc,onSnapshot,query,orderBy,setDoc}from"https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+import{getFirestore,collection,addDoc,deleteDoc,doc,onSnapshot,query,orderBy,setDoc,updateDoc}from"https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
 const app=initializeApp({apiKey:"AIzaSyD9XMN3bMbRb2CCUKaY8wbsUsLUfGCByGc",authDomain:"konumdefteri-c29e6.firebaseapp.com",projectId:"konumdefteri-c29e6",storageBucket:"konumdefteri-c29e6.firebasestorage.app",messagingSenderId:"1079347072591",appId:"1:1079347072591:web:8f4f7ce33c99f657c8243a"});
 window._auth=getAuth(app);window._db=getFirestore(app);window._prov=new GoogleAuthProvider();
-window._FB={signInWithPopup,signInWithRedirect,getRedirectResult,signOut,onAuthStateChanged,collection,addDoc,deleteDoc,doc,onSnapshot,query,orderBy,setDoc};
+window._FB={signInWithPopup,signInWithRedirect,getRedirectResult,signOut,onAuthStateChanged,collection,addDoc,deleteDoc,doc,onSnapshot,query,orderBy,setDoc,updateDoc};
 </script>
 </head>
 <body>
-
-<!-- TOAST -->
 <div class="toast" id="toast"></div>
+
+<!-- MODAL: Sil Onay -->
+<div class="modal-overlay" id="modal-del">
+  <div class="modal">
+    <h3>🗑️ Konumu Sil</h3>
+    <p id="modal-del-text">Bu konumu silmek istediğine emin misin? Bu işlem geri alınamaz.</p>
+    <div class="modal-btns">
+      <button class="btn btn-ghost" style="flex:1" onclick="closeModal('modal-del')">İptal</button>
+      <button class="btn btn-danger" style="flex:1" id="modal-del-btn">Sil</button>
+    </div>
+  </div>
+</div>
+
+<!-- MODAL: Değişiklikleri Kaydet -->
+<div class="modal-overlay" id="modal-unsaved">
+  <div class="modal">
+    <h3>💾 Değişiklikler Kaydedilmedi</h3>
+    <p>Yaptığın değişiklikleri kaydetmek istiyor musun?</p>
+    <div class="modal-btns">
+      <button class="btn btn-ghost" style="flex:1" onclick="discardEdit()">Vazgeç</button>
+      <button class="btn btn-primary" style="flex:1" onclick="saveEdit()">Kaydet</button>
+    </div>
+  </div>
+</div>
 
 <!-- MODAL: Kategori Sil -->
 <div class="modal-overlay" id="modal-delcat">
   <div class="modal">
-    <div style="font-size:17px;font-weight:700;margin-bottom:8px">Kategoriyi Sil</div>
-    <div style="color:#6b7280;font-size:13px;margin-bottom:20px">Bu kategorideki konumlar "Diğer" olarak kalır.</div>
-    <div style="display:flex;gap:10px">
+    <h3>Kategoriyi Sil</h3>
+    <p>Bu kategorideki konumlar "Diğer" olarak kalır.</p>
+    <div class="modal-btns">
       <button class="btn btn-ghost" style="flex:1" onclick="closeModal('modal-delcat')">İptal</button>
       <button class="btn btn-danger" style="flex:1" id="confirm-delcat-btn">Sil</button>
     </div>
   </div>
 </div>
 
-<!-- INSTALL BANNER -->
 <div class="install-banner" id="install-banner">
   <span style="font-size:24px">📱</span>
   <div style="flex:1"><div style="font-weight:700;font-size:14px;color:#fff">Ana ekrana ekle</div><div style="font-size:11px;color:rgba(255,255,255,.7)">Uygulama gibi kullan</div></div>
@@ -132,9 +139,7 @@ window._FB={signInWithPopup,signInWithRedirect,getRedirectResult,signOut,onAuthS
   <button id="ic" style="background:none;border:none;color:rgba(255,255,255,.5);font-size:20px;cursor:pointer;padding:4px">✕</button>
 </div>
 
-<!-- ═══════════════════════════════════════════════════════ -->
-<!-- PAGE: LOGIN -->
-<!-- ═══════════════════════════════════════════════════════ -->
+<!-- ═══ PAGE: LOGIN ═══ -->
 <div class="page active" id="page-login" style="align-items:center;justify-content:center;padding:30px">
   <div style="font-size:72px;text-align:center">📍</div>
   <div style="font-size:28px;font-weight:800;margin-top:8px;text-align:center">Konum Defteri</div>
@@ -147,16 +152,11 @@ window._FB={signInWithPopup,signInWithRedirect,getRedirectResult,signOut,onAuthS
   <div style="margin-top:16px;color:#374151;font-size:11px;text-align:center">Firebase ile güvenli saklama</div>
 </div>
 
-<!-- ═══════════════════════════════════════════════════════ -->
-<!-- PAGE: LIST -->
-<!-- ═══════════════════════════════════════════════════════ -->
+<!-- ═══ PAGE: LIST ═══ -->
 <div class="page" id="page-list">
   <div class="header">
     <div class="header-row">
-      <div class="header-title">
-        <div class="header-sup">Konum Defteri</div>
-        <div class="header-main">📍 Konumlarım</div>
-      </div>
+      <div class="header-title"><div class="header-sup">Konum Defteri</div><div class="header-main">📍 Konumlarım</div></div>
       <button style="background:rgba(255,255,255,.15);border:none;border-radius:10px;padding:6px 10px;color:#fff;font-size:12px;cursor:pointer;font-weight:600" onclick="showPage('page-cats')">🗂️</button>
       <img id="user-avatar" src="" style="width:32px;height:32px;border-radius:50%;cursor:pointer;border:2px solid rgba(255,255,255,.3);flex-shrink:0;display:none" onclick="doLogout()" title="Çıkış"/>
     </div>
@@ -173,9 +173,7 @@ window._FB={signInWithPopup,signInWithRedirect,getRedirectResult,signOut,onAuthS
   </div>
 </div>
 
-<!-- ═══════════════════════════════════════════════════════ -->
-<!-- PAGE: ADD METHOD -->
-<!-- ═══════════════════════════════════════════════════════ -->
+<!-- ═══ PAGE: ADD METHOD ═══ -->
 <div class="page" id="page-add-method">
   <div class="header">
     <div class="header-row">
@@ -186,31 +184,29 @@ window._FB={signInWithPopup,signInWithRedirect,getRedirectResult,signOut,onAuthS
   <div class="section">
     <div style="color:#6b7280;font-size:13px">Konumu nasıl eklemek istersin?</div>
     <button class="method-btn" onclick="startGPS()">
-      <span class="method-icon">📡</span>
-      <div><div class="method-title">Mevcut Konumumu Kullan</div><div class="method-sub">GPS ile anlık konum al</div></div>
+      <span style="font-size:28px;width:40px;text-align:center;flex-shrink:0" id="gps-icon">📡</span>
+      <div style="flex:1"><div style="color:#e8e8f0;font-weight:700;font-size:15px" id="gps-title">Mevcut Konumumu Kullan</div><div style="color:#6b7280;font-size:12px;margin-top:3px">GPS ile anlık konum al</div></div>
       <span style="color:#374151;font-size:18px;margin-left:auto">›</span>
     </button>
     <button class="method-btn" onclick="showPage('page-add-addr')">
-      <span class="method-icon">🔍</span>
-      <div><div class="method-title">Adres ile Ara</div><div class="method-sub">Mahalle, sokak, şehir adı yaz</div></div>
+      <span style="font-size:28px;width:40px;text-align:center;flex-shrink:0">🔍</span>
+      <div style="flex:1"><div style="color:#e8e8f0;font-weight:700;font-size:15px">Adres ile Ara</div><div style="color:#6b7280;font-size:12px;margin-top:3px">Mahalle, sokak, şehir adı yaz</div></div>
       <span style="color:#374151;font-size:18px;margin-left:auto">›</span>
     </button>
     <button class="method-btn" onclick="showPage('page-add-link')">
-      <span class="method-icon">🔗</span>
-      <div><div class="method-title">Google Maps Linki</div><div class="method-sub">Koordinatlı uzun link yapıştır</div></div>
+      <span style="font-size:28px;width:40px;text-align:center;flex-shrink:0">🔗</span>
+      <div style="flex:1"><div style="color:#e8e8f0;font-weight:700;font-size:15px">Google Maps Linki</div><div style="color:#6b7280;font-size:12px;margin-top:3px">Koordinatlı uzun link yapıştır</div></div>
       <span style="color:#374151;font-size:18px;margin-left:auto">›</span>
     </button>
     <button class="method-btn" onclick="showPage('page-add-manual')">
-      <span class="method-icon">🎯</span>
-      <div><div class="method-title">Koordinat Gir</div><div class="method-sub">Enlem / boylam biliyorsan</div></div>
+      <span style="font-size:28px;width:40px;text-align:center;flex-shrink:0">🎯</span>
+      <div style="flex:1"><div style="color:#e8e8f0;font-weight:700;font-size:15px">Koordinat Gir</div><div style="color:#6b7280;font-size:12px;margin-top:3px">Enlem / boylam biliyorsan</div></div>
       <span style="color:#374151;font-size:18px;margin-left:auto">›</span>
     </button>
   </div>
 </div>
 
-<!-- ═══════════════════════════════════════════════════════ -->
-<!-- PAGE: ADD ADDR -->
-<!-- ═══════════════════════════════════════════════════════ -->
+<!-- ═══ PAGE: ADD ADDR ═══ -->
 <div class="page" id="page-add-addr">
   <div class="header">
     <div class="header-row">
@@ -219,19 +215,17 @@ window._FB={signInWithPopup,signInWithRedirect,getRedirectResult,signOut,onAuthS
     </div>
   </div>
   <div class="section">
-    <div class="info-box">🔍 Mahalle, cadde, ilçe veya şehir adı yaz.<br>Örn: Kadıköy, Bağdat Caddesi, Ankara Kızılay</div>
+    <div class="info-box">Mahalle, cadde, ilçe veya şehir adı yaz.<br>Örn: <b>Kadıköy İstanbul</b>, <b>Kızılay Ankara</b></div>
     <div style="display:flex;gap:10px">
-      <input id="addr-inp" placeholder="Adres yaz..." style="flex:1" onkeydown="if(event.key==='Enter')doAddrSearch()"/>
-      <button onclick="doAddrSearch()" style="background:#7c6df0;border:none;border-radius:12px;color:#fff;padding:12px 16px;font-size:20px;cursor:pointer;flex-shrink:0">🔍</button>
+      <input id="addr-inp" placeholder="Adres yaz..." style="flex:1" onkeydown="if(event.key==='Enter'){event.preventDefault();doAddrSearch();}"/>
+      <button onclick="doAddrSearch()" style="background:#7c6df0;border:none;border-radius:12px;color:#fff;padding:12px 18px;font-size:16px;cursor:pointer;flex-shrink:0;font-weight:700">Ara</button>
     </div>
-    <div id="addr-loading" style="display:none;text-align:center;color:#6b7280;padding:20px">⏳ Aranıyor...</div>
+    <div id="addr-status" style="display:none;text-align:center;color:#6b7280;padding:16px;background:#1c1c2a;border-radius:12px"></div>
     <div id="addr-results"></div>
   </div>
 </div>
 
-<!-- ═══════════════════════════════════════════════════════ -->
-<!-- PAGE: ADD LINK -->
-<!-- ═══════════════════════════════════════════════════════ -->
+<!-- ═══ PAGE: ADD LINK ═══ -->
 <div class="page" id="page-add-link">
   <div class="header">
     <div class="header-row">
@@ -241,20 +235,23 @@ window._FB={signInWithPopup,signInWithRedirect,getRedirectResult,signOut,onAuthS
   </div>
   <div class="section">
     <div class="info-box">
-      ⚠️ <b style="color:#e8e8f0">WhatsApp kısa linkleri çalışmaz</b> (maps.app.goo.gl/...)<br><br>
-      ✅ Çalışan format:<br>
-      • Google Maps'te konuma bas → Paylaş → Linki kopyala<br>
-      • Veya: maps.google.com/?q=41.01,28.97
+      ✅ <b>Çalışır:</b> maps.google.com/?q=41.01,28.97<br>
+      ✅ <b>Çalışır:</b> Google Maps'te Paylaş → Linki kopyala<br><br>
+      ❌ <b>Çalışmaz:</b> maps.app.goo.gl/... (WhatsApp kısa link)<br>
+      → Kısa link için: Google Maps'te konumu aç → Paylaş → uzun linki kopyala
     </div>
-    <textarea id="link-inp" placeholder="https://maps.google.com/?q=41.01234,28.97890" rows="4"></textarea>
-    <div id="link-coords" style="display:none;font-size:12px;color:#22c55e;font-family:monospace"></div>
-    <button class="btn btn-primary" onclick="applyLink()">Koordinatı Al ve Devam Et →</button>
+    <div>
+      <div class="lbl">Link veya Koordinat Yapıştır</div>
+      <textarea id="link-inp" placeholder="https://maps.google.com/?q=41.01234,28.97890&#10;veya sadece: 41.01234, 28.97890" rows="4" oninput="onLinkInput(this.value)"></textarea>
+      <div id="link-hint" class="link-hint">✅ Koordinat bulundu!</div>
+    </div>
+    <button class="btn btn-primary" onclick="applyLink()">Devam Et →</button>
+    <div style="text-align:center;color:#374151;font-size:12px">— veya WhatsApp'tan gelen koordinatı elle gir —</div>
+    <button class="btn btn-ghost" onclick="showPage('page-add-manual')">🎯 Koordinat Gir</button>
   </div>
 </div>
 
-<!-- ═══════════════════════════════════════════════════════ -->
-<!-- PAGE: ADD MANUAL -->
-<!-- ═══════════════════════════════════════════════════════ -->
+<!-- ═══ PAGE: ADD MANUAL ═══ -->
 <div class="page" id="page-add-manual">
   <div class="header">
     <div class="header-row">
@@ -263,24 +260,15 @@ window._FB={signInWithPopup,signInWithRedirect,getRedirectResult,signOut,onAuthS
     </div>
   </div>
   <div class="section">
-    <div class="info-box">Google Maps'te konuma uzun bas → koordinatlar kopyalanır → aşağıya gir.<br><br>Türkiye için: Enlem 36-42, Boylam 26-45 arasında olmalı</div>
-    <div>
-      <div class="lbl">Enlem (Latitude)</div>
-      <input id="man-lat" type="number" step="0.000001" placeholder="Örn: 41.0082376" inputmode="decimal"/>
-    </div>
-    <div>
-      <div class="lbl">Boylam (Longitude)</div>
-      <input id="man-lng" type="number" step="0.000001" placeholder="Örn: 28.9783589" inputmode="decimal"/>
-    </div>
-    <button class="btn btn-primary" onclick="applyManual()">Onayla ve Devam Et →</button>
-    <div style="text-align:center;color:#374151;font-size:12px">— ya da —</div>
-    <button class="btn btn-ghost" onclick="window.open('https://maps.google.com','_blank')">🗺️ Google Maps'i Aç (koordinat için)</button>
+    <div class="info-box">Google Maps'te bir konuma <b>uzun bas</b> → koordinatlar gösterilir → aşağıya gir.</div>
+    <div><div class="lbl">Enlem (Latitude)</div><input id="man-lat" type="text" inputmode="decimal" placeholder="Örn: 41.0082376"/></div>
+    <div><div class="lbl">Boylam (Longitude)</div><input id="man-lng" type="text" inputmode="decimal" placeholder="Örn: 28.9783589"/></div>
+    <button class="btn btn-primary" onclick="applyManual()">Onayla →</button>
+    <button class="btn btn-ghost" onclick="window.open('https://maps.google.com','_blank')">🗺️ Google Maps'i Aç</button>
   </div>
 </div>
 
-<!-- ═══════════════════════════════════════════════════════ -->
-<!-- PAGE: ADD DETAILS -->
-<!-- ═══════════════════════════════════════════════════════ -->
+<!-- ═══ PAGE: ADD DETAILS ═══ -->
 <div class="page" id="page-add-details">
   <div class="header">
     <div class="header-row">
@@ -291,43 +279,28 @@ window._FB={signInWithPopup,signInWithRedirect,getRedirectResult,signOut,onAuthS
   <div class="section">
     <div class="coord-badge">
       <span style="font-size:22px">📍</span>
-      <div>
-        <div style="font-size:11px;color:#6b7280">Seçilen konum</div>
-        <div class="coord-text" id="details-coords"></div>
-      </div>
+      <div><div style="font-size:11px;color:#6b7280">Seçilen konum</div><div id="details-coords" style="font-size:12px;color:#22c55e;font-family:monospace"></div></div>
       <button onclick="showPage('page-add-method')" style="margin-left:auto;background:none;border:none;color:#6b7280;cursor:pointer;font-size:13px">Değiştir</button>
     </div>
-    <div>
-      <div class="lbl">İsim *</div>
-      <input id="det-name" placeholder="Konum adı..."/>
-    </div>
-    <div>
-      <div class="lbl">Notlar</div>
-      <input id="det-note" placeholder="Açıklama, not..."/>
-    </div>
-    <div>
-      <div class="lbl">Kategori</div>
-      <div id="det-cats" style="display:flex;flex-wrap:wrap;gap:8px"></div>
-    </div>
+    <div><div class="lbl">İsim *</div><input id="det-name" placeholder="Konum adı..."/></div>
+    <div><div class="lbl">Notlar</div><input id="det-note" placeholder="Açıklama, not..."/></div>
+    <div><div class="lbl">Kategori</div><div id="det-cats" style="display:flex;flex-wrap:wrap;gap:8px"></div></div>
     <div>
       <div class="lbl">Fotoğraf</div>
-      <input type="file" accept="image/*" id="det-photo-inp" style="display:none" onchange="handlePhoto(this)"/>
-      <div id="det-photo-wrap">
-        <button class="btn btn-ghost" style="border:2px dashed #252535" onclick="document.getElementById('det-photo-inp').click()">📷 Fotoğraf Ekle (opsiyonel)</button>
-      </div>
+      <input type="file" accept="image/*" id="det-photo-inp" style="display:none" onchange="handlePhoto(this,'det-photo-wrap')"/>
+      <div id="det-photo-wrap"><button class="btn btn-ghost" style="border:2px dashed #252535!important" onclick="document.getElementById('det-photo-inp').click()">📷 Fotoğraf Ekle (opsiyonel)</button></div>
     </div>
     <button class="btn btn-primary" onclick="saveLocation()">💾 Kaydet</button>
   </div>
 </div>
 
-<!-- ═══════════════════════════════════════════════════════ -->
-<!-- PAGE: DETAIL VIEW -->
-<!-- ═══════════════════════════════════════════════════════ -->
+<!-- ═══ PAGE: DETAIL VIEW ═══ -->
 <div class="page" id="page-detail">
   <div class="header">
     <div class="header-row">
       <button class="back-btn" onclick="showPage('page-list')">←</button>
-      <div class="header-title" style="min-width:0"><div class="header-sup">Konum Defteri</div><div class="header-main" id="detail-title"></div></div>
+      <div class="header-title"><div class="header-sup">Konum Defteri</div><div class="header-main" id="detail-title" style="font-size:17px"></div></div>
+      <button onclick="openEdit()" style="background:rgba(255,255,255,.15);border:none;border-radius:10px;padding:6px 12px;color:#fff;font-size:12px;cursor:pointer;font-weight:600;flex-shrink:0">✏️ Düzenle</button>
     </div>
   </div>
   <div style="overflow-y:auto;flex:1;padding-bottom:40px">
@@ -337,7 +310,7 @@ window._FB={signInWithPopup,signInWithRedirect,getRedirectResult,signOut,onAuthS
         <div><div style="font-size:22px;font-weight:800" id="detail-name"></div><span id="detail-cat-badge" style="background:rgba(124,109,240,.13);color:#9d8ff5;font-size:12px;padding:3px 10px;border-radius:10px;margin-top:6px;display:inline-block"></span></div>
         <div style="font-size:11px;color:#6b7280;flex-shrink:0;padding-top:4px" id="detail-date"></div>
       </div>
-      <div id="detail-note-wrap" style="display:none;background:#15151f;border-radius:12px;padding:14px;color:#94a3b8;font-size:14px;line-height:1.6;border:1px solid #252535" id="detail-note"></div>
+      <div id="detail-note-wrap" style="display:none;background:#15151f;border-radius:12px;padding:14px;color:#94a3b8;font-size:14px;line-height:1.6;border:1px solid #252535"></div>
       <div style="background:#15151f;border-radius:12px;padding:12px 16px;border:1px solid #252535">
         <div class="lbl">Koordinatlar</div>
         <div id="detail-coords" style="font-size:13px;color:#94a3b8;font-family:monospace"></div>
@@ -349,9 +322,29 @@ window._FB={signInWithPopup,signInWithRedirect,getRedirectResult,signOut,onAuthS
   </div>
 </div>
 
-<!-- ═══════════════════════════════════════════════════════ -->
-<!-- PAGE: CATEGORIES -->
-<!-- ═══════════════════════════════════════════════════════ -->
+<!-- ═══ PAGE: EDIT ═══ -->
+<div class="page" id="page-edit">
+  <div class="header">
+    <div class="header-row">
+      <button class="back-btn" onclick="checkUnsaved()">←</button>
+      <div class="header-title"><div class="header-sup">Konum Defteri</div><div class="header-main">Düzenle</div></div>
+    </div>
+  </div>
+  <div class="section">
+    <div><div class="lbl">İsim *</div><input id="edit-name" placeholder="Konum adı..."/></div>
+    <div><div class="lbl">Notlar</div><input id="edit-note" placeholder="Açıklama, not..."/></div>
+    <div><div class="lbl">Kategori</div><div id="edit-cats" style="display:flex;flex-wrap:wrap;gap:8px"></div></div>
+    <div>
+      <div class="lbl">Fotoğraf</div>
+      <input type="file" accept="image/*" id="edit-photo-inp" style="display:none" onchange="handlePhoto(this,'edit-photo-wrap')"/>
+      <div id="edit-photo-wrap"></div>
+    </div>
+    <button class="btn btn-primary" onclick="saveEdit()">💾 Değişiklikleri Kaydet</button>
+    <button class="btn btn-danger" onclick="askDelete()">🗑️ Konumu Sil</button>
+  </div>
+</div>
+
+<!-- ═══ PAGE: CATEGORIES ═══ -->
 <div class="page" id="page-cats">
   <div class="header">
     <div class="header-row">
@@ -363,10 +356,7 @@ window._FB={signInWithPopup,signInWithRedirect,getRedirectResult,signOut,onAuthS
     <div class="card" style="padding:16px">
       <div class="lbl" style="margin-bottom:12px">➕ Yeni Kategori</div>
       <div class="emoji-grid" id="emoji-grid"></div>
-      <div style="display:flex;gap:10px">
-        <input id="new-cat-label" placeholder="Kategori adı..." style="flex:1;border-radius:11px"/>
-        <button onclick="addCat()" style="background:#7c6df0;border:none;border-radius:11px;color:#fff;padding:10px 16px;font-size:14px;font-weight:700;cursor:pointer;flex-shrink:0">Ekle</button>
-      </div>
+      <div style="display:flex;gap:10px"><input id="new-cat-label" placeholder="Kategori adı..." style="flex:1;border-radius:11px"/><button onclick="addCat()" style="background:#7c6df0;border:none;border-radius:11px;color:#fff;padding:10px 16px;font-size:14px;font-weight:700;cursor:pointer;flex-shrink:0">Ekle</button></div>
     </div>
     <div class="lbl">Mevcut Kategoriler</div>
     <div id="cat-list" style="display:flex;flex-direction:column;gap:8px"></div>
@@ -374,116 +364,83 @@ window._FB={signInWithPopup,signInWithRedirect,getRedirectResult,signOut,onAuthS
 </div>
 
 <script>
-// ══════════════════════════════════════════════════════════════
-// GLOBALS
-// ══════════════════════════════════════════════════════════════
 const DEF_CATS=[{id:"ev",icon:"🏠",label:"Ev"},{id:"is",icon:"💼",label:"İş"},{id:"restoran",icon:"🍽️",label:"Restoran"},{id:"market",icon:"🛒",label:"Market"},{id:"hastane",icon:"🏥",label:"Hastane"},{id:"okul",icon:"🏫",label:"Okul"},{id:"diger",icon:"📍",label:"Diğer"}];
 const DEF_IDS=DEF_CATS.map(c=>c.id);
 const EMOJIS=["📍","🏠","💼","🍽️","🛒","🏥","🏫","⛽","🏖️","🏋️","🎭","🎓","🏦","🛕","⛪","🏪","🏨","🅿️","🚉","✈️","🌳","🎯","🔧","🎪","💈","🐾"];
 
 let _user=null,_locs=[],_cats=[],_uL=null,_uC=null;
-let _filterCat="all",_selCatIcon="📍",_pendingLat=null,_pendingLng=null,_pendingBack="page-add-method",_selLoc=null,_pendingCat="diger",_photoData="",_delCatId=null;
+let _filterCat="all",_selCatIcon="📍";
+let _pendingLat=null,_pendingLng=null,_pendingBack="page-add-method";
+let _pendingCat="diger",_photoData="";
+let _selLoc=null,_editCat="diger",_editPhoto="",_delCatId=null;
+let _parsedLat=null,_parsedLng=null; // for link page
 
-// ══════════════════════════════════════════════════════════════
-// TOAST
-// ══════════════════════════════════════════════════════════════
+// ── TOAST ──
 let _toastTm;
-function toast(msg,type="ok"){
-  const t=document.getElementById("toast");
-  t.textContent=msg;t.className="toast show "+type;
-  clearTimeout(_toastTm);_toastTm=setTimeout(()=>{t.className="toast";},3000);
-}
+function toast(msg,type="ok"){const t=document.getElementById("toast");t.textContent=msg;t.className="toast show "+type;clearTimeout(_toastTm);_toastTm=setTimeout(()=>{t.className="toast";},3500);}
 
-// ══════════════════════════════════════════════════════════════
-// PAGE NAVIGATION
-// ══════════════════════════════════════════════════════════════
+// ── MODAL ──
+function closeModal(id){document.getElementById(id).classList.remove("show");}
+function openModal(id){document.getElementById(id).classList.add("show");}
+
+// ── PAGE ──
 function showPage(id){
   document.querySelectorAll(".page").forEach(p=>p.classList.remove("active"));
   document.getElementById(id).classList.add("active");
   window.scrollTo(0,0);
   if(id==="page-list")renderList();
   if(id==="page-cats")renderCats();
-  if(id==="page-add-details")renderDetailsPage();
+  if(id==="page-add-addr"){document.getElementById("addr-inp").value="";document.getElementById("addr-results").innerHTML="";document.getElementById("addr-status").style.display="none";}
+  if(id==="page-add-link"){document.getElementById("link-inp").value="";document.getElementById("link-hint").style.display="none";_parsedLat=null;_parsedLng=null;}
+  if(id==="page-add-manual"){document.getElementById("man-lat").value="";document.getElementById("man-lng").value="";}
 }
 
-function closeModal(id){document.getElementById(id).classList.remove("show");}
-
-// ══════════════════════════════════════════════════════════════
-// AUTH
-// ══════════════════════════════════════════════════════════════
+// ── AUTH ──
 async function doLogin(){
-  const{signInWithPopup,signInWithRedirect,getRedirectResult}=window._FB;
   try{
     const isPWA=window.matchMedia("(display-mode:standalone)").matches||window.navigator.standalone;
-    if(isPWA)await signInWithRedirect(window._auth,window._prov);
-    else await signInWithPopup(window._auth,window._prov);
+    if(isPWA)await window._FB.signInWithRedirect(window._auth,window._prov);
+    else await window._FB.signInWithPopup(window._auth,window._prov);
   }catch(e){toast("Giriş hatası: "+e.code,"err");}
 }
-async function doLogout(){
-  await window._FB.signOut(window._auth);
-  showPage("page-login");
-}
+async function doLogout(){await window._FB.signOut(window._auth);showPage("page-login");}
 
 window.addEventListener("load",()=>{
   window._FB.getRedirectResult(window._auth).catch(()=>{});
   window._FB.onAuthStateChanged(window._auth,u=>{
-    if(u){_user=u;startFB(u.uid);onLogin(u);}
+    if(u){_user=u;startFB(u.uid);const av=document.getElementById("user-avatar");if(u.photoURL){av.src=u.photoURL;av.style.display="block";}showPage("page-list");}
     else{_user=null;if(_uL)_uL();if(_uC)_uC();showPage("page-login");}
   });
 });
 
-function onLogin(u){
-  const av=document.getElementById("user-avatar");
-  if(u.photoURL){av.src=u.photoURL;av.style.display="block";}
-  showPage("page-list");
-}
-
-// ══════════════════════════════════════════════════════════════
-// FIRESTORE
-// ══════════════════════════════════════════════════════════════
+// ── FIRESTORE ──
 function startFB(uid){
-  const{db,collection,query,orderBy,onSnapshot,setDoc,doc}=window._FB;const db2=window._db;
+  const{collection,query,orderBy,onSnapshot,setDoc,doc}=window._FB;const db=window._db;
   if(_uL)_uL();if(_uC)_uC();
-  _uL=onSnapshot(query(collection(db2,"users",uid,"locations"),orderBy("createdAt","desc")),s=>{
-    _locs=s.docs.map(d=>({id:d.id,...d.data()}));renderList();
-  });
-  _uC=onSnapshot(query(collection(db2,"users",uid,"categories"),orderBy("order","asc")),async s=>{
-    if(s.empty){for(let i=0;i<DEF_CATS.length;i++)await setDoc(doc(db2,"users",uid,"categories",DEF_CATS[i].id),{...DEF_CATS[i],order:i});}
+  _uL=onSnapshot(query(collection(db,"users",uid,"locations"),orderBy("createdAt","desc")),s=>{_locs=s.docs.map(d=>({id:d.id,...d.data()}));renderList();});
+  _uC=onSnapshot(query(collection(db,"users",uid,"categories"),orderBy("order","asc")),async s=>{
+    if(s.empty){for(let i=0;i<DEF_CATS.length;i++)await setDoc(doc(db,"users",uid,"categories",DEF_CATS[i].id),{...DEF_CATS[i],order:i});}
     else{_cats=s.docs.map(d=>({id:d.id,...d.data()}));renderList();}
   });
 }
-
 function getCat(id){return _cats.find(c=>c.id===id)||DEF_CATS.find(c=>c.id===id)||{icon:"📍",label:id};}
 
-// ══════════════════════════════════════════════════════════════
-// LIST RENDER
-// ══════════════════════════════════════════════════════════════
+// ── LIST ──
 function renderList(){
   if(!document.getElementById("page-list").classList.contains("active"))return;
-  // cat filter chips
-  const cf=document.getElementById("cat-filter");
-  cf.innerHTML="";
+  const cf=document.getElementById("cat-filter");cf.innerHTML="";
   [{id:"all",icon:"🌍",label:"Tümü"},..._cats].forEach(c=>{
-    const a=_filterCat===c.id;
-    const b=document.createElement("button");
-    b.className="cat-chip";
-    b.textContent=`${c.icon} ${c.label}`;
+    const a=_filterCat===c.id,b=document.createElement("button");
+    b.className="cat-chip";b.textContent=`${c.icon} ${c.label}`;
     b.style.cssText=`background:${a?"#7c6df0":"#15151f"};border:1px solid ${a?"#7c6df0":"#252535"};color:${a?"#fff":"#6b7280"};font-weight:${a?"700":"400"}`;
-    b.onclick=()=>{_filterCat=c.id;renderList();};
-    cf.appendChild(b);
+    b.onclick=()=>{_filterCat=c.id;renderList();};cf.appendChild(b);
   });
   const q=(document.getElementById("search-inp").value||"").toLowerCase();
   const fl=_locs.filter(l=>(l.cat===_filterCat||_filterCat==="all")&&((l.name||"").toLowerCase().includes(q)||(l.note||"").toLowerCase().includes(q)));
-  const ll=document.getElementById("loc-list");
-  ll.innerHTML="";
-  if(!fl.length){
-    ll.innerHTML=`<div class="empty-state"><div style="font-size:52px">🗺️</div><div style="margin-top:12px;font-size:15px;color:#6b7280">Henüz konum yok</div><div style="font-size:12px;margin-top:4px">Aşağıdan yeni ekle</div></div>`;
-    return;
-  }
+  const ll=document.getElementById("loc-list");ll.innerHTML="";
+  if(!fl.length){ll.innerHTML=`<div class="empty-state"><div style="font-size:52px">🗺️</div><div style="margin-top:12px;font-size:15px;color:#6b7280">Henüz konum yok</div><div style="font-size:12px;margin-top:4px">Aşağıdan yeni ekle</div></div>`;return;}
   fl.forEach(loc=>{
-    const cat=getCat(loc.cat);
-    const card=document.createElement("div");card.className="loc-card";
-    card.onclick=()=>openDetail(loc);
+    const cat=getCat(loc.cat),card=document.createElement("div");card.className="loc-card";card.onclick=()=>openDetail(loc);
     if(loc.photo){const img=document.createElement("img");img.src=loc.photo;img.className="loc-thumb";card.appendChild(img);}
     else{const ic=document.createElement("div");ic.className="loc-thumb-icon";ic.textContent=cat.icon;card.appendChild(ic);}
     const info=document.createElement("div");info.className="loc-info";
@@ -493,157 +450,154 @@ function renderList(){
     ll.appendChild(card);
   });
 }
-
-function filterList(){
-  const v=document.getElementById("search-inp").value;
-  document.getElementById("search-clear").style.display=v?"block":"none";
-  renderList();
-}
+function filterList(){const v=document.getElementById("search-inp").value;document.getElementById("search-clear").style.display=v?"block":"none";renderList();}
 function clearSearch(){document.getElementById("search-inp").value="";document.getElementById("search-clear").style.display="none";renderList();}
 
-// ══════════════════════════════════════════════════════════════
-// GPS
-// ══════════════════════════════════════════════════════════════
+// ── GPS ──
 function startGPS(){
   if(!navigator.geolocation)return toast("Bu tarayıcı GPS desteklemiyor","err");
-  const btn=document.querySelector("#page-add-method .method-btn");
-  toast("📡 Konum alınıyor...");
+  document.getElementById("gps-icon").textContent="⏳";
+  document.getElementById("gps-title").textContent="Konum alınıyor...";
   navigator.geolocation.getCurrentPosition(
     p=>{
-      _pendingLat=p.coords.latitude;_pendingLng=p.coords.longitude;
-      _pendingBack="page-add-method";
-      toast("✅ Konum alındı!");
-      showPage("page-add-details");
+      document.getElementById("gps-icon").textContent="📡";
+      document.getElementById("gps-title").textContent="Mevcut Konumumu Kullan";
+      _pendingLat=p.coords.latitude;_pendingLng=p.coords.longitude;_pendingBack="page-add-method";
+      goToDetails();
     },
     e=>{
-      const msgs={1:"❌ Konum izni reddedildi!\n\nTarayıcıda adres çubuğunun yanındaki kilit simgesine bas → Konum → İzin ver",2:"GPS sinyali yok. WiFi'yi aç veya dışarı çık.",3:"Zaman aşımı. Tekrar dene."};
-      toast(msgs[e.code]||"Konum alınamadı: "+e.message,"err");
+      document.getElementById("gps-icon").textContent="📡";
+      document.getElementById("gps-title").textContent="Mevcut Konumumu Kullan";
+      const msgs={1:"❌ Konum izni reddedildi!\n\nAdres çubuğundaki 🔒 simgesine bas → Konum → İzin ver",2:"GPS sinyali yok. WiFi'yi aç veya dışarı çık.",3:"Zaman aşımı. Tekrar dene."};
+      toast(msgs[e.code]||"Konum alınamadı","err");
     },
     {enableHighAccuracy:true,timeout:15000,maximumAge:0}
   );
 }
 
-// ══════════════════════════════════════════════════════════════
-// ADRES ARAMA
-// ══════════════════════════════════════════════════════════════
+// ── ADRES ARAMA ──
 async function doAddrSearch(){
   const q=document.getElementById("addr-inp").value.trim();
-  if(!q)return toast("Bir adres yaz","err");
-  document.getElementById("addr-loading").style.display="block";
-  document.getElementById("addr-results").innerHTML="";
+  if(!q)return toast("Adres yaz!","err");
+  const st=document.getElementById("addr-status");
+  const rs=document.getElementById("addr-results");
+  st.style.display="block";st.textContent="⏳ Aranıyor...";rs.innerHTML="";
   try{
-    const r=await fetch(`https://nominatim.openstreetmap.org/search?q=${encodeURIComponent(q)}&format=json&limit=6&accept-language=tr,en`);
-    const data=await r.json();
-    document.getElementById("addr-loading").style.display="none";
-    if(!data.length)return toast("Adres bulunamadı, farklı kelimeler dene","err");
-    const wrap=document.getElementById("addr-results");
-    wrap.innerHTML="";
-    const box=document.createElement("div");box.style.cssText="border:1px solid #252535;border-radius:12px;overflow:hidden";
+    // CORS header ekle, iki alternatif API dene
+    const url=`https://nominatim.openstreetmap.org/search?q=${encodeURIComponent(q)}&format=json&limit=6&addressdetails=1`;
+    const resp=await fetch(url,{headers:{"Accept-Language":"tr,en","User-Agent":"KonumDefteri/1.0"}});
+    if(!resp.ok)throw new Error("HTTP "+resp.status);
+    const data=await resp.json();
+    st.style.display="none";
+    if(!data||!data.length){st.style.display="block";st.textContent="❌ Sonuç bulunamadı. Farklı kelimeler dene.";return;}
+    const box=document.createElement("div");box.className="addr-box";
     data.forEach(item=>{
       const b=document.createElement("button");b.className="addr-result";
       const parts=item.display_name.split(",");
-      b.innerHTML=`<div class="addr-result-name">${parts[0]}</div><div class="addr-result-full">${item.display_name}</div>`;
-      b.style.borderBottom="1px solid #252535";
+      const name=parts[0].trim();
+      const full=item.display_name;
+      b.innerHTML=`<div class="addr-result-name">${name}</div><div class="addr-result-full">${full}</div>`;
       b.onclick=()=>{
-        _pendingLat=+item.lat;_pendingLng=+item.lon;
-        _pendingBack="page-add-addr";
-        const nameInp=document.getElementById("det-name");
-        // pre-fill name
-        setTimeout(()=>{if(nameInp&&!nameInp.value)nameInp.value=parts[0].trim();},100);
-        showPage("page-add-details");
+        _pendingLat=parseFloat(item.lat);_pendingLng=parseFloat(item.lon);_pendingBack="page-add-addr";
+        setTimeout(()=>{const n=document.getElementById("det-name");if(n&&!n.value)n.value=name;},50);
+        goToDetails();
       };
       box.appendChild(b);
     });
-    // remove last border
-    if(box.lastChild)box.lastChild.style.borderBottom="none";
-    wrap.appendChild(box);
-  }catch(e){
-    document.getElementById("addr-loading").style.display="none";
-    toast("Bağlantı hatası. İnternet bağlantını kontrol et.","err");
+    rs.appendChild(box);
+  }catch(err){
+    st.style.display="block";
+    st.textContent="❌ Bağlantı hatası. İnternet bağlantını kontrol et.\n"+err.message;
   }
 }
 
-// ══════════════════════════════════════════════════════════════
-// LINK
-// ══════════════════════════════════════════════════════════════
+// ── LINK ──
 function parseCoords(txt){
-  if(!txt)return null;
+  if(!txt||!txt.trim())return null;
   const ps=[
     /maps\.google\.com\/\?q=([-\d.]+),([-\d.]+)/,
-    /google\.com\/maps\/place\/[^@]+@([-\d.]+),([-\d.]+)/,
-    /google\.com\/maps.*?[?&]q=([-\d.]+),([-\d.]+)/,
-    /@([-\d.]+),([-\d.]+)/,
-    /ll=([-\d.]+),([-\d.]+)/,
+    /google\.com\/maps\/place\/[^@]*@([-\d.]+),([-\d.]+)/,
     /[?&]q=([-\d.]+),([-\d.]+)/,
-    /\b([-]?\d{1,3}\.\d{4,})[,\s]+([-]?\d{1,3}\.\d{4,})\b/,
+    /ll=([-\d.]+),([-\d.]+)/,
+    /@([-\d.]+),([-\d.]+)/,
+    /\b([-]?\d{1,3}\.\d{4,})\s*[,;]\s*([-]?\d{1,3}\.\d{4,})\b/,
   ];
-  for(const p of ps){const m=txt.match(p);if(m){const la=+m[1],ln=+m[2];if(la>=-90&&la<=90&&ln>=-180&&ln<=180&&(Math.abs(la)>0.001||Math.abs(ln)>0.001))return{lat:la,lng:ln};}}
+  for(const p of ps){const m=txt.match(p);if(m){const la=parseFloat(m[1]),ln=parseFloat(m[2]);if(la>=-90&&la<=90&&ln>=-180&&ln<=180&&Math.abs(la)+Math.abs(ln)>0.01)return{lat:la,lng:ln};}}
   return null;
 }
 
-function applyLink(){
-  const txt=document.getElementById("link-inp").value;
-  const c=parseCoords(txt);
-  if(!c)return toast("Koordinat bulunamadı.\nWhatsApp kısa link değil, uzun Google Maps linki gerekmeli.\nYa da 'Koordinat Gir' seçeneğini kullan.","err");
-  _pendingLat=c.lat;_pendingLng=c.lng;_pendingBack="page-add-link";
-  showPage("page-add-details");
+function onLinkInput(val){
+  const c=parseCoords(val);const hint=document.getElementById("link-hint");
+  if(c){_parsedLat=c.lat;_parsedLng=c.lng;hint.textContent=`✅ ${c.lat.toFixed(5)}, ${c.lng.toFixed(5)}`;hint.style.display="block";}
+  else{_parsedLat=null;_parsedLng=null;hint.style.display="none";}
 }
 
-// ══════════════════════════════════════════════════════════════
-// MANUAL
-// ══════════════════════════════════════════════════════════════
+function applyLink(){
+  const val=document.getElementById("link-inp").value;
+  const c=parseCoords(val)||(_parsedLat?{lat:_parsedLat,lng:_parsedLng}:null);
+  if(!c)return toast("Koordinat bulunamadı.\nUzun Google Maps linki gerekmeli.\nYa da 'Koordinat Gir' seçeneğini kullan.","err");
+  _pendingLat=c.lat;_pendingLng=c.lng;_pendingBack="page-add-link";
+  goToDetails();
+}
+
+// ── MANUAL ──
 function applyManual(){
-  const la=+document.getElementById("man-lat").value;
-  const ln=+document.getElementById("man-lng").value;
-  if(isNaN(la)||isNaN(ln))return toast("Geçerli sayı girin","err");
+  const la=parseFloat(document.getElementById("man-lat").value.replace(",","."));
+  const ln=parseFloat(document.getElementById("man-lng").value.replace(",","."));
+  if(isNaN(la)||isNaN(ln))return toast("Geçerli sayılar girin","err");
   if(la<-90||la>90)return toast("Enlem -90 ile 90 arasında olmalı","err");
   if(ln<-180||ln>180)return toast("Boylam -180 ile 180 arasında olmalı","err");
-  if(la===0&&ln===0)return toast("Koordinat girilmedi","err");
   _pendingLat=la;_pendingLng=ln;_pendingBack="page-add-manual";
-  showPage("page-add-details");
+  goToDetails();
 }
 
-// ══════════════════════════════════════════════════════════════
-// DETAILS PAGE
-// ══════════════════════════════════════════════════════════════
-function renderDetailsPage(){
-  document.getElementById("details-coords").textContent=`${_pendingLat?.toFixed(5)}, ${_pendingLng?.toFixed(5)}`;
+// ── DETAILS ──
+function goToDetails(){
+  document.getElementById("details-coords").textContent=`${_pendingLat.toFixed(5)}, ${_pendingLng.toFixed(5)}`;
   document.getElementById("details-back-btn").onclick=()=>showPage(_pendingBack);
-  // reset
   document.getElementById("det-name").value="";
   document.getElementById("det-note").value="";
   _photoData="";_pendingCat="diger";
-  document.getElementById("det-photo-wrap").innerHTML=`<button class="btn btn-ghost" style="border:2px dashed #252535" onclick="document.getElementById('det-photo-inp').click()">📷 Fotoğraf Ekle (opsiyonel)</button>`;
-  // cat chips
-  const cg=document.getElementById("det-cats");cg.innerHTML="";
+  renderCatChips("det-cats","_pendingCat");
+  document.getElementById("det-photo-wrap").innerHTML=`<button class="btn btn-ghost" style="border:2px dashed #252535!important" onclick="document.getElementById('det-photo-inp').click()">📷 Fotoğraf Ekle (opsiyonel)</button>`;
+  document.querySelectorAll(".page").forEach(p=>p.classList.remove("active"));
+  document.getElementById("page-add-details").classList.add("active");
+  window.scrollTo(0,0);
+}
+
+function renderCatChips(containerId,varName){
+  const cg=document.getElementById(containerId);cg.innerHTML="";
+  const cur=varName==="_pendingCat"?_pendingCat:_editCat;
   _cats.forEach(c=>{
-    const b=document.createElement("button");
-    b.className="cat-chip";
-    b.textContent=`${c.icon} ${c.label}`;
-    b.style.cssText=`background:${c.id===_pendingCat?"#7c6df0":"#1c1c2a"};border:1px solid ${c.id===_pendingCat?"#7c6df0":"#252535"};color:${c.id===_pendingCat?"#fff":"#6b7280"};font-weight:${c.id===_pendingCat?"700":"400"}`;
-    b.onclick=()=>{_pendingCat=c.id;renderDetailsPage();};
+    const b=document.createElement("button");b.className="cat-chip";b.textContent=`${c.icon} ${c.label}`;
+    b.style.cssText=`background:${c.id===cur?"#7c6df0":"#1c1c2a"};border:1px solid ${c.id===cur?"#7c6df0":"#252535"};color:${c.id===cur?"#fff":"#6b7280"};font-weight:${c.id===cur?"700":"400"}`;
+    b.onclick=()=>{if(varName==="_pendingCat")_pendingCat=c.id;else _editCat=c.id;renderCatChips(containerId,varName);};
     cg.appendChild(b);
   });
 }
 
-function handlePhoto(inp){
+function handlePhoto(inp,wrapId){
   const f=inp.files[0];if(!f)return;
-  if(f.size>900000)return toast("Max 900KB fotoğraf","err");
+  if(f.size>900000)return toast("Max 900KB","err");
   const r=new FileReader();
   r.onload=()=>{
-    _photoData=r.result;
-    const w=document.getElementById("det-photo-wrap");
-    w.innerHTML=`<div style="position:relative"><img src="${_photoData}" style="width:100%;border-radius:12px;max-height:170px;object-fit:cover"/><button onclick="clearPhoto()" style="position:absolute;top:8px;right:8px;background:#ef4444;border:none;border-radius:50%;width:28px;height:28px;color:#fff;cursor:pointer;font-size:14px">✕</button></div>`;
+    const data=r.result;
+    if(wrapId==="det-photo-wrap")_photoData=data;else _editPhoto=data;
+    document.getElementById(wrapId).innerHTML=`<div style="position:relative"><img src="${data}" style="width:100%;border-radius:12px;max-height:170px;object-fit:cover"/><button onclick="clearPhoto('${wrapId}')" style="position:absolute;top:8px;right:8px;background:#ef4444;border:none;border-radius:50%;width:28px;height:28px;color:#fff;cursor:pointer;font-size:14px">✕</button></div>`;
   };
   r.readAsDataURL(f);
 }
-function clearPhoto(){_photoData="";document.getElementById("det-photo-wrap").innerHTML=`<button class="btn btn-ghost" style="border:2px dashed #252535" onclick="document.getElementById('det-photo-inp').click()">📷 Fotoğraf Ekle (opsiyonel)</button>`;}
+function clearPhoto(wrapId){
+  if(wrapId==="det-photo-wrap"){_photoData="";}else{_editPhoto="";}
+  const id=wrapId==="det-photo-wrap"?"det-photo-inp":"edit-photo-inp";
+  document.getElementById(wrapId).innerHTML=`<button class="btn btn-ghost" style="border:2px dashed #252535!important" onclick="document.getElementById('${id}').click()">📷 Fotoğraf Ekle (opsiyonel)</button>`;
+}
 
 async function saveLocation(){
   const name=document.getElementById("det-name").value.trim();
   const note=document.getElementById("det-note").value.trim();
   if(!name)return toast("İsim girin!","err");
-  if(_pendingLat==null||_pendingLng==null)return toast("Konum seçilmedi","err");
+  if(_pendingLat==null)return toast("Konum seçilmedi","err");
   const{collection,addDoc}=window._FB;
   try{
     await addDoc(collection(window._db,"users",_user.uid,"locations"),{
@@ -651,79 +605,111 @@ async function saveLocation(){
       photo:_photoData,createdAt:new Date(),date:new Date().toLocaleDateString("tr-TR")
     });
     _pendingLat=null;_pendingLng=null;_photoData="";
-    // reset inputs
-    document.getElementById("det-name").value="";
-    document.getElementById("det-note").value="";
-    document.getElementById("addr-inp").value="";
-    document.getElementById("link-inp").value="";
-    document.getElementById("man-lat").value="";
-    document.getElementById("man-lng").value="";
     toast("📍 Konum kaydedildi!");
     showPage("page-list");
   }catch(e){toast("Kayıt hatası: "+e.message,"err");}
 }
 
-// ══════════════════════════════════════════════════════════════
-// DETAIL VIEW
-// ══════════════════════════════════════════════════════════════
+// ── DETAIL VIEW ──
 function openDetail(loc){
-  _selLoc=loc;
-  const cat=getCat(loc.cat);
+  _selLoc=loc;const cat=getCat(loc.cat);
   document.getElementById("detail-title").textContent=loc.name;
   document.getElementById("detail-name").textContent=loc.name;
   document.getElementById("detail-cat-badge").textContent=`${cat.icon} ${cat.label||cat.id}`;
   document.getElementById("detail-date").textContent=loc.date||"";
   document.getElementById("detail-coords").textContent=`${loc.lat?.toFixed(6)}, ${loc.lng?.toFixed(6)}`;
   const nw=document.getElementById("detail-note-wrap");
-  if(loc.note){nw.textContent=loc.note;nw.style.display="block";}else{nw.style.display="none";}
+  nw.textContent=loc.note||"";nw.style.display=loc.note?"block":"none";
   const hero=document.getElementById("detail-hero");
-  if(loc.photo){hero.innerHTML=`<img src="${loc.photo}" style="width:100%;height:100%;object-fit:cover"/>`;}
-  else{hero.style.background=`linear-gradient(135deg,rgba(124,109,240,.2),rgba(157,143,245,.13))`;hero.textContent=cat.icon;}
+  if(loc.photo)hero.innerHTML=`<img src="${loc.photo}" style="width:100%;height:100%;object-fit:cover"/>`;
+  else{hero.innerHTML="";hero.textContent=cat.icon;hero.style.background="linear-gradient(135deg,rgba(124,109,240,.2),rgba(157,143,245,.13))";}
   document.getElementById("detail-nav-btn").onclick=()=>window.open(`https://www.google.com/maps/dir/?api=1&destination=${loc.lat},${loc.lng}`,"_blank");
   document.getElementById("detail-copy-btn").onclick=()=>{navigator.clipboard?.writeText(`https://maps.google.com/?q=${loc.lat},${loc.lng}`);toast("🔗 Link kopyalandı!");};
-  document.getElementById("detail-del-btn").onclick=()=>deleteLocation(loc.id);
+  document.getElementById("detail-del-btn").onclick=()=>askDelete();
   showPage("page-detail");
 }
 
-async function deleteLocation(id){
-  const{doc,deleteDoc}=window._FB;
-  await deleteDoc(doc(window._db,"users",_user.uid,"locations",id));
-  toast("🗑️ Silindi");showPage("page-list");
+function askDelete(){
+  document.getElementById("modal-del-text").textContent=`"${_selLoc?.name}" konumunu silmek istediğine emin misin?`;
+  document.getElementById("modal-del-btn").onclick=async()=>{
+    const{doc,deleteDoc}=window._FB;
+    await deleteDoc(doc(window._db,"users",_user.uid,"locations",_selLoc.id));
+    closeModal("modal-del");toast("🗑️ Silindi");showPage("page-list");
+  };
+  openModal("modal-del");
 }
 
-// ══════════════════════════════════════════════════════════════
-// CATEGORIES
-// ══════════════════════════════════════════════════════════════
+// ── EDIT ──
+function openEdit(){
+  if(!_selLoc)return;
+  _editCat=_selLoc.cat||"diger";
+  _editPhoto=_selLoc.photo||"";
+  document.getElementById("edit-name").value=_selLoc.name||"";
+  document.getElementById("edit-note").value=_selLoc.note||"";
+  renderCatChips("edit-cats","_editCat");
+  const ew=document.getElementById("edit-photo-wrap");
+  if(_editPhoto)ew.innerHTML=`<div style="position:relative"><img src="${_editPhoto}" style="width:100%;border-radius:12px;max-height:170px;object-fit:cover"/><button onclick="clearPhoto('edit-photo-wrap')" style="position:absolute;top:8px;right:8px;background:#ef4444;border:none;border-radius:50%;width:28px;height:28px;color:#fff;cursor:pointer;font-size:14px">✕</button></div>`;
+  else ew.innerHTML=`<button class="btn btn-ghost" style="border:2px dashed #252535!important" onclick="document.getElementById('edit-photo-inp').click()">📷 Fotoğraf Değiştir</button>`;
+  showPage("page-edit");
+}
+
+function hasEditChanges(){
+  if(!_selLoc)return false;
+  return document.getElementById("edit-name").value.trim()!==(_selLoc.name||"")
+    ||document.getElementById("edit-note").value.trim()!==(_selLoc.note||"")
+    ||_editCat!==(_selLoc.cat||"diger")
+    ||_editPhoto!==(_selLoc.photo||"");
+}
+
+function checkUnsaved(){
+  if(hasEditChanges())openModal("modal-unsaved");
+  else showPage("page-detail");
+}
+
+function discardEdit(){closeModal("modal-unsaved");showPage("page-detail");}
+
+async function saveEdit(){
+  closeModal("modal-unsaved");
+  const name=document.getElementById("edit-name").value.trim();
+  if(!name)return toast("İsim girin!","err");
+  const{doc,updateDoc}=window._FB;
+  try{
+    await updateDoc(doc(window._db,"users",_user.uid,"locations",_selLoc.id),{
+      name,note:document.getElementById("edit-note").value.trim(),cat:_editCat,photo:_editPhoto
+    });
+    // refresh selLoc
+    _selLoc={..._selLoc,name,note:document.getElementById("edit-note").value.trim(),cat:_editCat,photo:_editPhoto};
+    toast("✅ Değişiklikler kaydedildi!");
+    openDetail(_selLoc);
+  }catch(e){toast("Güncelleme hatası: "+e.message,"err");}
+}
+
+// ── CATEGORIES ──
+let _selCatIconGlobal="📍";
 function renderCats(){
-  // emoji grid
   const eg=document.getElementById("emoji-grid");eg.innerHTML="";
   EMOJIS.forEach(e=>{
     const b=document.createElement("button");b.className="emoji-btn";b.textContent=e;
-    b.style.cssText=`background:${_selCatIcon===e?"#7c6df0":"#1c1c2a"};border:1px solid ${_selCatIcon===e?"#7c6df0":"#252535"}`;
-    b.onclick=()=>{_selCatIcon=e;renderCats();};
-    eg.appendChild(b);
+    b.style.cssText=`background:${_selCatIconGlobal===e?"#7c6df0":"#1c1c2a"};border:1px solid ${_selCatIconGlobal===e?"#7c6df0":"#252535"}`;
+    b.onclick=()=>{_selCatIconGlobal=e;renderCats();};eg.appendChild(b);
   });
-  // cat list
   const cl=document.getElementById("cat-list");cl.innerHTML="";
   _cats.forEach(c=>{
-    const cnt=_locs.filter(l=>l.cat===c.id).length;const isDef=DEF_IDS.includes(c.id);
+    const cnt=_locs.filter(l=>l.cat===c.id).length,isDef=DEF_IDS.includes(c.id);
     const row=document.createElement("div");row.className="cat-item";
     row.innerHTML=`<span style="font-size:24px">${c.icon}</span><div style="flex:1"><div style="font-weight:600;font-size:14px">${c.label}</div><div style="font-size:11px;color:#6b7280;margin-top:2px">${cnt} konum</div></div>`;
-    if(isDef){const badge=document.createElement("span");badge.style.cssText="font-size:10px;color:#374151;background:#1c1c2a;padding:3px 8px;border-radius:8px";badge.textContent="Varsayılan";row.appendChild(badge);}
-    else{const db2=document.createElement("button");db2.style.cssText="background:none;border:1px solid #ef444430;border-radius:10px;color:#ef4444;padding:5px 12px;font-size:12px;cursor:pointer";db2.textContent="Sil";db2.onclick=()=>{_delCatId=c.id;document.getElementById("modal-delcat").classList.add("show");};row.appendChild(db2);}
+    if(isDef){const b=document.createElement("span");b.style.cssText="font-size:10px;color:#374151;background:#1c1c2a;padding:3px 8px;border-radius:8px";b.textContent="Varsayılan";row.appendChild(b);}
+    else{const b=document.createElement("button");b.style.cssText="background:none;border:1px solid #ef444430;border-radius:10px;color:#ef4444;padding:5px 12px;font-size:12px;cursor:pointer";b.textContent="Sil";b.onclick=()=>{_delCatId=c.id;openModal("modal-delcat");};row.appendChild(b);}
     cl.appendChild(row);
   });
 }
-
 async function addCat(){
   const label=document.getElementById("new-cat-label").value.trim();
   if(!label)return toast("İsim girin!","err");
   const{doc,setDoc}=window._FB;const id=Date.now().toString();
-  await setDoc(doc(window._db,"users",_user.uid,"categories",id),{id,icon:_selCatIcon,label,order:_cats.length});
-  document.getElementById("new-cat-label").value="";
-  toast("✅ Kategori eklendi!");
+  await setDoc(doc(window._db,"users",_user.uid,"categories",id),{id,icon:_selCatIconGlobal,label,order:_cats.length});
+  document.getElementById("new-cat-label").value="";toast("✅ Kategori eklendi!");
 }
-
 document.getElementById("confirm-delcat-btn").onclick=async()=>{
   if(!_delCatId)return;
   const{doc,deleteDoc}=window._FB;
@@ -731,9 +717,7 @@ document.getElementById("confirm-delcat-btn").onclick=async()=>{
   closeModal("modal-delcat");_delCatId=null;toast("🗑️ Silindi");
 };
 
-// ══════════════════════════════════════════════════════════════
-// INSTALL + SW
-// ══════════════════════════════════════════════════════════════
+// ── SW + INSTALL ──
 let _dp;
 window.addEventListener("beforeinstallprompt",e=>{e.preventDefault();_dp=e;document.getElementById("install-banner").classList.add("show");});
 document.getElementById("ib").onclick=async()=>{if(_dp){_dp.prompt();await _dp.userChoice;_dp=null;document.getElementById("install-banner").classList.remove("show");}};
