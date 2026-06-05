@@ -398,15 +398,22 @@ function showPage(id){
 // ── AUTH ──
 async function doLogin(){
   try{
-    const isPWA=window.matchMedia("(display-mode:standalone)").matches||window.navigator.standalone;
-    if(isPWA)await window._FB.signInWithRedirect(window._auth,window._prov);
-    else await window._FB.signInWithPopup(window._auth,window._prov);
-  }catch(e){toast("Giriş hatası: "+e.code,"err");}
+    await window._FB.signInWithPopup(window._auth,window._prov);
+  }catch(e){
+    if(e.code==="auth/popup-blocked"){
+      toast("Popup engellendi! Tarayıcı ayarlarından açılır pencereye izin ver.","err");
+    }else if(e.code==="auth/cancelled-popup-request"||e.code==="auth/popup-closed-by-user"){
+      // kullanıcı kapattı, normal
+    }else{
+      toast("Giriş hatası: "+e.code,"err");
+    }
+  }
+}catch(e){toast("Giriş hatası: "+e.code,"err");}
 }
 async function doLogout(){await window._FB.signOut(window._auth);showPage("page-login");}
 
 window.addEventListener("load",()=>{
-  window._FB.getRedirectResult(window._auth).catch(()=>{});
+  // getRedirectResult kaldırıldı - popup kullanılıyor
   window._FB.onAuthStateChanged(window._auth,u=>{
     if(u){_user=u;startFB(u.uid);const av=document.getElementById("user-avatar");if(u.photoURL){av.src=u.photoURL;av.style.display="block";}showPage("page-list");}
     else{_user=null;if(_uL)_uL();if(_uC)_uC();showPage("page-login");}
