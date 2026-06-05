@@ -398,12 +398,22 @@ function showPage(id){
 // ── AUTH ──
 async function doLogin(){
   try{
-    await window._FB.signInWithPopup(window._auth,window._prov);
+    const isPWA=window.matchMedia("(display-mode:standalone)").matches||window.navigator.standalone===true;
+    if(isPWA){
+      // Redirect modunda döngüyü önlemek için flag koy
+      localStorage.setItem("login_pending","1");
+      await window._FB.signInWithRedirect(window._auth,window._prov);
+    }else{
+      await window._FB.signInWithPopup(window._auth,window._prov);
+    }
   }catch(e){
+    localStorage.removeItem("login_pending");
     if(e.code==="auth/popup-blocked"){
-      toast("Popup engellendi! Tarayıcı ayarlarından açılır pencereye izin ver.","err");
-    }else if(e.code==="auth/cancelled-popup-request"||e.code==="auth/popup-closed-by-user"){
-      // kullanıcı kapattı, normal
+      // Popup bloklanınca redirect'e geç
+      localStorage.setItem("login_pending","1");
+      await window._FB.signInWithRedirect(window._auth,window._prov);
+    }else if(e.code==="auth/popup-closed-by-user"||e.code==="auth/cancelled-popup-request"){
+      // kullanıcı kapattı, sessiz
     }else{
       toast("Giriş hatası: "+e.code,"err");
     }
@@ -412,12 +422,35 @@ async function doLogin(){
 }
 async function doLogout(){await window._FB.signOut(window._auth);showPage("page-login");}
 
-window.addEventListener("load",()=>{
-  // getRedirectResult kaldırıldı - popup kullanılıyor
+window.addEventListener("load",async()=>{
+  // Önce redirect sonucunu kontrol et (döngüyü önler)
+  try{
+    const result=await window._FB.getRedirectResult(window._auth);
+    if(result&&result.user){
+      localStorage.removeItem("login_pending");
+      // onAuthStateChanged halleder
+    }
+  }catch(e){
+    localStorage.removeItem("login_pending");
+    if(e.code&&e.code!=="auth/no-auth-event"){
+      toast("Giriş hatası: "+e.code,"err");
+    }
+  }
+
   window._FB.onAuthStateChanged(window._auth,u=>{
-    if(u){_user=u;startFB(u.uid);const av=document.getElementById("user-avatar");if(u.photoURL){av.src=u.photoURL;av.style.display="block";}showPage("page-list");}
-    else{_user=null;if(_uL)_uL();if(_uC)_uC();showPage("page-login");}
+    if(u){
+      _user=u;startFB(u.uid);
+      const av=document.getElementById("user-avatar");
+      if(u.photoURL){av.src=u.photoURL;av.style.display="block";}
+      showPage("page-list");
+    }else{
+      // Redirect bekliyorsa login sayfasına gitme
+      if(localStorage.getItem("login_pending")==="1") return;
+      if(_uL)_uL();if(_uC)_uC();
+      showPage("page-login");
+    }
   });
+});
 });
 
 // ── FIRESTORE ──
