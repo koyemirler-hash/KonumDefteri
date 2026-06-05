@@ -145,7 +145,7 @@ window._FB={signInWithPopup,signInWithRedirect,getRedirectResult,signOut,onAuthS
   <div style="font-size:28px;font-weight:800;margin-top:8px;text-align:center">Konum Defteri</div>
   <div style="color:#6b7280;font-size:13px;margin-top:10px;text-align:center;line-height:1.7;max-width:260px">Konumlarını kaydet, adres ara, yol tarifi al</div>
   <div style="margin-top:44px;width:100%;max-width:320px">
-    <button class="btn" style="background:#fff;color:#1f1f1f;border:1px solid #ddd;display:flex;align-items:center;justify-content:center;gap:10px;font-size:15px" onclick="doLogin()">
+    <button class="btn" style="background:#fff;color:#1f1f1f;border:1px solid #ddd;display:flex;align-items:center;justify-content:center;gap:10px;font-size:15px" onclick="doLogin()" class="login-btn">
       <span style="font-size:18px;font-weight:900;color:#4285f4">G</span> Google ile Giriş Yap
     </button>
   </div>
@@ -397,75 +397,54 @@ function showPage(id){
 
 // ── AUTH ──
 async function doLogin(){
-  const btn = document.querySelector("#page-login button");
-  btn.textContent = "⏳ Bağlanıyor...";
-  btn.disabled = true;
+  const btn=document.querySelector("#page-login .login-btn");
+  if(btn){btn.textContent="⏳ Bağlanıyor...";btn.disabled=true;}
   try{
-    // Önce popup dene (browser'da çalışır)
-    await window._FB.signInWithPopup(window._auth, window._prov);
+    await window._FB.signInWithPopup(window._auth,window._prov);
   }catch(e){
-    if(e.code === "auth/popup-blocked" || e.code === "auth/popup-closed-by-user" || e.code === "auth/cancelled-popup-request"){
-      // Popup olmadı, redirect kullan
-      try{
-        localStorage.setItem("login_pending","1");
-        await window._FB.signInWithRedirect(window._auth, window._prov);
-      }catch(e2){
-        localStorage.removeItem("login_pending");
-        showError("Giriş hatası: " + e2.code);
-      }
+    if(btn){btn.textContent="G  Google ile Giriş Yap";btn.disabled=false;}
+    if(e.code==="auth/popup-blocked"||e.code==="auth/popup-closed-by-user"||e.code==="auth/cancelled-popup-request"){
+      // Popup olmadı, redirect dene
+      localStorage.setItem("lp","1");
+      try{ window._FB.signInWithRedirect(window._auth,window._prov); }
+      catch(e2){ localStorage.removeItem("lp"); showLoginError("Hata: "+e2.code); }
     } else {
-      showError("Giriş hatası: " + e.code + " - " + e.message);
+      showLoginError("Giriş hatası: "+e.code);
     }
   }
-  btn.textContent = "G Google ile Giriş Yap";
-  btn.disabled = false;
 }
 
-function showError(msg){
-  let err = document.getElementById("login-error");
-  if(!err){ err = document.createElement("div"); err.id = "login-error"; err.style.cssText = "margin-top:16px;background:#3b0d0d;color:#fca5a5;border:1px solid #ef444440;border-radius:12px;padding:12px 16px;font-size:13px;text-align:center;max-width:320px;line-height:1.5"; document.querySelector("#page-login").appendChild(err); }
-  err.textContent = msg;
+function showLoginError(msg){
+  let d=document.getElementById("lerr");
+  if(!d){d=document.createElement("div");d.id="lerr";d.style.cssText="margin-top:14px;background:#3b0d0d;color:#fca5a5;border:1px solid #ef444430;border-radius:12px;padding:12px 14px;font-size:13px;text-align:center;line-height:1.5;max-width:320px";document.getElementById("page-login").appendChild(d);}
+  d.textContent=msg;
 }
+
 async function doLogout(){await window._FB.signOut(window._auth);showPage("page-login");}
 
-window.addEventListener("load", async ()=>{
-  // Eski service worker varsa temizle
-  if("serviceWorker" in navigator){
-    navigator.serviceWorker.getRegistrations().then(regs=>regs.forEach(r=>r.unregister()));
+window.addEventListener("load",async()=>{
+  // Eski SW temizle
+  if("serviceWorker"in navigator){
+    navigator.serviceWorker.getRegistrations().then(rs=>rs.forEach(r=>r.unregister()));
   }
-
-  // Redirect'ten dönüş
+  // Redirect dönüş kontrolü
   try{
-    const result = await window._FB.getRedirectResult(window._auth);
-    if(result && result.user){
-      localStorage.removeItem("login_pending");
-    }
+    const r=await window._FB.getRedirectResult(window._auth);
+    if(r&&r.user) localStorage.removeItem("lp");
   }catch(e){
-    localStorage.removeItem("login_pending");
-    if(e.code && e.code !== "auth/no-auth-event"){
-      console.warn("Redirect result:", e.code);
-    }
+    localStorage.removeItem("lp");
   }
-
-  window._FB.onAuthStateChanged(window._auth, u => {
+  // Auth state
+  window._FB.onAuthStateChanged(window._auth,u=>{
     if(u){
-      localStorage.removeItem("login_pending");
-      _user = u;
-      startFB(u.uid);
-      const av = document.getElementById("user-avatar");
-      if(u.photoURL){ av.src = u.photoURL; av.style.display = "block"; }
+      localStorage.removeItem("lp");
+      _user=u;startFB(u.uid);
+      const av=document.getElementById("user-avatar");
+      if(u.photoURL){av.src=u.photoURL;av.style.display="block";}
       showPage("page-list");
-    } else {
-      if(localStorage.getItem("login_pending") === "1"){
-        // Redirect bekleniyor
-        document.querySelectorAll(".page").forEach(p=>p.classList.remove("active"));
-        document.getElementById("page-login").classList.add("active");
-        const btn = document.querySelector("#page-login button");
-        if(btn){ btn.textContent = "⏳ Google ile bağlanıyor..."; btn.disabled = true; }
-        return;
-      }
-      if(_uL) _uL();
-      if(_uC) _uC();
+    }else{
+      if(localStorage.getItem("lp")==="1") return; // redirect bekleniyor
+      if(_uL)_uL();if(_uC)_uC();
       showPage("page-login");
     }
   });
