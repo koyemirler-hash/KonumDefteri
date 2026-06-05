@@ -398,58 +398,53 @@ function showPage(id){
 // ── AUTH ──
 async function doLogin(){
   try{
-    const isPWA=window.matchMedia("(display-mode:standalone)").matches||window.navigator.standalone===true;
-    if(isPWA){
-      // Redirect modunda döngüyü önlemek için flag koy
-      localStorage.setItem("login_pending","1");
-      await window._FB.signInWithRedirect(window._auth,window._prov);
-    }else{
-      await window._FB.signInWithPopup(window._auth,window._prov);
-    }
+    // login_pending flag ile döngüyü önle
+    localStorage.setItem("login_pending","1");
+    await window._FB.signInWithRedirect(window._auth, window._prov);
   }catch(e){
     localStorage.removeItem("login_pending");
-    if(e.code==="auth/popup-blocked"){
-      // Popup bloklanınca redirect'e geç
-      localStorage.setItem("login_pending","1");
-      await window._FB.signInWithRedirect(window._auth,window._prov);
-    }else if(e.code==="auth/popup-closed-by-user"||e.code==="auth/cancelled-popup-request"){
-      // kullanıcı kapattı, sessiz
-    }else{
-      toast("Giriş hatası: "+e.code,"err");
-    }
+    toast("Giriş hatası: "+e.code,"err");
   }
 }catch(e){toast("Giriş hatası: "+e.code,"err");}
 }
 async function doLogout(){await window._FB.signOut(window._auth);showPage("page-login");}
 
-window.addEventListener("load",async()=>{
-  // Önce redirect sonucunu kontrol et (döngüyü önler)
+window.addEventListener("load", async ()=>{
+  // Redirect'ten geri dönüş kontrolü
   try{
-    const result=await window._FB.getRedirectResult(window._auth);
-    if(result&&result.user){
+    const result = await window._FB.getRedirectResult(window._auth);
+    if(result && result.user){
       localStorage.removeItem("login_pending");
-      // onAuthStateChanged halleder
     }
   }catch(e){
     localStorage.removeItem("login_pending");
-    if(e.code&&e.code!=="auth/no-auth-event"){
-      toast("Giriş hatası: "+e.code,"err");
+    if(e.code && e.code !== "auth/no-auth-event"){
+      console.warn("Redirect result error:", e.code);
     }
   }
 
-  window._FB.onAuthStateChanged(window._auth,u=>{
+  // Auth state dinle
+  window._FB.onAuthStateChanged(window._auth, u => {
     if(u){
-      _user=u;startFB(u.uid);
-      const av=document.getElementById("user-avatar");
-      if(u.photoURL){av.src=u.photoURL;av.style.display="block";}
+      localStorage.removeItem("login_pending");
+      _user = u;
+      startFB(u.uid);
+      const av = document.getElementById("user-avatar");
+      if(u.photoURL){ av.src = u.photoURL; av.style.display = "block"; }
       showPage("page-list");
-    }else{
-      // Redirect bekliyorsa login sayfasına gitme
-      if(localStorage.getItem("login_pending")==="1") return;
-      if(_uL)_uL();if(_uC)_uC();
+    } else {
+      // Redirect bekliyorsa login sayfasına dönme
+      if(localStorage.getItem("login_pending") === "1"){
+        document.getElementById("page-login").classList.add("active");
+        document.getElementById("page-login").querySelector("button").textContent = "⏳ Giriş yapılıyor...";
+        return;
+      }
+      if(_uL) _uL();
+      if(_uC) _uC();
       showPage("page-login");
     }
   });
+});
 });
 });
 

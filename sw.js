@@ -1,4 +1,4 @@
-const CACHE = "konum-v3.2.0";
+const CACHE = "konum-v3.3.0";
 const BASE = "/KonumDefteri";
 const STATIC = [
   BASE+"/manifest.json",
