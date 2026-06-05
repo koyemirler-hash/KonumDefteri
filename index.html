@@ -397,20 +397,45 @@ function showPage(id){
 
 // ── AUTH ──
 async function doLogin(){
+  const btn = document.querySelector("#page-login button");
+  btn.textContent = "⏳ Bağlanıyor...";
+  btn.disabled = true;
   try{
-    // login_pending flag ile döngüyü önle
-    localStorage.setItem("login_pending","1");
-    await window._FB.signInWithRedirect(window._auth, window._prov);
+    // Önce popup dene (browser'da çalışır)
+    await window._FB.signInWithPopup(window._auth, window._prov);
   }catch(e){
-    localStorage.removeItem("login_pending");
-    toast("Giriş hatası: "+e.code,"err");
+    if(e.code === "auth/popup-blocked" || e.code === "auth/popup-closed-by-user" || e.code === "auth/cancelled-popup-request"){
+      // Popup olmadı, redirect kullan
+      try{
+        localStorage.setItem("login_pending","1");
+        await window._FB.signInWithRedirect(window._auth, window._prov);
+      }catch(e2){
+        localStorage.removeItem("login_pending");
+        showError("Giriş hatası: " + e2.code);
+      }
+    } else {
+      showError("Giriş hatası: " + e.code + " - " + e.message);
+    }
   }
+  btn.textContent = "G Google ile Giriş Yap";
+  btn.disabled = false;
+}
+
+function showError(msg){
+  let err = document.getElementById("login-error");
+  if(!err){ err = document.createElement("div"); err.id = "login-error"; err.style.cssText = "margin-top:16px;background:#3b0d0d;color:#fca5a5;border:1px solid #ef444440;border-radius:12px;padding:12px 16px;font-size:13px;text-align:center;max-width:320px;line-height:1.5"; document.querySelector("#page-login").appendChild(err); }
+  err.textContent = msg;
 }catch(e){toast("Giriş hatası: "+e.code,"err");}
 }
 async function doLogout(){await window._FB.signOut(window._auth);showPage("page-login");}
 
 window.addEventListener("load", async ()=>{
-  // Redirect'ten geri dönüş kontrolü
+  // Eski service worker varsa temizle
+  if("serviceWorker" in navigator){
+    navigator.serviceWorker.getRegistrations().then(regs=>regs.forEach(r=>r.unregister()));
+  }
+
+  // Redirect'ten dönüş
   try{
     const result = await window._FB.getRedirectResult(window._auth);
     if(result && result.user){
@@ -419,11 +444,10 @@ window.addEventListener("load", async ()=>{
   }catch(e){
     localStorage.removeItem("login_pending");
     if(e.code && e.code !== "auth/no-auth-event"){
-      console.warn("Redirect result error:", e.code);
+      console.warn("Redirect result:", e.code);
     }
   }
 
-  // Auth state dinle
   window._FB.onAuthStateChanged(window._auth, u => {
     if(u){
       localStorage.removeItem("login_pending");
@@ -433,10 +457,12 @@ window.addEventListener("load", async ()=>{
       if(u.photoURL){ av.src = u.photoURL; av.style.display = "block"; }
       showPage("page-list");
     } else {
-      // Redirect bekliyorsa login sayfasına dönme
       if(localStorage.getItem("login_pending") === "1"){
+        // Redirect bekleniyor
+        document.querySelectorAll(".page").forEach(p=>p.classList.remove("active"));
         document.getElementById("page-login").classList.add("active");
-        document.getElementById("page-login").querySelector("button").textContent = "⏳ Giriş yapılıyor...";
+        const btn = document.querySelector("#page-login button");
+        if(btn){ btn.textContent = "⏳ Google ile bağlanıyor..."; btn.disabled = true; }
         return;
       }
       if(_uL) _uL();
@@ -444,6 +470,7 @@ window.addEventListener("load", async ()=>{
       showPage("page-login");
     }
   });
+});
 });
 });
 });
@@ -757,7 +784,12 @@ let _dp;
 window.addEventListener("beforeinstallprompt",e=>{e.preventDefault();_dp=e;document.getElementById("install-banner").classList.add("show");});
 document.getElementById("ib").onclick=async()=>{if(_dp){_dp.prompt();await _dp.userChoice;_dp=null;document.getElementById("install-banner").classList.remove("show");}};
 document.getElementById("ic").onclick=()=>document.getElementById("install-banner").classList.remove("show");
-if("serviceWorker"in navigator){navigator.serviceWorker.register("/KonumDefteri/sw.js").catch(()=>{});navigator.serviceWorker.addEventListener("controllerchange",()=>window.location.reload());}
+// Eski SW varsa unregister et - auth için gerekli
+if("serviceWorker" in navigator){
+  navigator.serviceWorker.getRegistrations().then(regs=>{
+    regs.forEach(r=>r.unregister());
+  });
+}
 </script>
 </body>
 </html>
