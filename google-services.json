@@ -15,6 +15,14 @@
       },
       "oauth_client": [
         {
+          "client_id": "1079347072591-31e9g2v34v5739ha2alavbp3q3p7mmot.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.koyemirler.konumdefteri",
+            "certificate_hash": "6a9821b1fd920d951aaafc03f45a2db9b99eef51"
+          }
+        },
+        {
           "client_id": "1079347072591-rl8d4lfldjusn84n1q9uefrpcrad25ka.apps.googleusercontent.com",
           "client_type": 3
         }
