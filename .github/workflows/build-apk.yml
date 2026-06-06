@@ -37,7 +37,10 @@ jobs:
 
       - name: Make Gradlew Executable
         run: chmod +x android/gradlew
-
+- name: Get SHA-1
+        run: |
+          cd android
+          ./gradlew signingReport 2>&1 | grep -A 5 "Variant: debug"
       - name: Build Debug APK
         run: |
           cd android
