@@ -526,24 +526,37 @@ async function doLogin(){
     const isNative = window.Capacitor && window.Capacitor.isNativePlatform();
     
     if(isNative){
-      // Native Google Sign-In - Capacitor plugin bridge üzerinden
       const GoogleAuth = window.Capacitor.Plugins.GoogleAuth;
       if(!GoogleAuth){
-        throw new Error("GoogleAuth plugin bulunamadı");
+        throw new Error("GoogleAuth plugin yok! Plugins: " + JSON.stringify(Object.keys(window.Capacitor.Plugins||{})));
       }
+      
+      // Plugin'i başlat
+      try{
+        await GoogleAuth.initialize({
+          clientId: "1079347072591-rl8d4lfldjusn84n1q9uefrpcrad25ka.apps.googleusercontent.com",
+          scopes: ["profile", "email"],
+          grantOfflineAccess: true
+        });
+      }catch(initE){ /* zaten başlatılmış olabilir */ }
+      
       const result = await GoogleAuth.signIn();
-      const idToken = result.authentication.idToken;
-      const credential = window._FB.GoogleAuthProvider.credential(idToken);
+      const credential = window._FB.GoogleAuthProvider.credential(result.authentication.idToken);
       await window._FB.signInWithCredential(window._auth, credential);
+      
     } else {
-      // Web tarayıcı - popup
       await window._FB.signInWithPopup(window._auth, window._prov);
     }
   }catch(e){
-    const msg = e.errorMessage || e.message || e.code || JSON.stringify(e);
-    if(msg !== "popup_closed_by_user" && msg !== "cancelled"){
-      showLoginError("Hata: " + msg);
-    }
+    // Tam hata detayı göster
+    const detail = JSON.stringify({
+      msg: e.message,
+      code: e.code, 
+      err: e.errorMessage,
+      type: e.type,
+      full: String(e)
+    });
+    showLoginError(detail);
   }finally{
     if(btn){btn.textContent="G  Google ile Giriş Yap";btn.disabled=false;}
   }
