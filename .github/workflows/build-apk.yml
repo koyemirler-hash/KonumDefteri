@@ -57,6 +57,18 @@ jobs:
           cd android
           ./gradlew assembleDebug
 
+      - name: Show SHA-1 (Firebase için gerekli)
+        run: |
+          echo "=========================================="
+          echo "BU SHA-1'i Firebase'e ekle!"
+          echo "=========================================="
+          keytool -list -v \
+            -keystore ~/.android/debug.keystore \
+            -alias androiddebugkey \
+            -storepass android \
+            -keypass android 2>/dev/null | grep "SHA1:"
+          echo "=========================================="
+
       - name: Upload APK
         uses: actions/upload-artifact@v4
         with:
