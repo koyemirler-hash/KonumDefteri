@@ -2,6 +2,10 @@
   "appId": "com.koyemirler.konumdefteri",
   "appName": "Konum Defteri",
   "webDir": "www",
+  "server": {
+    "androidScheme": "https",
+    "cleartext": true
+  },
   "plugins": {
     "SplashScreen": {
       "launchShowDuration": 2000,
