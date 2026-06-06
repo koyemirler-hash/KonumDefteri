@@ -38,6 +38,21 @@ jobs:
       - name: Copy google-services.json
         run: cp google-services.json android/app/google-services.json
 
+      - name: Register GoogleAuth Plugin in MainActivity
+        run: |
+          MAIN="android/app/src/main/java/com/koyemirler/konumdefteri/MainActivity.java"
+          if [ -f "$MAIN" ]; then
+            # Import ekle
+            sed -i '/import com.getcapacitor.BridgeActivity;/a import com.codetrixstudio.capacitor.GoogleAuth.GoogleAuth;' "$MAIN"
+            # registerPlugin ekle
+            sed -i '/super.onCreate/a\    registerPlugin(GoogleAuth.class);' "$MAIN"
+            echo "MainActivity.java güncellendi"
+            cat "$MAIN"
+          else
+            echo "MainActivity bulunamadı, aranıyor..."
+            find android -name "MainActivity.java"
+          fi
+
       - name: Fix AndroidManifest
         run: |
           MANIFEST="android/app/src/main/AndroidManifest.xml"
@@ -56,18 +71,6 @@ jobs:
         run: |
           cd android
           ./gradlew assembleDebug
-
-      - name: Show SHA-1 (Firebase için gerekli)
-        run: |
-          echo "=========================================="
-          echo "BU SHA-1'i Firebase'e ekle!"
-          echo "=========================================="
-          keytool -list -v \
-            -keystore ~/.android/debug.keystore \
-            -alias androiddebugkey \
-            -storepass android \
-            -keypass android 2>/dev/null | grep "SHA1:"
-          echo "=========================================="
 
       - name: Upload APK
         uses: actions/upload-artifact@v4
