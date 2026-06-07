@@ -27,6 +27,12 @@ jobs:
       - name: Setup Android SDK
         uses: android-actions/setup-android@v3
 
+      - name: Setup Fixed Keystore
+        run: |
+          echo "${{ secrets.DEBUG_KEYSTORE_BASE64 }}" | base64 -d > ~/.android/debug.keystore
+          echo "Keystore kuruldu"
+          keytool -list -v -keystore ~/.android/debug.keystore -alias androiddebugkey -storepass android -keypass android 2>/dev/null | grep "SHA1:"
+
       - name: Install Dependencies
         run: npm install --legacy-peer-deps
 
@@ -37,21 +43,6 @@ jobs:
 
       - name: Copy google-services.json
         run: cp google-services.json android/app/google-services.json
-
-      - name: Register GoogleAuth Plugin in MainActivity
-        run: |
-          MAIN="android/app/src/main/java/com/koyemirler/konumdefteri/MainActivity.java"
-          if [ -f "$MAIN" ]; then
-            # Import ekle
-            sed -i '/import com.getcapacitor.BridgeActivity;/a import com.codetrixstudio.capacitor.GoogleAuth.GoogleAuth;' "$MAIN"
-            # registerPlugin ekle
-            sed -i '/super.onCreate/a\    registerPlugin(GoogleAuth.class);' "$MAIN"
-            echo "MainActivity.java güncellendi"
-            cat "$MAIN"
-          else
-            echo "MainActivity bulunamadı, aranıyor..."
-            find android -name "MainActivity.java"
-          fi
 
       - name: Fix AndroidManifest
         run: |
