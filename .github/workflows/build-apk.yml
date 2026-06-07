@@ -29,8 +29,9 @@ jobs:
 
       - name: Setup Fixed Keystore
         run: |
+          mkdir -p ~/.android
           echo "${{ secrets.DEBUG_KEYSTORE_BASE64 }}" | base64 -d > ~/.android/debug.keystore
-          echo "Keystore kuruldu"
+          ls -la ~/.android/debug.keystore
           keytool -list -v -keystore ~/.android/debug.keystore -alias androiddebugkey -storepass android -keypass android 2>/dev/null | grep "SHA1:"
 
       - name: Install Dependencies
