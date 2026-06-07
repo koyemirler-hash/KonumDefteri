@@ -3,928 +3,618 @@
 <head>
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no"/>
-<meta name="theme-color" content="#7c3aed"/>
 <meta name="apple-mobile-web-app-capable" content="yes"/>
-<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"/>
-<meta name="apple-mobile-web-app-title" content="Konum Defteri"/>
-<link rel="manifest" href="manifest.json"/>
 <title>Konum Defteri</title>
 <style>
+:root{--bg:#0d0d12;--card:#15151f;--c2:#1c1c2a;--br:#252535;--acc:#7c6df0;--accL:#9d8ff5;--accD:rgba(124,109,240,.13);--grn:#22c55e;--red:#ef4444;--tx:#e8e8f0;--sub:#6b7280;--s2:#374151;--hdr:linear-gradient(135deg,#4f46e5,#7c3aed);}
+.th-blue{--acc:#3b82f6;--accL:#60a5fa;--accD:rgba(59,130,246,.13);--hdr:linear-gradient(135deg,#1d4ed8,#3b82f6);}
+.th-green{--acc:#16a34a;--accL:#22c55e;--accD:rgba(22,163,74,.13);--hdr:linear-gradient(135deg,#15803d,#16a34a);}
+.th-red{--acc:#dc2626;--accL:#ef4444;--accD:rgba(220,38,38,.13);--hdr:linear-gradient(135deg,#b91c1c,#dc2626);}
+.th-orange{--acc:#ea580c;--accL:#f97316;--accD:rgba(234,88,12,.13);--hdr:linear-gradient(135deg,#c2410c,#ea580c);}
+.th-light{--bg:#f1f5f9;--card:#fff;--c2:#f8fafc;--br:#e2e8f0;--tx:#1e293b;--sub:#64748b;--s2:#94a3b8;}
 *{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
-html,body{height:100%;background:#0d0d12}
-body{color:#e8e8f0;font-family:'Segoe UI',system-ui,sans-serif;overflow-x:hidden}
+html,body{height:100%;background:var(--bg);color:var(--tx);font-family:'Segoe UI',system-ui,sans-serif;overflow-x:hidden}
 .page{display:none;flex-direction:column;min-height:100dvh;max-width:430px;margin:0 auto}
 .page.active{display:flex}
-input,textarea,button,select{font-family:inherit}
-input,textarea{background:#1c1c2a;border:1px solid #252535;border-radius:12px;color:#e8e8f0;padding:12px 14px;font-size:14px;width:100%;outline:none;transition:border-color .2s}
-input:focus,textarea:focus{border-color:#7c6df0}
+input,textarea,button{font-family:inherit}
+input,textarea{background:var(--c2);border:1px solid var(--br);border-radius:12px;color:var(--tx);padding:12px 14px;font-size:14px;width:100%;outline:none;transition:border-color .2s}
+input:focus,textarea:focus{border-color:var(--acc)}
 textarea{resize:none;line-height:1.6}
-.btn{display:block;width:100%;border:none;border-radius:14px;padding:14px;font-size:15px;font-weight:700;cursor:pointer;text-align:center;transition:opacity .15s}
+.btn{display:block;width:100%;border:none;border-radius:14px;padding:14px;font-size:15px;font-weight:700;cursor:pointer;text-align:center}
 .btn:active{opacity:.8}
-.btn-primary{background:linear-gradient(135deg,#7c6df0,#9d8ff5);color:#fff}
-.btn-green{background:linear-gradient(135deg,#16a34a,#22c55e);color:#fff}
-.btn-ghost{background:#1c1c2a;border:1px solid #252535!important;color:#6b7280}
-.btn-outline{background:transparent;border:1px solid #7c6df0;color:#9d8ff5}
-.btn-danger{background:#15151f;border:1px solid #ef444430!important;color:#ef4444}
-.btn-yellow{background:linear-gradient(135deg,#d97706,#f59e0b);color:#fff}
-.lbl{font-size:11px;color:#7c6df0;letter-spacing:1.5px;text-transform:uppercase;margin-bottom:8px;font-weight:600}
-.card{background:#15151f;border:1px solid #252535;border-radius:16px}
-.section{display:flex;flex-direction:column;gap:14px;padding:18px;overflow-y:auto;flex:1;padding-bottom:100px}
-.header{background:linear-gradient(135deg,#4f46e5,#7c3aed);padding:18px 18px 20px;flex-shrink:0}
-.header-row{display:flex;align-items:center;gap:10px}
-.back-btn{background:rgba(255,255,255,.15);border:none;border-radius:50%;width:36px;height:36px;color:#fff;font-size:18px;cursor:pointer;display:flex;align-items:center;justify-content:center;flex-shrink:0}
-.header-title{flex:1;min-width:0}
-.header-sup{font-size:10px;opacity:.6;letter-spacing:2px;text-transform:uppercase}
-.header-main{font-size:19px;font-weight:800;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.search-bar{margin-top:12px;background:rgba(255,255,255,.12);border-radius:12px;padding:8px 14px;display:flex;align-items:center;gap:8px}
-.search-bar input{background:none;border:none;color:#fff;font-size:14px;flex:1;padding:0}
-.search-bar input::placeholder{color:rgba(255,255,255,.5)}
-.cat-scroll{display:flex;gap:7px;overflow-x:auto;padding:14px 14px 0;flex-shrink:0}
-.cat-scroll::-webkit-scrollbar{display:none}
-.cat-chip{border:none;border-radius:20px;padding:6px 13px;font-size:12px;cursor:pointer;white-space:nowrap;flex-shrink:0}
-.loc-list{display:flex;flex-direction:column;gap:10px;padding:10px 14px 100px;overflow-y:auto;flex:1}
-.loc-card{background:#15151f;border:1px solid #252535;border-radius:16px;overflow:hidden;display:flex;cursor:pointer;transition:border-color .15s}
-.loc-card:active{border-color:#7c6df0}
-.loc-thumb{width:72px;height:84px;object-fit:cover;flex-shrink:0}
-.loc-thumb-icon{width:72px;height:84px;display:flex;align-items:center;justify-content:center;font-size:28px;flex-shrink:0;background:rgba(124,109,240,.13)}
-.loc-info{padding:11px 14px;flex:1;min-width:0}
-.loc-name{font-weight:700;font-size:15px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.loc-note{font-size:12px;color:#6b7280;margin-top:2px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.loc-tags{display:flex;align-items:center;gap:8px;margin-top:7px}
-.loc-cat{background:rgba(124,109,240,.13);color:#9d8ff5;font-size:10px;padding:2px 9px;border-radius:10px}
-.loc-date{font-size:10px;color:#374151}
-.method-btn{background:#15151f;border:1px solid #252535;border-radius:16px;padding:14px 16px;display:flex;align-items:center;gap:14px;cursor:pointer;width:100%;text-align:left;transition:border-color .15s}
-.method-btn:active{border-color:#7c6df0}
-.info-box{background:rgba(124,109,240,.1);border:1px solid rgba(124,109,240,.25);border-radius:14px;padding:12px 16px;font-size:12px;color:#6b7280;line-height:1.7}
-.info-box b{color:#e8e8f0}
-.addr-box{border:1px solid #252535;border-radius:12px;overflow:hidden}
-.addr-result{background:#1c1c2a;border:none;border-bottom:1px solid #252535;padding:12px 14px;cursor:pointer;width:100%;text-align:left;display:block}
-.addr-result:last-child{border-bottom:none}
-.addr-result:active{background:#252535}
-.addr-result-name{font-weight:600;font-size:14px;color:#e8e8f0}
-.addr-result-full{font-size:11px;color:#6b7280;margin-top:3px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.coord-badge{background:#1c1c2a;border-radius:12px;padding:10px 14px;display:flex;align-items:center;gap:10px}
-.fab{position:fixed;bottom:0;left:50%;transform:translateX(-50%);width:100%;max-width:430px;padding:12px 18px 28px;background:linear-gradient(transparent,#0d0d12 40%);pointer-events:none;z-index:50}
+.btp{background:linear-gradient(135deg,var(--acc),var(--accL));color:#fff}
+.btg{background:linear-gradient(135deg,#15803d,#22c55e);color:#fff}
+.btgh{background:var(--c2);border:1px solid var(--br)!important;color:var(--sub)}
+.bto{background:transparent;border:1px solid var(--acc)!important;color:var(--accL)}
+.btd{background:var(--card);border:1px solid #ef444430!important;color:var(--red)}
+.lbl{font-size:11px;color:var(--acc);letter-spacing:1.5px;text-transform:uppercase;margin-bottom:8px;font-weight:600}
+.sec{display:flex;flex-direction:column;gap:14px;padding:18px;overflow-y:auto;flex:1;padding-bottom:100px}
+.hdr{background:var(--hdr);padding:18px 18px 20px;flex-shrink:0}
+.hrow{display:flex;align-items:center;gap:10px}
+.bbk{background:rgba(255,255,255,.15);border:none;border-radius:50%;width:36px;height:36px;color:#fff;font-size:18px;cursor:pointer;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.htit{flex:1;min-width:0}
+.hsup{font-size:10px;opacity:.6;letter-spacing:2px;text-transform:uppercase}
+.hmain{font-size:19px;font-weight:800;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.sbar{margin-top:12px;background:rgba(255,255,255,.12);border-radius:12px;padding:8px 14px;display:flex;align-items:center;gap:8px}
+.sbar input{background:none;border:none;color:#fff;font-size:14px;flex:1;padding:0}
+.sbar input::placeholder{color:rgba(255,255,255,.5)}
+.cscr{display:flex;gap:7px;overflow-x:auto;padding:14px 14px 0;flex-shrink:0}
+.cscr::-webkit-scrollbar{display:none}
+.cchip{border:none;border-radius:20px;padding:6px 13px;font-size:12px;cursor:pointer;white-space:nowrap;flex-shrink:0}
+.lloc{display:flex;flex-direction:column;gap:10px;padding:10px 14px 100px;overflow-y:auto;flex:1}
+.lcard{background:var(--card);border:1px solid var(--br);border-radius:16px;overflow:hidden;display:flex;cursor:pointer}
+.lcard:active{border-color:var(--acc)}
+.lthumb{width:72px;height:84px;object-fit:cover;flex-shrink:0}
+.lthi{width:72px;height:84px;display:flex;align-items:center;justify-content:center;font-size:28px;flex-shrink:0;background:var(--accD)}
+.linf{padding:11px 14px;flex:1;min-width:0}
+.lnam{font-weight:700;font-size:15px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.lnot{font-size:12px;color:var(--sub);margin-top:2px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.ltag{display:flex;align-items:center;gap:8px;margin-top:7px}
+.lcat{background:var(--accD);color:var(--accL);font-size:10px;padding:2px 9px;border-radius:10px}
+.ldat{font-size:10px;color:var(--s2)}
+.mbtn{background:var(--card);border:1px solid var(--br);border-radius:16px;padding:14px 16px;display:flex;align-items:center;gap:14px;cursor:pointer;width:100%;text-align:left}
+.mbtn:active{border-color:var(--acc)}
+.ibox{background:var(--accD);border:1px solid rgba(124,109,240,.25);border-radius:14px;padding:12px 16px;font-size:12px;color:var(--sub);line-height:1.7}
+.ibox b{color:var(--tx)}
+.abox{border:1px solid var(--br);border-radius:12px;overflow:hidden}
+.ares{background:var(--c2);border:none;border-bottom:1px solid var(--br);padding:12px 14px;cursor:pointer;width:100%;text-align:left;display:block}
+.ares:last-child{border-bottom:none}
+.ares:active{background:var(--br)}
+.arn{font-weight:600;font-size:14px;color:var(--tx)}
+.arf{font-size:11px;color:var(--sub);margin-top:3px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.cbdg{background:var(--c2);border-radius:12px;padding:10px 14px;display:flex;align-items:center;gap:10px}
+.fab{position:fixed;bottom:0;left:50%;transform:translateX(-50%);width:100%;max-width:430px;padding:12px 18px 28px;background:linear-gradient(transparent,var(--bg) 40%);pointer-events:none;z-index:50}
 .fab button{pointer-events:all}
-.toast{position:fixed;top:18px;left:50%;transform:translateX(-50%);padding:10px 20px;border-radius:30px;z-index:9999;font-size:13px;font-weight:600;box-shadow:0 4px 24px rgba(0,0,0,.5);white-space:pre-wrap;text-align:center;max-width:88vw;pointer-events:none;display:none}
-.toast.show{display:block}
-.toast.ok{background:#0d2b1a;color:#86efac;border:1px solid #22c55e40}
-.toast.err{background:#3b0d0d;color:#fca5a5;border:1px solid #ef444440}
-.modal-overlay{position:fixed;inset:0;background:rgba(0,0,0,.75);z-index:999;display:none;align-items:center;justify-content:center;padding:20px}
-.modal-overlay.show{display:flex}
-.modal{background:#15151f;border:1px solid #252535;border-radius:20px;padding:24px;width:100%;max-width:320px}
-.modal h3{font-size:17px;font-weight:700;margin-bottom:8px}
-.modal p{color:#6b7280;font-size:13px;margin-bottom:20px;line-height:1.5}
-.modal-btns{display:flex;gap:10px}
-.emoji-grid{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:12px}
-.emoji-btn{border-radius:8px;width:36px;height:36px;font-size:18px;cursor:pointer;border:1px solid #252535}
-.cat-item{background:#15151f;border:1px solid #252535;border-radius:14px;padding:13px 16px;display:flex;align-items:center;gap:12px}
-.install-banner{display:none;position:fixed;bottom:88px;left:50%;transform:translateX(-50%);width:calc(100% - 28px);max-width:402px;background:linear-gradient(135deg,#4f46e5,#7c3aed);border-radius:16px;padding:14px 16px;z-index:200;gap:12px;align-items:center;box-shadow:0 8px 32px rgba(124,61,237,.27)}
-.install-banner.show{display:flex}
-.empty-state{display:flex;flex-direction:column;align-items:center;justify-content:center;flex:1;color:#374151;padding:40px}
-.link-hint{font-size:11px;color:#22c55e;margin-top:6px;display:none}
-
-.ob-slide{animation:slideIn .3s ease}
-.ob-dot{width:8px;height:8px;border-radius:50%;background:#252535;cursor:pointer;transition:all .3s}
-.ob-dot.active{width:24px;border-radius:4px;background:#7c6df0}
-@keyframes slideIn{from{opacity:0;transform:translateX(20px)}to{opacity:1;transform:translateX(0)}}
+.tst{position:fixed;top:18px;left:50%;transform:translateX(-50%);padding:10px 20px;border-radius:30px;z-index:9999;font-size:13px;font-weight:600;box-shadow:0 4px 24px rgba(0,0,0,.5);text-align:center;max-width:88vw;pointer-events:none;display:none}
+.tst.show{display:block}
+.tst.ok{background:#0d2b1a;color:#86efac;border:1px solid #22c55e40}
+.tst.err{background:#3b0d0d;color:#fca5a5;border:1px solid #ef444440}
+.mov{position:fixed;inset:0;background:rgba(0,0,0,.75);z-index:999;display:none;align-items:center;justify-content:center;padding:20px}
+.mov.show{display:flex}
+.mod{background:var(--card);border:1px solid var(--br);border-radius:20px;padding:24px;width:100%;max-width:320px}
+.mod h3{font-size:17px;font-weight:700;margin-bottom:8px}
+.mod p{color:var(--sub);font-size:13px;margin-bottom:20px;line-height:1.5}
+.mbtns{display:flex;gap:10px}
+.egrd{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:12px}
+.ebtn{border-radius:8px;width:36px;height:36px;font-size:18px;cursor:pointer;border:1px solid var(--br);background:var(--c2)}
+.srow{background:var(--card);border:1px solid var(--br);border-radius:14px;padding:14px 16px;display:flex;align-items:center;gap:12px;cursor:pointer}
+.srow:active{border-color:var(--acc)}
+.tggl{width:44px;height:24px;background:var(--br);border-radius:12px;position:relative;cursor:pointer;transition:background .2s;flex-shrink:0}
+.tggl.on{background:var(--acc)}
+.tggl::after{content:'';position:absolute;width:18px;height:18px;background:#fff;border-radius:50%;top:3px;left:3px;transition:transform .2s;box-shadow:0 1px 4px rgba(0,0,0,.3)}
+.tggl.on::after{transform:translateX(20px)}
+.thgrd{display:flex;flex-wrap:wrap;gap:10px}
+.thbtn{border:2px solid var(--br);border-radius:12px;padding:10px;display:flex;align-items:center;gap:8px;cursor:pointer;flex:1;min-width:calc(50% - 5px);background:var(--c2)}
+.thbtn.on{border-color:var(--acc)}
+.pdots{display:flex;gap:16px;justify-content:center;margin:20px 0}
+.pdot{width:14px;height:14px;border-radius:50%;background:var(--br);transition:background .2s}
+.pdot.f{background:var(--acc)}
+.pgrd{display:flex;flex-wrap:wrap;gap:10px;max-width:260px;margin:0 auto}
+.pkey{background:var(--c2);border:1px solid var(--br);border-radius:14px;width:74px;height:70px;font-size:22px;font-weight:700;cursor:pointer;color:var(--tx);display:flex;align-items:center;justify-content:center;flex:1}
+.pkey:active{background:var(--accD);border-color:var(--acc)}
+.odot{width:8px;height:8px;border-radius:50%;background:var(--br);cursor:pointer;transition:all .3s;flex-shrink:0}
+.odot.on{width:24px;border-radius:4px;background:var(--acc)}
+@keyframes si{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
+.si{animation:si .2s ease}
+@keyframes shk{0%,100%{transform:translateX(0)}25%{transform:translateX(-8px)}75%{transform:translateX(8px)}}
+.shk{animation:shk .3s ease}
 </style>
-<script type="module">
-import{initializeApp}from"https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
-import{initializeAuth,indexedDBLocalPersistence,GoogleAuthProvider,signInWithPopup,signInWithRedirect,getRedirectResult,signOut,onAuthStateChanged,signInWithCredential}from"https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
-import{getFirestore,collection,addDoc,deleteDoc,doc,onSnapshot,query,orderBy,setDoc,updateDoc}from"https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
-const app=initializeApp({apiKey:"AIzaSyD9XMN3bMbRb2CCUKaY8wbsUsLUfGCByGc",authDomain:"konumdefteri-c29e6.firebaseapp.com",projectId:"konumdefteri-c29e6",storageBucket:"konumdefteri-c29e6.firebasestorage.app",messagingSenderId:"1079347072591",appId:"1:1079347072591:web:8f4f7ce33c99f657c8243a"});
-window._auth=getAuth(app);window._db=getFirestore(app);window._prov=new GoogleAuthProvider();
-window._FB={signInWithPopup,signInWithRedirect,getRedirectResult,signOut,onAuthStateChanged,collection,addDoc,deleteDoc,doc,onSnapshot,query,orderBy,setDoc,updateDoc,GoogleAuthProvider,signInWithCredential};
-</script>
 </head>
 <body>
-<div class="toast" id="toast"></div>
+<div class="tst" id="tst"></div>
 
-<!-- MODAL: Sil Onay -->
-<div class="modal-overlay" id="modal-del">
-  <div class="modal">
+<!-- MODAL SİL -->
+<div class="mov" id="mdel">
+  <div class="mod">
     <h3>🗑️ Konumu Sil</h3>
-    <p id="modal-del-text">Bu konumu silmek istediğine emin misin? Bu işlem geri alınamaz.</p>
-    <div class="modal-btns">
-      <button class="btn btn-ghost" style="flex:1" onclick="closeModal('modal-del')">İptal</button>
-      <button class="btn btn-danger" style="flex:1" id="modal-del-btn">Sil</button>
+    <p id="mdel-txt">Emin misin?</p>
+    <div class="mbtns">
+      <button class="btn btgh" style="flex:1" onclick="cm('mdel')">İptal</button>
+      <button class="btn btd" style="flex:1" id="mdel-btn">Sil</button>
     </div>
   </div>
 </div>
 
-<!-- MODAL: Değişiklikleri Kaydet -->
-<div class="modal-overlay" id="modal-unsaved">
-  <div class="modal">
-    <h3>💾 Değişiklikler Kaydedilmedi</h3>
-    <p>Yaptığın değişiklikleri kaydetmek istiyor musun?</p>
-    <div class="modal-btns">
-      <button class="btn btn-ghost" style="flex:1" onclick="discardEdit()">Vazgeç</button>
-      <button class="btn btn-primary" style="flex:1" onclick="saveEdit()">Kaydet</button>
-    </div>
-  </div>
-</div>
-
-<!-- MODAL: Kategori Sil -->
-<div class="modal-overlay" id="modal-delcat">
-  <div class="modal">
+<!-- MODAL KAT SİL -->
+<div class="mov" id="mdelc">
+  <div class="mod">
     <h3>Kategoriyi Sil</h3>
     <p>Bu kategorideki konumlar "Diğer" olarak kalır.</p>
-    <div class="modal-btns">
-      <button class="btn btn-ghost" style="flex:1" onclick="closeModal('modal-delcat')">İptal</button>
-      <button class="btn btn-danger" style="flex:1" id="confirm-delcat-btn">Sil</button>
+    <div class="mbtns">
+      <button class="btn btgh" style="flex:1" onclick="cm('mdelc')">İptal</button>
+      <button class="btn btd" style="flex:1" id="mdelc-btn">Sil</button>
     </div>
   </div>
 </div>
 
-<div class="install-banner" id="install-banner">
-  <span style="font-size:24px">📱</span>
-  <div style="flex:1"><div style="font-weight:700;font-size:14px;color:#fff">Ana ekrana ekle</div><div style="font-size:11px;color:rgba(255,255,255,.7)">Uygulama gibi kullan</div></div>
-  <button id="ib" style="background:rgba(255,255,255,.2);border:none;border-radius:10px;color:#fff;padding:7px 14px;font-size:13px;font-weight:700;cursor:pointer">Yükle</button>
-  <button id="ic" style="background:none;border:none;color:rgba(255,255,255,.5);font-size:20px;cursor:pointer;padding:4px">✕</button>
+<!-- PIN -->
+<div class="page active" id="pg-pin" style="align-items:center;justify-content:center;padding:30px">
+  <div style="font-size:52px;margin-bottom:8px">🔐</div>
+  <div style="font-size:22px;font-weight:800;margin-bottom:6px">Konum Defteri</div>
+  <div style="color:var(--sub);font-size:13px;margin-bottom:30px" id="pin-sub">PIN kodunuzu girin</div>
+  <div class="pdots" id="pdots"><div class="pdot"></div><div class="pdot"></div><div class="pdot"></div><div class="pdot"></div></div>
+  <div class="pgrd">
+    <button class="pkey" onclick="pp('1')">1</button><button class="pkey" onclick="pp('2')">2</button><button class="pkey" onclick="pp('3')">3</button>
+    <button class="pkey" onclick="pp('4')">4</button><button class="pkey" onclick="pp('5')">5</button><button class="pkey" onclick="pp('6')">6</button>
+    <button class="pkey" onclick="pp('7')">7</button><button class="pkey" onclick="pp('8')">8</button><button class="pkey" onclick="pp('9')">9</button>
+    <button class="pkey" style="font-size:12px;color:var(--sub)" onclick="pp('C')">Temizle</button>
+    <button class="pkey" onclick="pp('0')">0</button>
+    <button class="pkey" style="font-size:20px" onclick="pp('B')">⌫</button>
+  </div>
 </div>
 
-<!-- ═══ PAGE: ONBOARDING ═══ -->
-<div class="page active" id="page-onboard" style="background:linear-gradient(160deg,#0d0d12 60%,#1a0d2e)">
-  <div style="flex:1;display:flex;flex-direction:column;overflow:hidden">
-    <!-- Slides -->
-    <div id="ob-slides" style="flex:1;overflow:hidden;position:relative">
-
-      <!-- Slide 1 -->
-      <div class="ob-slide active" id="ob-0" style="padding:40px 30px 20px;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;height:100%">
+<!-- ONBOARDING -->
+<div class="page" id="pg-ob">
+  <div style="flex:1;display:flex;flex-direction:column;overflow:hidden;background:linear-gradient(160deg,var(--bg) 60%,#1a0d2e)">
+    <div style="flex:1;overflow:hidden;position:relative" id="ob-sl">
+      <div id="ob-0" style="padding:40px 30px 20px;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;height:100%">
         <div style="font-size:80px;margin-bottom:16px">📍</div>
-        <div style="font-size:28px;font-weight:800;color:#e8e8f0;line-height:1.3">Konum Defteri</div>
-        <div style="font-size:15px;color:#6b7280;margin-top:14px;line-height:1.7;max-width:280px">Gittiğin yerleri kaydet, WhatsApp'tan gelen konumları sakla, kolayca yol tarifi al.</div>
-        <div style="margin-top:30px;background:rgba(124,109,240,.12);border:1px solid rgba(124,109,240,.3);border-radius:16px;padding:16px 20px;max-width:300px;width:100%">
-          <div style="font-size:12px;color:#9d8ff5;font-weight:600;letter-spacing:1px;text-transform:uppercase;margin-bottom:8px">Tamamen Ücretsiz</div>
-          <div style="font-size:13px;color:#6b7280;line-height:1.6">Verileriniz güvenli şekilde bulutta saklanır. Kişisel kullanım için tasarlandı.</div>
+        <div style="font-size:28px;font-weight:800;line-height:1.3">Konum Defteri</div>
+        <div style="color:var(--sub);font-size:15px;margin-top:14px;line-height:1.7;max-width:280px">Gittiğin yerleri kaydet, WhatsApp konumlarını sakla, tek tıkla yol tarifi al.</div>
+        <div style="margin-top:24px;background:var(--accD);border:1px solid rgba(124,109,240,.3);border-radius:16px;padding:16px 20px;max-width:300px;width:100%">
+          <div style="font-size:12px;color:var(--accL);font-weight:600;letter-spacing:1px;text-transform:uppercase;margin-bottom:6px">🔒 Tamamen Gizli</div>
+          <div style="font-size:13px;color:var(--sub)">Veriler yalnızca telefonunuzda. İnternet gerekmez, hesap açılmaz.</div>
         </div>
       </div>
-
-      <!-- Slide 2 -->
-      <div class="ob-slide" id="ob-1" style="padding:40px 30px 20px;display:none;flex-direction:column;align-items:center;justify-content:center;text-align:center;height:100%">
+      <div id="ob-1" style="padding:40px 30px 20px;display:none;flex-direction:column;align-items:center;justify-content:center;text-align:center;height:100%">
         <div style="font-size:80px;margin-bottom:16px">🗺️</div>
-        <div style="font-size:26px;font-weight:800;color:#e8e8f0;line-height:1.3">Konum Kaydet</div>
-        <div style="font-size:15px;color:#6b7280;margin-top:14px;line-height:1.7;max-width:280px">4 farklı yöntemle konum ekle:</div>
+        <div style="font-size:26px;font-weight:800">4 Yöntemle Ekle</div>
         <div style="margin-top:20px;display:flex;flex-direction:column;gap:10px;width:100%;max-width:300px">
-          <div style="background:#15151f;border:1px solid #252535;border-radius:12px;padding:12px 16px;display:flex;align-items:center;gap:12px">
-            <span style="font-size:24px">📡</span><div style="text-align:left"><div style="font-weight:600;font-size:13px">GPS ile mevcut konum</div><div style="font-size:11px;color:#6b7280">Bulunduğun yeri anında kaydet</div></div>
-          </div>
-          <div style="background:#15151f;border:1px solid #252535;border-radius:12px;padding:12px 16px;display:flex;align-items:center;gap:12px">
-            <span style="font-size:24px">🔍</span><div style="text-align:left"><div style="font-weight:600;font-size:13px">Adres arama</div><div style="font-size:11px;color:#6b7280">Mahalle, sokak, şehir yaz</div></div>
-          </div>
-          <div style="background:#15151f;border:1px solid #252535;border-radius:12px;padding:12px 16px;display:flex;align-items:center;gap:12px">
-            <span style="font-size:24px">🔗</span><div style="text-align:left"><div style="font-weight:600;font-size:13px">Google Maps linki</div><div style="font-size:11px;color:#6b7280">WhatsApp'tan gelen linki yapıştır</div></div>
-          </div>
+          <div style="background:var(--card);border:1px solid var(--br);border-radius:12px;padding:12px 16px;display:flex;align-items:center;gap:12px;text-align:left"><span style="font-size:24px">📡</span><div><div style="font-weight:600;font-size:13px">GPS</div><div style="font-size:11px;color:var(--sub)">Anlık konumunu kaydet</div></div></div>
+          <div style="background:var(--card);border:1px solid var(--br);border-radius:12px;padding:12px 16px;display:flex;align-items:center;gap:12px;text-align:left"><span style="font-size:24px">🔍</span><div><div style="font-weight:600;font-size:13px">Adres Ara</div><div style="font-size:11px;color:var(--sub)">Mahalle, cadde, şehir yaz</div></div></div>
+          <div style="background:var(--card);border:1px solid var(--br);border-radius:12px;padding:12px 16px;display:flex;align-items:center;gap:12px;text-align:left"><span style="font-size:24px">🔗</span><div><div style="font-weight:600;font-size:13px">Link Yapıştır</div><div style="font-size:11px;color:var(--sub)">WhatsApp / Google Maps linki</div></div></div>
+          <div style="background:var(--card);border:1px solid var(--br);border-radius:12px;padding:12px 16px;display:flex;align-items:center;gap:12px;text-align:left"><span style="font-size:24px">🎯</span><div><div style="font-weight:600;font-size:13px">Koordinat Gir</div><div style="font-size:11px;color:var(--sub)">Enlem / boylam</div></div></div>
         </div>
       </div>
-
-      <!-- Slide 3 -->
-      <div class="ob-slide" id="ob-2" style="padding:40px 30px 20px;display:none;flex-direction:column;align-items:center;justify-content:center;text-align:center;height:100%">
-        <div style="font-size:80px;margin-bottom:16px">🧭</div>
-        <div style="font-size:26px;font-weight:800;color:#e8e8f0;line-height:1.3">Yol Tarifi Al</div>
-        <div style="font-size:15px;color:#6b7280;margin-top:14px;line-height:1.7;max-width:280px">Kaydettiğin herhangi bir konuma tek dokunuşla Google Maps'te yol tarifi al.</div>
-        <div style="margin-top:24px;background:#15151f;border:1px solid #252535;border-radius:16px;padding:20px;max-width:300px;width:100%">
-          <div style="font-size:13px;color:#6b7280;line-height:1.7">
-            ✅ Fotoğraf ekle<br>
-            ✅ Kategorilere ayır<br>
-            ✅ Not ekle<br>
-            ✅ Konum linkini paylaş<br>
-            ✅ Tüm cihazlardan eriş
-          </div>
+      <div id="ob-2" style="padding:40px 30px 20px;display:none;flex-direction:column;align-items:center;justify-content:center;text-align:center;height:100%">
+        <div style="font-size:80px;margin-bottom:16px">✨</div>
+        <div style="font-size:26px;font-weight:800">Özellikler</div>
+        <div style="margin-top:20px;background:var(--card);border:1px solid var(--br);border-radius:16px;padding:20px;max-width:300px;width:100%">
+          <div style="font-size:13px;color:var(--sub);line-height:2.2;text-align:left">📷 Fotoğraf ekle &nbsp;&nbsp; 🗂️ Kategorile<br>📝 Not ekle &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 🧭 Yol tarifi<br>🔗 Konum paylaş &nbsp; 🎨 Tema seç<br>🔐 PIN kilidi &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 🔄 Güncelleme</div>
         </div>
       </div>
-
-      <!-- Slide 4: Gizlilik -->
-      <div class="ob-slide" id="ob-3" style="padding:40px 30px 20px;display:none;flex-direction:column;align-items:center;justify-content:center;text-align:center;height:100%">
-        <div style="font-size:80px;margin-bottom:16px">🔒</div>
-        <div style="font-size:26px;font-weight:800;color:#e8e8f0;line-height:1.3">Gizlilik & Güvenlik</div>
-        <div style="font-size:15px;color:#6b7280;margin-top:14px;line-height:1.7;max-width:280px">Verileriniz yalnızca sizin Google hesabınıza bağlı. Kimse göremez.</div>
-        <div style="margin-top:20px;background:#15151f;border:1px solid #252535;border-radius:16px;padding:16px 20px;max-width:300px;width:100%;text-align:left">
-          <div style="font-size:12px;color:#6b7280;line-height:1.8">
-            • Veriler şifreli Firebase'de saklanır<br>
-            • Konum bilgileri yalnızca siz kullandığınızda alınır<br>
-            • Üçüncü taraflarla paylaşılmaz<br>
-            • İstediğinizde verilerinizi silebilirsiniz
-          </div>
-        </div>
-        <div style="margin-top:14px;font-size:11px;color:#374151;text-align:center">
-          Devam ederek <span onclick="showPage('page-privacy')" style="color:#7c6df0;cursor:pointer;text-decoration:underline">Gizlilik Politikası</span>'nı kabul etmiş olursunuz.
-        </div>
+      <div id="ob-3" style="padding:40px 30px 20px;display:none;flex-direction:column;align-items:center;justify-content:center;text-align:center;height:100%">
+        <div style="font-size:80px;margin-bottom:16px">🚀</div>
+        <div style="font-size:26px;font-weight:800">Hazırsın!</div>
+        <div style="color:var(--sub);font-size:15px;margin-top:14px;line-height:1.7;max-width:280px">Konum Defteri'ne hoş geldin. Verileriniz tamamen telefonunda güvende.</div>
+        <div style="margin-top:14px;font-size:11px;color:var(--s2)"><span onclick="sp('pg-prv')" style="color:var(--acc);cursor:pointer">Gizlilik Politikası</span></div>
       </div>
-
     </div>
-
-    <!-- Dots + Buttons -->
     <div style="padding:20px 30px 40px;flex-shrink:0">
       <div style="display:flex;justify-content:center;gap:8px;margin-bottom:24px" id="ob-dots">
-        <div class="ob-dot active" onclick="goSlide(0)"></div>
-        <div class="ob-dot" onclick="goSlide(1)"></div>
-        <div class="ob-dot" onclick="goSlide(2)"></div>
-        <div class="ob-dot" onclick="goSlide(3)"></div>
+        <div class="odot on" onclick="gs(0)"></div><div class="odot" onclick="gs(1)"></div><div class="odot" onclick="gs(2)"></div><div class="odot" onclick="gs(3)"></div>
       </div>
-      <button id="ob-next-btn" class="btn btn-primary" style="font-size:16px;padding:15px" onclick="obNext()">Devam →</button>
-      <button id="ob-skip-btn" onclick="obSkip()" style="background:none;border:none;color:#374151;font-size:13px;cursor:pointer;width:100%;margin-top:12px;padding:8px">Atla</button>
+      <button id="ob-nb" class="btn btp" style="font-size:16px;padding:15px" onclick="obn()">Devam →</button>
+      <button onclick="obf()" style="background:none;border:none;color:var(--s2);font-size:13px;cursor:pointer;width:100%;margin-top:12px;padding:8px">Atla</button>
     </div>
   </div>
 </div>
 
-<!-- ═══ PAGE: GİZLİLİK POLİTİKASI ═══ -->
-<div class="page" id="page-privacy">
-  <div class="header">
-    <div class="header-row">
-      <button class="back-btn" onclick="history.back();showPage(document.referrer?'page-login':'page-login')">←</button>
-      <div class="header-title"><div class="header-sup">Konum Defteri</div><div class="header-main">Gizlilik Politikası</div></div>
+<!-- LIST -->
+<div class="page" id="pg-list">
+  <div class="hdr">
+    <div class="hrow">
+      <div class="htit"><div class="hsup">Konum Defteri</div><div class="hmain">📍 Konumlarım</div></div>
+      <button onclick="sp('pg-set')" style="background:rgba(255,255,255,.15);border:none;border-radius:10px;padding:6px 10px;color:#fff;font-size:18px;cursor:pointer">⚙️</button>
     </div>
+    <div class="sbar"><span style="opacity:.6">🔍</span><input id="si" placeholder="Konum ara..." oninput="fl()"/><button id="scl" onclick="cs()" style="background:none;border:none;color:rgba(255,255,255,.5);cursor:pointer;font-size:18px;display:none">✕</button></div>
   </div>
-  <div class="section" style="font-size:13px;color:#94a3b8;line-height:1.8">
-    <div style="color:#e8e8f0;font-size:16px;font-weight:700">Konum Defteri Gizlilik Politikası</div>
-    <div style="color:#374151;font-size:11px">Son güncelleme: Haziran 2025</div>
+  <div class="cscr" id="cf"></div>
+  <div id="ll" class="lloc"></div>
+  <div class="fab"><button class="btn btp" style="font-size:15px;padding:15px;box-shadow:0 6px 28px rgba(0,0,0,.3)" onclick="sp('pg-am')">＋  Yeni Konum Ekle</button></div>
+</div>
 
-    <div style="color:#9d8ff5;font-weight:600;margin-top:8px">1. Toplanan Veriler</div>
-    <div>Uygulama yalnızca siz aktif olarak eklediğinizde konum bilgisi kaydeder. Arka planda konum takibi yapılmaz. Google hesap bilgileriniz (ad, e-posta, profil fotoğrafı) oturum açmak için kullanılır.</div>
-
-    <div style="color:#9d8ff5;font-weight:600;margin-top:8px">2. Verilerin Kullanımı</div>
-    <div>Kaydedilen konumlar yalnızca size ait Firebase veritabanında saklanır. Verileriniz analiz, reklam veya üçüncü taraf paylaşımı amacıyla kullanılmaz.</div>
-
-    <div style="color:#9d8ff5;font-weight:600;margin-top:8px">3. Veri Güvenliği</div>
-    <div>Veriler Google Firebase altyapısında şifreli olarak saklanır. Yalnızca Google hesabınızla erişilebilir.</div>
-
-    <div style="color:#9d8ff5;font-weight:600;margin-top:8px">4. Veri Silme</div>
-    <div>Tüm verilerinizi uygulama içinden veya Firebase Console'dan silebilirsiniz. Hesabınızı silmek için koyemirler@gmail.com adresine yazabilirsiniz.</div>
-
-    <div style="color:#9d8ff5;font-weight:600;margin-top:8px">5. İletişim</div>
-    <div>koyemirler@gmail.com</div>
-
-    <button class="btn btn-primary" style="margin-top:16px" onclick="showPage('page-login')">Anladım ✓</button>
+<!-- ADD METHOD -->
+<div class="page" id="pg-am">
+  <div class="hdr"><div class="hrow"><button class="bbk" onclick="sp('pg-list')">←</button><div class="htit"><div class="hsup">Konum Defteri</div><div class="hmain">Konum Ekle</div></div></div></div>
+  <div class="sec">
+    <div style="color:var(--sub);font-size:13px">Konumu nasıl eklemek istersin?</div>
+    <button class="mbtn" onclick="startGPS()"><span style="font-size:28px;width:40px;text-align:center;flex-shrink:0" id="gps-ic">📡</span><div style="flex:1"><div style="color:var(--tx);font-weight:700;font-size:15px" id="gps-tt">Mevcut Konumumu Kullan</div><div style="color:var(--sub);font-size:12px;margin-top:3px">GPS ile anlık konum al</div></div><span style="color:var(--s2);font-size:18px;margin-left:auto">›</span></button>
+    <button class="mbtn" onclick="sp('pg-addr')"><span style="font-size:28px;width:40px;text-align:center;flex-shrink:0">🔍</span><div style="flex:1"><div style="color:var(--tx);font-weight:700;font-size:15px">Adres ile Ara</div><div style="color:var(--sub);font-size:12px;margin-top:3px">Mahalle, sokak, şehir adı yaz</div></div><span style="color:var(--s2);font-size:18px;margin-left:auto">›</span></button>
+    <button class="mbtn" onclick="sp('pg-link')"><span style="font-size:28px;width:40px;text-align:center;flex-shrink:0">🔗</span><div style="flex:1"><div style="color:var(--tx);font-weight:700;font-size:15px">Google Maps Linki</div><div style="color:var(--sub);font-size:12px;margin-top:3px">Koordinatlı uzun link yapıştır</div></div><span style="color:var(--s2);font-size:18px;margin-left:auto">›</span></button>
+    <button class="mbtn" onclick="sp('pg-man')"><span style="font-size:28px;width:40px;text-align:center;flex-shrink:0">🎯</span><div style="flex:1"><div style="color:var(--tx);font-weight:700;font-size:15px">Koordinat Gir</div><div style="color:var(--sub);font-size:12px;margin-top:3px">Enlem / boylam biliyorsan</div></div><span style="color:var(--s2);font-size:18px;margin-left:auto">›</span></button>
   </div>
 </div>
 
-<!-- ═══ PAGE: LOGIN ═══ -->
-<div class="page" id="page-login" style="align-items:center;justify-content:center;padding:30px">
-  <div style="font-size:72px;text-align:center">📍</div>
-  <div style="font-size:28px;font-weight:800;margin-top:8px;text-align:center">Konum Defteri</div>
-  <div style="color:#6b7280;font-size:13px;margin-top:10px;text-align:center;line-height:1.7;max-width:260px">Konumlarını kaydet, adres ara, yol tarifi al</div>
-  <div style="margin-top:44px;width:100%;max-width:320px">
-    <button class="btn" style="background:#fff;color:#1f1f1f;border:1px solid #ddd;display:flex;align-items:center;justify-content:center;gap:10px;font-size:15px" onclick="doLogin()" class="login-btn">
-      <span style="font-size:18px;font-weight:900;color:#4285f4">G</span> Google ile Giriş Yap
-    </button>
-  </div>
-  <div style="margin-top:16px;color:#374151;font-size:11px;text-align:center">Firebase ile güvenli saklama</div>
-    <div style="margin-top:8px;font-size:11px;color:#374151;text-align:center"><span onclick="showPage('page-privacy')" style="color:#7c6df0;cursor:pointer">Gizlilik Politikası</span></div>
-</div>
-
-<!-- ═══ PAGE: LIST ═══ -->
-<div class="page" id="page-list">
-  <div class="header">
-    <div class="header-row">
-      <div class="header-title"><div class="header-sup">Konum Defteri</div><div class="header-main">📍 Konumlarım</div></div>
-      <button style="background:rgba(255,255,255,.15);border:none;border-radius:10px;padding:6px 10px;color:#fff;font-size:12px;cursor:pointer;font-weight:600" onclick="showPage('page-cats')">🗂️</button>
-      <img id="user-avatar" src="" style="width:32px;height:32px;border-radius:50%;cursor:pointer;border:2px solid rgba(255,255,255,.3);flex-shrink:0;display:none" onclick="doLogout()" title="Çıkış"/>
-    </div>
-    <div class="search-bar">
-      <span style="opacity:.6">🔍</span>
-      <input id="search-inp" placeholder="Konum ara..." oninput="filterList()"/>
-      <button id="search-clear" onclick="clearSearch()" style="background:none;border:none;color:rgba(255,255,255,.5);cursor:pointer;font-size:18px;display:none">✕</button>
-    </div>
-  </div>
-  <div class="cat-scroll" id="cat-filter"></div>
-  <div id="loc-list" class="loc-list"></div>
-  <div class="fab">
-    <button class="btn btn-primary" style="font-size:15px;padding:15px;box-shadow:0 6px 28px rgba(124,109,240,.34)" onclick="showPage('page-add-method')">＋  Yeni Konum Ekle</button>
+<!-- ADD ADDR -->
+<div class="page" id="pg-addr">
+  <div class="hdr"><div class="hrow"><button class="bbk" onclick="sp('pg-am')">←</button><div class="htit"><div class="hsup">Konum Defteri</div><div class="hmain">Adres Ara</div></div></div></div>
+  <div class="sec">
+    <div class="ibox">Mahalle, cadde, ilçe veya şehir adı yaz.<br>Örn: <b>Kadıköy İstanbul</b>, <b>Kızılay Ankara</b></div>
+    <div style="display:flex;gap:10px"><input id="ai" placeholder="Adres yaz..." style="flex:1" onkeydown="if(event.key==='Enter'){event.preventDefault();das();}"/><button onclick="das()" style="background:var(--acc);border:none;border-radius:12px;color:#fff;padding:12px 18px;font-size:16px;cursor:pointer;flex-shrink:0;font-weight:700">Ara</button></div>
+    <div id="ast" style="display:none;text-align:center;color:var(--sub);padding:16px;background:var(--c2);border-radius:12px"></div>
+    <div id="ars"></div>
   </div>
 </div>
 
-<!-- ═══ PAGE: ADD METHOD ═══ -->
-<div class="page" id="page-add-method">
-  <div class="header">
-    <div class="header-row">
-      <button class="back-btn" onclick="showPage('page-list')">←</button>
-      <div class="header-title"><div class="header-sup">Konum Defteri</div><div class="header-main">Konum Ekle</div></div>
-    </div>
-  </div>
-  <div class="section">
-    <div style="color:#6b7280;font-size:13px">Konumu nasıl eklemek istersin?</div>
-    <button class="method-btn" onclick="startGPS()">
-      <span style="font-size:28px;width:40px;text-align:center;flex-shrink:0" id="gps-icon">📡</span>
-      <div style="flex:1"><div style="color:#e8e8f0;font-weight:700;font-size:15px" id="gps-title">Mevcut Konumumu Kullan</div><div style="color:#6b7280;font-size:12px;margin-top:3px">GPS ile anlık konum al</div></div>
-      <span style="color:#374151;font-size:18px;margin-left:auto">›</span>
-    </button>
-    <button class="method-btn" onclick="showPage('page-add-addr')">
-      <span style="font-size:28px;width:40px;text-align:center;flex-shrink:0">🔍</span>
-      <div style="flex:1"><div style="color:#e8e8f0;font-weight:700;font-size:15px">Adres ile Ara</div><div style="color:#6b7280;font-size:12px;margin-top:3px">Mahalle, sokak, şehir adı yaz</div></div>
-      <span style="color:#374151;font-size:18px;margin-left:auto">›</span>
-    </button>
-    <button class="method-btn" onclick="showPage('page-add-link')">
-      <span style="font-size:28px;width:40px;text-align:center;flex-shrink:0">🔗</span>
-      <div style="flex:1"><div style="color:#e8e8f0;font-weight:700;font-size:15px">Google Maps Linki</div><div style="color:#6b7280;font-size:12px;margin-top:3px">Koordinatlı uzun link yapıştır</div></div>
-      <span style="color:#374151;font-size:18px;margin-left:auto">›</span>
-    </button>
-    <button class="method-btn" onclick="showPage('page-add-manual')">
-      <span style="font-size:28px;width:40px;text-align:center;flex-shrink:0">🎯</span>
-      <div style="flex:1"><div style="color:#e8e8f0;font-weight:700;font-size:15px">Koordinat Gir</div><div style="color:#6b7280;font-size:12px;margin-top:3px">Enlem / boylam biliyorsan</div></div>
-      <span style="color:#374151;font-size:18px;margin-left:auto">›</span>
-    </button>
+<!-- ADD LINK -->
+<div class="page" id="pg-link">
+  <div class="hdr"><div class="hrow"><button class="bbk" onclick="sp('pg-am')">←</button><div class="htit"><div class="hsup">Konum Defteri</div><div class="hmain">Link Yapıştır</div></div></div></div>
+  <div class="sec">
+    <div class="ibox">✅ <b>Çalışır:</b> maps.google.com/?q=41.01,28.97<br>❌ <b>Çalışmaz:</b> maps.app.goo.gl/... (kısa link)</div>
+    <div><div class="lbl">Link veya Koordinat</div><textarea id="li" placeholder="https://maps.google.com/?q=41.01,28.97&#10;veya: 41.01, 28.97" rows="4" oninput="oli(this.value)"></textarea><div id="lh" style="display:none;font-size:12px;color:var(--grn);margin-top:6px;font-family:monospace"></div></div>
+    <button class="btn btp" onclick="apl()">Devam Et →</button>
+    <button class="btn btgh" onclick="sp('pg-man')">🎯 Koordinat Gir</button>
   </div>
 </div>
 
-<!-- ═══ PAGE: ADD ADDR ═══ -->
-<div class="page" id="page-add-addr">
-  <div class="header">
-    <div class="header-row">
-      <button class="back-btn" onclick="showPage('page-add-method')">←</button>
-      <div class="header-title"><div class="header-sup">Konum Defteri</div><div class="header-main">Adres Ara</div></div>
-    </div>
-  </div>
-  <div class="section">
-    <div class="info-box">Mahalle, cadde, ilçe veya şehir adı yaz.<br>Örn: <b>Kadıköy İstanbul</b>, <b>Kızılay Ankara</b></div>
-    <div style="display:flex;gap:10px">
-      <input id="addr-inp" placeholder="Adres yaz..." style="flex:1" onkeydown="if(event.key==='Enter'){event.preventDefault();doAddrSearch();}"/>
-      <button onclick="doAddrSearch()" style="background:#7c6df0;border:none;border-radius:12px;color:#fff;padding:12px 18px;font-size:16px;cursor:pointer;flex-shrink:0;font-weight:700">Ara</button>
-    </div>
-    <div id="addr-status" style="display:none;text-align:center;color:#6b7280;padding:16px;background:#1c1c2a;border-radius:12px"></div>
-    <div id="addr-results"></div>
+<!-- ADD MANUAL -->
+<div class="page" id="pg-man">
+  <div class="hdr"><div class="hrow"><button class="bbk" onclick="sp('pg-am')">←</button><div class="htit"><div class="hsup">Konum Defteri</div><div class="hmain">Koordinat Gir</div></div></div></div>
+  <div class="sec">
+    <div class="ibox">Google Maps'te bir konuma <b>uzun bas</b> → koordinatlar görünür → aşağıya gir.</div>
+    <div><div class="lbl">Enlem (Latitude)</div><input id="mlat" type="text" inputmode="decimal" placeholder="Örn: 41.0082376"/></div>
+    <div><div class="lbl">Boylam (Longitude)</div><input id="mlng" type="text" inputmode="decimal" placeholder="Örn: 28.9783589"/></div>
+    <button class="btn btp" onclick="apm()">Onayla →</button>
+    <button class="btn btgh" onclick="window.open('https://maps.google.com','_blank')">🗺️ Google Maps'i Aç</button>
   </div>
 </div>
 
-<!-- ═══ PAGE: ADD LINK ═══ -->
-<div class="page" id="page-add-link">
-  <div class="header">
-    <div class="header-row">
-      <button class="back-btn" onclick="showPage('page-add-method')">←</button>
-      <div class="header-title"><div class="header-sup">Konum Defteri</div><div class="header-main">Link Yapıştır</div></div>
-    </div>
-  </div>
-  <div class="section">
-    <div class="info-box">
-      ✅ <b>Çalışır:</b> maps.google.com/?q=41.01,28.97<br>
-      ✅ <b>Çalışır:</b> Google Maps'te Paylaş → Linki kopyala<br><br>
-      ❌ <b>Çalışmaz:</b> maps.app.goo.gl/... (WhatsApp kısa link)<br>
-      → Kısa link için: Google Maps'te konumu aç → Paylaş → uzun linki kopyala
-    </div>
-    <div>
-      <div class="lbl">Link veya Koordinat Yapıştır</div>
-      <textarea id="link-inp" placeholder="https://maps.google.com/?q=41.01234,28.97890&#10;veya sadece: 41.01234, 28.97890" rows="4" oninput="onLinkInput(this.value)"></textarea>
-      <div id="link-hint" class="link-hint">✅ Koordinat bulundu!</div>
-    </div>
-    <button class="btn btn-primary" onclick="applyLink()">Devam Et →</button>
-    <div style="text-align:center;color:#374151;font-size:12px">— veya WhatsApp'tan gelen koordinatı elle gir —</div>
-    <button class="btn btn-ghost" onclick="showPage('page-add-manual')">🎯 Koordinat Gir</button>
+<!-- ADD DETAILS -->
+<div class="page" id="pg-det">
+  <div class="hdr"><div class="hrow"><button class="bbk" id="det-bk">←</button><div class="htit"><div class="hsup">Konum Defteri</div><div class="hmain">Detaylar</div></div></div></div>
+  <div class="sec">
+    <div class="cbdg"><span style="font-size:22px">📍</span><div><div style="font-size:11px;color:var(--sub)">Seçilen konum</div><div id="det-crd" style="font-size:12px;color:var(--grn);font-family:monospace"></div></div><button onclick="sp('pg-am')" style="margin-left:auto;background:none;border:none;color:var(--sub);cursor:pointer;font-size:13px">Değiştir</button></div>
+    <div><div class="lbl">İsim *</div><input id="dn" placeholder="Konum adı..."/></div>
+    <div><div class="lbl">Notlar</div><input id="dnt" placeholder="Açıklama, not..."/></div>
+    <div><div class="lbl">Kategori</div><div id="dc" style="display:flex;flex-wrap:wrap;gap:8px"></div></div>
+    <div><div class="lbl">Fotoğraf</div><input type="file" accept="image/*" id="dfi" style="display:none" onchange="hp(this,'d')"/><div id="dpw"><button class="btn btgh" style="border:2px dashed var(--br)!important" onclick="document.getElementById('dfi').click()">📷 Fotoğraf Ekle (opsiyonel)</button></div></div>
+    <button class="btn btp" onclick="svl()">💾 Kaydet</button>
   </div>
 </div>
 
-<!-- ═══ PAGE: ADD MANUAL ═══ -->
-<div class="page" id="page-add-manual">
-  <div class="header">
-    <div class="header-row">
-      <button class="back-btn" onclick="showPage('page-add-method')">←</button>
-      <div class="header-title"><div class="header-sup">Konum Defteri</div><div class="header-main">Koordinat Gir</div></div>
-    </div>
-  </div>
-  <div class="section">
-    <div class="info-box">Google Maps'te bir konuma <b>uzun bas</b> → koordinatlar gösterilir → aşağıya gir.</div>
-    <div><div class="lbl">Enlem (Latitude)</div><input id="man-lat" type="text" inputmode="decimal" placeholder="Örn: 41.0082376"/></div>
-    <div><div class="lbl">Boylam (Longitude)</div><input id="man-lng" type="text" inputmode="decimal" placeholder="Örn: 28.9783589"/></div>
-    <button class="btn btn-primary" onclick="applyManual()">Onayla →</button>
-    <button class="btn btn-ghost" onclick="window.open('https://maps.google.com','_blank')">🗺️ Google Maps'i Aç</button>
-  </div>
-</div>
-
-<!-- ═══ PAGE: ADD DETAILS ═══ -->
-<div class="page" id="page-add-details">
-  <div class="header">
-    <div class="header-row">
-      <button class="back-btn" id="details-back-btn">←</button>
-      <div class="header-title"><div class="header-sup">Konum Defteri</div><div class="header-main">Detaylar</div></div>
-    </div>
-  </div>
-  <div class="section">
-    <div class="coord-badge">
-      <span style="font-size:22px">📍</span>
-      <div><div style="font-size:11px;color:#6b7280">Seçilen konum</div><div id="details-coords" style="font-size:12px;color:#22c55e;font-family:monospace"></div></div>
-      <button onclick="showPage('page-add-method')" style="margin-left:auto;background:none;border:none;color:#6b7280;cursor:pointer;font-size:13px">Değiştir</button>
-    </div>
-    <div><div class="lbl">İsim *</div><input id="det-name" placeholder="Konum adı..."/></div>
-    <div><div class="lbl">Notlar</div><input id="det-note" placeholder="Açıklama, not..."/></div>
-    <div><div class="lbl">Kategori</div><div id="det-cats" style="display:flex;flex-wrap:wrap;gap:8px"></div></div>
-    <div>
-      <div class="lbl">Fotoğraf</div>
-      <input type="file" accept="image/*" id="det-photo-inp" style="display:none" onchange="handlePhoto(this,'det-photo-wrap')"/>
-      <div id="det-photo-wrap"><button class="btn btn-ghost" style="border:2px dashed #252535!important" onclick="document.getElementById('det-photo-inp').click()">📷 Fotoğraf Ekle (opsiyonel)</button></div>
-    </div>
-    <button class="btn btn-primary" onclick="saveLocation()">💾 Kaydet</button>
-  </div>
-</div>
-
-<!-- ═══ PAGE: DETAIL VIEW ═══ -->
-<div class="page" id="page-detail">
-  <div class="header">
-    <div class="header-row">
-      <button class="back-btn" onclick="showPage('page-list')">←</button>
-      <div class="header-title"><div class="header-sup">Konum Defteri</div><div class="header-main" id="detail-title" style="font-size:17px"></div></div>
-      <button onclick="openEdit()" style="background:rgba(255,255,255,.15);border:none;border-radius:10px;padding:6px 12px;color:#fff;font-size:12px;cursor:pointer;font-weight:600;flex-shrink:0">✏️ Düzenle</button>
-    </div>
-  </div>
+<!-- DETAIL VIEW -->
+<div class="page" id="pg-dv">
+  <div class="hdr"><div class="hrow"><button class="bbk" onclick="sp('pg-list')">←</button><div class="htit"><div class="hsup">Konum Defteri</div><div class="hmain" id="dv-tit" style="font-size:17px"></div></div><button onclick="oed()" style="background:rgba(255,255,255,.15);border:none;border-radius:10px;padding:6px 12px;color:#fff;font-size:12px;cursor:pointer;font-weight:600;flex-shrink:0">✏️ Düzenle</button></div></div>
   <div style="overflow-y:auto;flex:1;padding-bottom:40px">
-    <div id="detail-hero" style="width:100%;height:180px;display:flex;align-items:center;justify-content:center;font-size:64px;flex-shrink:0"></div>
+    <div id="dv-hero" style="width:100%;height:200px;display:flex;align-items:center;justify-content:center;font-size:64px;flex-shrink:0"></div>
     <div style="padding:18px;display:flex;flex-direction:column;gap:12px">
       <div style="display:flex;align-items:flex-start;justify-content:space-between;gap:10px">
-        <div><div style="font-size:22px;font-weight:800" id="detail-name"></div><span id="detail-cat-badge" style="background:rgba(124,109,240,.13);color:#9d8ff5;font-size:12px;padding:3px 10px;border-radius:10px;margin-top:6px;display:inline-block"></span></div>
-        <div style="font-size:11px;color:#6b7280;flex-shrink:0;padding-top:4px" id="detail-date"></div>
+        <div><div style="font-size:22px;font-weight:800" id="dv-nam"></div><span id="dv-cat" style="background:var(--accD);color:var(--accL);font-size:12px;padding:3px 10px;border-radius:10px;margin-top:6px;display:inline-block"></span></div>
+        <div style="font-size:11px;color:var(--sub);flex-shrink:0;padding-top:4px" id="dv-dat"></div>
       </div>
-      <div id="detail-note-wrap" style="display:none;background:#15151f;border-radius:12px;padding:14px;color:#94a3b8;font-size:14px;line-height:1.6;border:1px solid #252535"></div>
-      <div style="background:#15151f;border-radius:12px;padding:12px 16px;border:1px solid #252535">
-        <div class="lbl">Koordinatlar</div>
-        <div id="detail-coords" style="font-size:13px;color:#94a3b8;font-family:monospace"></div>
-      </div>
-      <button class="btn btn-green" id="detail-nav-btn">🧭 Google Maps'te Yol Tarifi Al</button>
-      <button class="btn btn-outline" id="detail-copy-btn">🔗 Konum Linkini Kopyala</button>
-      <button class="btn btn-danger" id="detail-del-btn">🗑️ Konumu Sil</button>
+      <div id="dv-not" style="display:none;background:var(--card);border-radius:12px;padding:14px;color:var(--sub);font-size:14px;line-height:1.6;border:1px solid var(--br)"></div>
+      <div style="background:var(--card);border-radius:12px;padding:12px 16px;border:1px solid var(--br)"><div class="lbl">Koordinatlar</div><div id="dv-crd" style="font-size:13px;color:var(--sub);font-family:monospace"></div></div>
+      <button class="btn btg" id="dv-nav">🧭 Google Maps'te Yol Tarifi Al</button>
+      <button class="btn bto" id="dv-cpy">🔗 Konum Linkini Kopyala</button>
+      <button class="btn btd" id="dv-del">🗑️ Konumu Sil</button>
     </div>
   </div>
 </div>
 
-<!-- ═══ PAGE: EDIT ═══ -->
-<div class="page" id="page-edit">
-  <div class="header">
-    <div class="header-row">
-      <button class="back-btn" onclick="checkUnsaved()">←</button>
-      <div class="header-title"><div class="header-sup">Konum Defteri</div><div class="header-main">Düzenle</div></div>
-    </div>
-  </div>
-  <div class="section">
-    <div><div class="lbl">İsim *</div><input id="edit-name" placeholder="Konum adı..."/></div>
-    <div><div class="lbl">Notlar</div><input id="edit-note" placeholder="Açıklama, not..."/></div>
-    <div><div class="lbl">Kategori</div><div id="edit-cats" style="display:flex;flex-wrap:wrap;gap:8px"></div></div>
-    <div>
-      <div class="lbl">Fotoğraf</div>
-      <input type="file" accept="image/*" id="edit-photo-inp" style="display:none" onchange="handlePhoto(this,'edit-photo-wrap')"/>
-      <div id="edit-photo-wrap"></div>
-    </div>
-    <button class="btn btn-primary" onclick="saveEdit()">💾 Değişiklikleri Kaydet</button>
-    <button class="btn btn-danger" onclick="askDelete()">🗑️ Konumu Sil</button>
+<!-- EDIT -->
+<div class="page" id="pg-edt">
+  <div class="hdr"><div class="hrow"><button class="bbk" onclick="chku()">←</button><div class="htit"><div class="hsup">Konum Defteri</div><div class="hmain">Düzenle</div></div></div></div>
+  <div class="sec">
+    <div><div class="lbl">İsim *</div><input id="en" placeholder="Konum adı..."/></div>
+    <div><div class="lbl">Notlar</div><input id="ent" placeholder="Açıklama, not..."/></div>
+    <div><div class="lbl">Kategori</div><div id="ec" style="display:flex;flex-wrap:wrap;gap:8px"></div></div>
+    <div><div class="lbl">Fotoğraf</div><input type="file" accept="image/*" id="efi" style="display:none" onchange="hp(this,'e')"/><div id="epw"></div></div>
+    <button class="btn btp" onclick="sve()">💾 Değişiklikleri Kaydet</button>
+    <button class="btn btd" onclick="adel()">🗑️ Konumu Sil</button>
   </div>
 </div>
 
-<!-- ═══ PAGE: CATEGORIES ═══ -->
-<div class="page" id="page-cats">
-  <div class="header">
-    <div class="header-row">
-      <button class="back-btn" onclick="showPage('page-list')">←</button>
-      <div class="header-title"><div class="header-sup">Konum Defteri</div><div class="header-main">Kategoriler</div></div>
+<!-- SETTINGS -->
+<div class="page" id="pg-set">
+  <div class="hdr"><div class="hrow"><button class="bbk" onclick="sp('pg-list')">←</button><div class="htit"><div class="hsup">Konum Defteri</div><div class="hmain">⚙️ Ayarlar</div></div></div></div>
+  <div class="sec">
+    <div><div class="lbl">🎨 Tema</div><div class="thgrd" id="tg"></div></div>
+    <div style="background:var(--card);border:1px solid var(--br);border-radius:14px;padding:14px 16px">
+      <div style="display:flex;align-items:center;gap:12px"><span style="font-size:22px;width:36px;text-align:center">🔐</span><div style="flex:1"><div style="font-weight:600;font-size:14px">PIN Kilidi</div><div style="font-size:11px;color:var(--sub);margin-top:2px">Uygulamayı açarken PIN sor</div></div><div class="tggl" id="ptg" onclick="tpin()"></div></div>
+      <div id="pinwrap" style="display:none;margin-top:14px;padding-top:14px;border-top:1px solid var(--br)">
+        <div class="lbl">PIN Kodu (4 hane)</div>
+        <input id="pinset" type="password" inputmode="numeric" maxlength="4" placeholder="••••" style="max-width:120px;text-align:center;font-size:20px;letter-spacing:8px"/>
+        <button class="btn btp" style="margin-top:10px" onclick="spin()">PIN'i Kaydet</button>
+      </div>
+    </div>
+    <div class="srow" onclick="sp('pg-cats')"><span style="font-size:22px;width:36px;text-align:center">🗂️</span><div style="flex:1"><div style="font-weight:600;font-size:14px">Kategoriler</div><div style="font-size:11px;color:var(--sub);margin-top:2px" id="catlbl">Kategorileri yönet</div></div><span style="color:var(--s2);font-size:16px">›</span></div>
+    <div class="srow" onclick="sfb()"><span style="font-size:22px;width:36px;text-align:center">💬</span><div style="flex:1"><div style="font-weight:600;font-size:14px">Görüş & Öneri</div><div style="font-size:11px;color:var(--sub);margin-top:2px">Geri bildirim gönder</div></div><span style="color:var(--s2);font-size:16px">›</span></div>
+    <div class="srow" onclick="chkupd()"><span style="font-size:22px;width:36px;text-align:center">🔄</span><div style="flex:1"><div style="font-weight:600;font-size:14px">Güncelleme Kontrolü</div><div style="font-size:11px;color:var(--sub);margin-top:2px" id="verlbl">v2.0.0</div></div><span style="color:var(--s2);font-size:16px">›</span></div>
+    <div class="srow" onclick="sp('pg-prv')"><span style="font-size:22px;width:36px;text-align:center">🔒</span><div style="flex:1"><div style="font-weight:600;font-size:14px">Gizlilik Politikası</div><div style="font-size:11px;color:var(--sub);margin-top:2px">Veriler nasıl korunur?</div></div><span style="color:var(--s2);font-size:16px">›</span></div>
+    <div style="background:var(--card);border:1px solid var(--br);border-radius:14px;padding:16px;text-align:center">
+      <div style="font-size:32px;margin-bottom:8px">📍</div>
+      <div style="font-weight:700;font-size:15px">Konum Defteri</div>
+      <div style="font-size:12px;color:var(--sub);margin-top:4px">Versiyon 2.0.0</div>
+      <div style="font-size:11px;color:var(--s2);margin-top:8px;line-height:1.6">Veriler yalnızca telefonunuzda saklanır.<br>İnternet: yalnızca adres arama & yol tarifi.</div>
     </div>
   </div>
-  <div class="section">
-    <div class="card" style="padding:16px">
+</div>
+
+<!-- CATEGORIES -->
+<div class="page" id="pg-cats">
+  <div class="hdr"><div class="hrow"><button class="bbk" onclick="sp('pg-set')">←</button><div class="htit"><div class="hsup">Konum Defteri</div><div class="hmain">Kategoriler</div></div></div></div>
+  <div class="sec">
+    <div style="background:var(--card);border:1px solid var(--br);border-radius:16px;padding:16px">
       <div class="lbl" style="margin-bottom:12px">➕ Yeni Kategori</div>
-      <div class="emoji-grid" id="emoji-grid"></div>
-      <div style="display:flex;gap:10px"><input id="new-cat-label" placeholder="Kategori adı..." style="flex:1;border-radius:11px"/><button onclick="addCat()" style="background:#7c6df0;border:none;border-radius:11px;color:#fff;padding:10px 16px;font-size:14px;font-weight:700;cursor:pointer;flex-shrink:0">Ekle</button></div>
+      <div class="egrd" id="eg"></div>
+      <div style="display:flex;gap:10px"><input id="ncl" placeholder="Kategori adı..." style="flex:1;border-radius:11px"/><button onclick="acat()" style="background:var(--acc);border:none;border-radius:11px;color:#fff;padding:10px 16px;font-size:14px;font-weight:700;cursor:pointer;flex-shrink:0">Ekle</button></div>
     </div>
     <div class="lbl">Mevcut Kategoriler</div>
-    <div id="cat-list" style="display:flex;flex-direction:column;gap:8px"></div>
+    <div id="cl" style="display:flex;flex-direction:column;gap:8px"></div>
+  </div>
+</div>
+
+<!-- PRIVACY -->
+<div class="page" id="pg-prv">
+  <div class="hdr"><div class="hrow"><button class="bbk" onclick="sp('pg-set')">←</button><div class="htit"><div class="hsup">Konum Defteri</div><div class="hmain">Gizlilik</div></div></div></div>
+  <div class="sec" style="font-size:13px;color:var(--sub);line-height:1.8">
+    <div style="color:var(--tx);font-size:16px;font-weight:700">Gizlilik Politikası</div>
+    <div style="color:var(--s2);font-size:11px">Haziran 2025</div>
+    <div style="color:var(--accL);font-weight:600;margin-top:8px">Veri Saklama</div>
+    <div>Tüm verileriniz (konumlar, fotoğraflar, notlar) yalnızca telefonunuzun yerel depolama alanında saklanır. Hiçbir veri sunucuya gönderilmez.</div>
+    <div style="color:var(--accL);font-weight:600;margin-top:8px">İnternet Kullanımı</div>
+    <div>Sadece: Adres arama (OpenStreetMap), Google Maps yol tarifi, güncelleme kontrolü.</div>
+    <div style="color:var(--accL);font-weight:600;margin-top:8px">Konum İzni</div>
+    <div>Yalnızca "Mevcut Konumumu Kullan" tıklandığında anlık olarak kullanılır.</div>
+    <div style="color:var(--accL);font-weight:600;margin-top:8px">İletişim</div>
+    <div>Görüş & Öneri bölümünden ulaşabilirsiniz.</div>
+    <button class="btn btp" style="margin-top:16px" onclick="sp('pg-set')">Anladım ✓</button>
   </div>
 </div>
 
 <script>
-const DEF_CATS=[{id:"ev",icon:"🏠",label:"Ev"},{id:"is",icon:"💼",label:"İş"},{id:"restoran",icon:"🍽️",label:"Restoran"},{id:"market",icon:"🛒",label:"Market"},{id:"hastane",icon:"🏥",label:"Hastane"},{id:"okul",icon:"🏫",label:"Okul"},{id:"diger",icon:"📍",label:"Diğer"}];
-const DEF_IDS=DEF_CATS.map(c=>c.id);
-const EMOJIS=["📍","🏠","💼","🍽️","🛒","🏥","🏫","⛽","🏖️","🏋️","🎭","🎓","🏦","🛕","⛪","🏪","🏨","🅿️","🚉","✈️","🌳","🎯","🔧","🎪","💈","🐾"];
+const VER="2.0.0",REPO="koyemirler-hash/KonumDefteri",FBK="yasindemirkan83@gmail.com";
+const DCATS=[{id:"ev",icon:"🏠",label:"Ev"},{id:"is",icon:"💼",label:"İş"},{id:"restoran",icon:"🍽️",label:"Restoran"},{id:"market",icon:"🛒",label:"Market"},{id:"hastane",icon:"🏥",label:"Hastane"},{id:"okul",icon:"🏫",label:"Okul"},{id:"diger",icon:"📍",label:"Diğer"}];
+const DID=DCATS.map(c=>c.id);
+const EMOJ=["📍","🏠","💼","🍽️","🛒","🏥","🏫","⛽","🏖️","🏋️","🎭","🎓","🏦","🛕","⛪","🏪","🏨","🅿️","🚉","✈️","🌳","🎯","🔧","🎪","💈","🐾","🌊","🏔️","🎠","🏟️"];
+const THS=[{id:"purple",l:"Mor",c:"#7c6df0",cl:""},{id:"blue",l:"Mavi",c:"#3b82f6",cl:"th-blue"},{id:"green",l:"Yeşil",c:"#16a34a",cl:"th-green"},{id:"red",l:"Kırmızı",c:"#dc2626",cl:"th-red"},{id:"orange",l:"Turuncu",c:"#ea580c",cl:"th-orange"},{id:"light",l:"Açık",c:"#7c6df0",cl:"th-light"}];
 
-let _user=null,_locs=[],_cats=[],_uL=null,_uC=null;
-let _filterCat="all",_selCatIcon="📍";
-let _pendingLat=null,_pendingLng=null,_pendingBack="page-add-method";
-let _pendingCat="diger",_photoData="";
-let _selLoc=null,_editCat="diger",_editPhoto="",_delCatId=null;
-let _parsedLat=null,_parsedLng=null; // for link page
+function gset(){try{return JSON.parse(localStorage.getItem("kd_s")||"null")||{th:"purple",pin:"",pinOn:false};}catch{return{th:"purple",pin:"",pinOn:false};}}
+function sset(s){localStorage.setItem("kd_s",JSON.stringify(s));}
+function glocs(){try{return JSON.parse(localStorage.getItem("kd_l")||"[]");}catch{return[];}}
+function slocs(a){localStorage.setItem("kd_l",JSON.stringify(a));}
+function gcats(){try{const c=JSON.parse(localStorage.getItem("kd_c")||"null");return c||[...DCATS];}catch{return[...DCATS];}}
+function scats(a){localStorage.setItem("kd_c",JSON.stringify(a));}
 
-// ── TOAST ──
-let _toastTm;
-function toast(msg,type="ok"){const t=document.getElementById("toast");t.textContent=msg;t.className="toast show "+type;clearTimeout(_toastTm);_toastTm=setTimeout(()=>{t.className="toast";},3500);}
+let PDB=null;
+function opdb(){return new Promise((r,j)=>{if(PDB){r(PDB);return;}const q=indexedDB.open("KD_P",1);q.onupgradeneeded=e=>e.target.result.createObjectStore("p",{keyPath:"id"});q.onsuccess=e=>{PDB=e.target.result;r(PDB);};q.onerror=()=>j();});}
+async function sph(id,d){const db=await opdb();return new Promise((r,j)=>{const tx=db.transaction("p","readwrite");tx.objectStore("p").put({id,data:d});tx.oncomplete=()=>r();tx.onerror=()=>j();});}
+async function gph(id){if(!id)return null;const db=await opdb();return new Promise(r=>{const q=db.transaction("p","readonly").objectStore("p").get(id);q.onsuccess=()=>r(q.result?.data||null);q.onerror=()=>r(null);});}
+async function dph(id){if(!id)return;const db=await opdb();const tx=db.transaction("p","readwrite");tx.objectStore("p").delete(id);}
 
-// ── MODAL ──
-function closeModal(id){document.getElementById(id).classList.remove("show");}
-function openModal(id){document.getElementById(id).classList.add("show");}
-
-// ── PAGE ──
-function showPage(id){
-  document.querySelectorAll(".page").forEach(p=>p.classList.remove("active"));
-  document.getElementById(id).classList.add("active");
-  window.scrollTo(0,0);
-  if(id==="page-list")renderList();
-  if(id==="page-cats")renderCats();
-  if(id==="page-add-addr"){document.getElementById("addr-inp").value="";document.getElementById("addr-results").innerHTML="";document.getElementById("addr-status").style.display="none";}
-  if(id==="page-add-link"){document.getElementById("link-inp").value="";document.getElementById("link-hint").style.display="none";_parsedLat=null;_parsedLng=null;}
-  if(id==="page-add-manual"){document.getElementById("man-lat").value="";document.getElementById("man-lng").value="";}
-}
-
-// ── AUTH ──
-async function doLogin(){
-  const btn = document.querySelector("#page-login .login-btn");
-  if(btn){btn.textContent="⏳ Bağlanıyor...";btn.disabled=true;}
-  try{
-    // IndexedDB persistence sayesinde popup Capacitor'da da çalışır
-    await window._FB.signInWithPopup(window._auth, window._prov);
-  }catch(e){
-    if(e.code !== "auth/popup-closed-by-user" && e.code !== "auth/cancelled-popup-request"){
-      showLoginError("Hata: " + (e.code || e.message));
-    }
-  }finally{
-    if(btn){btn.textContent="G  Google ile Giriş Yap";btn.disabled=false;}
-  }
-}
-
-function showLoginError(msg){
-  let d=document.getElementById("lerr");
-  if(!d){d=document.createElement("div");d.id="lerr";d.style.cssText="margin-top:14px;background:#3b0d0d;color:#fca5a5;border:1px solid #ef444430;border-radius:12px;padding:12px 14px;font-size:13px;text-align:center;line-height:1.5;max-width:320px";document.getElementById("page-login").appendChild(d);}
-  d.textContent=msg;
-}
-
-async function doLogout(){await window._FB.signOut(window._auth);showPage("page-login");}
+let _L=[],_C=[],_S={};
+let _fc="all",_sel=null,_sci="📍";
+let _plat=null,_plng=null,_pbk="pg-am";
+let _pcat="diger",_pd="",_ppid=null;
+let _ecat="diger",_ep="",_epc=false;
+let _dcid=null,_obs=0;
+let _pin="",_pmode="u";
 
 window.addEventListener("load",async()=>{
-  // Onboarding kontrolü
-  checkOnboarding();
-
-  // Eski SW temizle
-  
-// ── ONBOARDING ──
-let _obSlide = 0;
-const _obTotal = 4;
-
-function obNext(){
-  if(_obSlide < _obTotal - 1){ goSlide(_obSlide + 1); }
-  else { obFinish(); }
-}
-
-function goSlide(n){
-  document.getElementById("ob-"+_obSlide).style.display="none";
-  _obSlide = n;
-  const el = document.getElementById("ob-"+n);
-  el.style.display="flex";
-  // dots
-  document.querySelectorAll(".ob-dot").forEach((d,i)=>{ d.classList.toggle("active", i===n); });
-  // buton
-  const nb = document.getElementById("ob-next-btn");
-  nb.textContent = n === _obTotal-1 ? "Başlayalım 🚀" : "Devam →";
-}
-
-function obSkip(){ obFinish(); }
-
-function obFinish(){
-  localStorage.setItem("ob_done","1");
-  showPage("page-login");
-}
-
-// Onboarding göster/atla kontrolü
-function checkOnboarding(){
-  if(localStorage.getItem("ob_done")==="1"){
-    document.querySelectorAll(".page").forEach(p=>p.classList.remove("active"));
-    document.getElementById("page-login").classList.add("active");
-  }
-  // else: onboarding zaten active
-}
-
-if("serviceWorker"in navigator){
-    navigator.serviceWorker.getRegistrations().then(rs=>rs.forEach(r=>r.unregister()));
-  }
-  // Redirect dönüş kontrolü
-  try{
-    const r=await window._FB.getRedirectResult(window._auth);
-    if(r&&r.user) localStorage.removeItem("lp");
-  }catch(e){
-    localStorage.removeItem("lp");
-  }
-  // Auth state
-  window._FB.onAuthStateChanged(window._auth,u=>{
-    if(u){
-      localStorage.removeItem("lp");
-      _user=u;startFB(u.uid);
-      const av=document.getElementById("user-avatar");
-      if(u.photoURL){av.src=u.photoURL;av.style.display="block";}
-      showPage("page-list");
-    }else{
-      if(localStorage.getItem("lp")==="1") return; // redirect bekleniyor
-      if(_uL)_uL();if(_uC)_uC();
-      showPage("page-login");
-    }
-  });
+  _S=gset();_L=glocs();_C=gcats();
+  atm(_S.th);await opdb();
+  const od=localStorage.getItem("kd_ob")==="1";
+  if(!od){pa("pg-ob");return;}
+  if(_S.pinOn&&_S.pin){pa("pg-pin");_pmode="u";}
+  else sp("pg-list");
 });
 
-// ── FIRESTORE ──
-function startFB(uid){
-  const{collection,query,orderBy,onSnapshot,setDoc,doc}=window._FB;const db=window._db;
-  if(_uL)_uL();if(_uC)_uC();
-  _uL=onSnapshot(query(collection(db,"users",uid,"locations"),orderBy("createdAt","desc")),s=>{_locs=s.docs.map(d=>({id:d.id,...d.data()}));renderList();});
-  _uC=onSnapshot(query(collection(db,"users",uid,"categories"),orderBy("order","asc")),async s=>{
-    if(s.empty){for(let i=0;i<DEF_CATS.length;i++)await setDoc(doc(db,"users",uid,"categories",DEF_CATS[i].id),{...DEF_CATS[i],order:i});}
-    else{_cats=s.docs.map(d=>({id:d.id,...d.data()}));renderList();}
-  });
+function pa(id){document.querySelectorAll(".page").forEach(p=>p.classList.remove("active"));document.getElementById(id).classList.add("active");window.scrollTo(0,0);}
+function sp(id){
+  pa(id);
+  if(id==="pg-list")rl();
+  if(id==="pg-cats")rc();
+  if(id==="pg-set")rs();
+  if(id==="pg-addr"){document.getElementById("ai").value="";document.getElementById("ars").innerHTML="";document.getElementById("ast").style.display="none";}
+  if(id==="pg-link"){document.getElementById("li").value="";document.getElementById("lh").style.display="none";}
+  if(id==="pg-man"){document.getElementById("mlat").value="";document.getElementById("mlng").value="";}
 }
-function getCat(id){return _cats.find(c=>c.id===id)||DEF_CATS.find(c=>c.id===id)||{icon:"📍",label:id};}
+function cm(id){document.getElementById(id).classList.remove("show");}
+function om(id){document.getElementById(id).classList.add("show");}
 
-// ── LIST ──
-function renderList(){
-  if(!document.getElementById("page-list").classList.contains("active"))return;
-  const cf=document.getElementById("cat-filter");cf.innerHTML="";
-  [{id:"all",icon:"🌍",label:"Tümü"},..._cats].forEach(c=>{
-    const a=_filterCat===c.id,b=document.createElement("button");
-    b.className="cat-chip";b.textContent=`${c.icon} ${c.label}`;
-    b.style.cssText=`background:${a?"#7c6df0":"#15151f"};border:1px solid ${a?"#7c6df0":"#252535"};color:${a?"#fff":"#6b7280"};font-weight:${a?"700":"400"}`;
-    b.onclick=()=>{_filterCat=c.id;renderList();};cf.appendChild(b);
-  });
-  const q=(document.getElementById("search-inp").value||"").toLowerCase();
-  const fl=_locs.filter(l=>(l.cat===_filterCat||_filterCat==="all")&&((l.name||"").toLowerCase().includes(q)||(l.note||"").toLowerCase().includes(q)));
-  const ll=document.getElementById("loc-list");ll.innerHTML="";
-  if(!fl.length){ll.innerHTML=`<div class="empty-state"><div style="font-size:52px">🗺️</div><div style="margin-top:12px;font-size:15px;color:#6b7280">Henüz konum yok</div><div style="font-size:12px;margin-top:4px">Aşağıdan yeni ekle</div></div>`;return;}
-  fl.forEach(loc=>{
-    const cat=getCat(loc.cat),card=document.createElement("div");card.className="loc-card";card.onclick=()=>openDetail(loc);
-    if(loc.photo){const img=document.createElement("img");img.src=loc.photo;img.className="loc-thumb";card.appendChild(img);}
-    else{const ic=document.createElement("div");ic.className="loc-thumb-icon";ic.textContent=cat.icon;card.appendChild(ic);}
-    const info=document.createElement("div");info.className="loc-info";
-    info.innerHTML=`<div class="loc-name">${loc.name||""}</div>${loc.note?`<div class="loc-note">${loc.note}</div>`:""}<div class="loc-tags"><span class="loc-cat">${cat.icon} ${cat.label||cat.id}</span><span class="loc-date">${loc.date||""}</span></div>`;
-    card.appendChild(info);
-    const arr=document.createElement("div");arr.style.cssText="display:flex;align-items:center;padding-right:14px;color:#374151;font-size:18px";arr.textContent="›";card.appendChild(arr);
-    ll.appendChild(card);
-  });
+// TEMA
+function atm(id){const t=THS.find(x=>x.id===id)||THS[0];document.body.className=t.cl;_S.th=id;}
+
+// TOAST
+let _ttm;
+function toast(m,t="ok"){const e=document.getElementById("tst");e.textContent=m;e.className="tst show "+t;clearTimeout(_ttm);_ttm=setTimeout(()=>{e.className="tst";},3000);}
+
+// ONBOARDING
+function obn(){if(_obs<3)gs(_obs+1);else obf();}
+function gs(n){document.getElementById("ob-"+_obs).style.display="none";_obs=n;const e=document.getElementById("ob-"+n);e.style.display="flex";document.querySelectorAll(".odot").forEach((d,i)=>d.classList.toggle("on",i===n));document.getElementById("ob-nb").textContent=n===3?"Başlayalım 🚀":"Devam →";}
+function obf(){localStorage.setItem("kd_ob","1");sp("pg-list");}
+
+// PIN
+function pp(v){
+  if(v==="C"){_pin="";upd();return;}
+  if(v==="B"){_pin=_pin.slice(0,-1);upd();return;}
+  if(_pin.length>=4)return;
+  _pin+=v;upd();
+  if(_pin.length===4){
+    if(_pmode==="u"){
+      if(_pin===_S.pin){_pin="";upd();sp("pg-list");}
+      else{_pin="";upd();const d=document.getElementById("pdots");d.classList.add("shk");setTimeout(()=>d.classList.remove("shk"),300);toast("Yanlış PIN!","err");}
+    }
+  }
 }
-function filterList(){const v=document.getElementById("search-inp").value;document.getElementById("search-clear").style.display=v?"block":"none";renderList();}
-function clearSearch(){document.getElementById("search-inp").value="";document.getElementById("search-clear").style.display="none";renderList();}
+function upd(){document.querySelectorAll(".pdot").forEach((d,i)=>d.classList.toggle("f",i<_pin.length));}
+function tpin(){const t=document.getElementById("ptg");if(_S.pinOn){_S.pinOn=false;_S.pin="";sset(_S);t.classList.remove("on");document.getElementById("pinwrap").style.display="none";toast("PIN kilidi kapatıldı");}else{document.getElementById("pinwrap").style.display="block";t.classList.add("on");}}
+function spin(){const p=document.getElementById("pinset").value;if(p.length!==4||!/^\d{4}$/.test(p))return toast("4 haneli sayısal PIN girin!","err");_S.pinOn=true;_S.pin=p;sset(_S);document.getElementById("pinset").value="";document.getElementById("pinwrap").style.display="none";toast("✅ PIN kaydedildi!");}
 
-// ── GPS ──
+// LIST
+function gc(id){return _C.find(c=>c.id===id)||DCATS.find(c=>c.id===id)||{icon:"📍",label:id};}
+async function rl(){
+  if(!document.getElementById("pg-list").classList.contains("active"))return;
+  const cf=document.getElementById("cf");cf.innerHTML="";
+  [{id:"all",icon:"🌍",label:"Tümü"},..._C].forEach(c=>{const a=_fc===c.id,b=document.createElement("button");b.className="cchip";b.textContent=`${c.icon} ${c.label}`;b.style.cssText=`background:${a?"var(--acc)":"var(--card)"};border:1px solid ${a?"var(--acc)":"var(--br)"};color:${a?"#fff":"var(--sub)"};font-weight:${a?"700":"400"}`;b.onclick=()=>{_fc=c.id;rl();};cf.appendChild(b);});
+  const q=(document.getElementById("si").value||"").toLowerCase();
+  const fll=_L.filter(l=>(l.cat===_fc||_fc==="all")&&((l.name||"").toLowerCase().includes(q)||(l.note||"").toLowerCase().includes(q)));
+  const ll=document.getElementById("ll");ll.innerHTML="";
+  if(!fll.length){ll.innerHTML=`<div style="display:flex;flex-direction:column;align-items:center;padding:60px 20px;text-align:center"><div style="font-size:52px">🗺️</div><div style="margin-top:12px;font-size:15px;color:var(--sub)">Henüz konum yok</div><div style="font-size:12px;margin-top:4px;color:var(--s2)">Aşağıdan yeni ekle</div></div>`;return;}
+  for(const loc of fll){
+    const cat=gc(loc.cat),card=document.createElement("div");card.className="lcard si";card.onclick=()=>odv(loc);
+    const ph=loc.pid?await gph(loc.pid):null;
+    if(ph){const img=document.createElement("img");img.src=ph;img.className="lthumb";card.appendChild(img);}
+    else{const ic=document.createElement("div");ic.className="lthi";ic.textContent=cat.icon;card.appendChild(ic);}
+    const inf=document.createElement("div");inf.className="linf";
+    inf.innerHTML=`<div class="lnam">${loc.name||""}</div>${loc.note?`<div class="lnot">${loc.note}</div>`:""}<div class="ltag"><span class="lcat">${cat.icon} ${cat.label||cat.id}</span><span class="ldat">${loc.date||""}</span></div>`;
+    card.appendChild(inf);const arr=document.createElement("div");arr.style.cssText="display:flex;align-items:center;padding-right:14px;color:var(--s2);font-size:18px";arr.textContent="›";card.appendChild(arr);ll.appendChild(card);
+  }
+}
+function fl(){const v=document.getElementById("si").value;document.getElementById("scl").style.display=v?"block":"none";rl();}
+function cs(){document.getElementById("si").value="";document.getElementById("scl").style.display="none";rl();}
+
+// GPS
 function startGPS(){
-  if(!navigator.geolocation)return toast("Bu tarayıcı GPS desteklemiyor","err");
-  document.getElementById("gps-icon").textContent="⏳";
-  document.getElementById("gps-title").textContent="Konum alınıyor...";
+  if(!navigator.geolocation)return toast("GPS desteklenmiyor","err");
+  document.getElementById("gps-ic").textContent="⏳";document.getElementById("gps-tt").textContent="Alınıyor...";
   navigator.geolocation.getCurrentPosition(
-    p=>{
-      document.getElementById("gps-icon").textContent="📡";
-      document.getElementById("gps-title").textContent="Mevcut Konumumu Kullan";
-      _pendingLat=p.coords.latitude;_pendingLng=p.coords.longitude;_pendingBack="page-add-method";
-      goToDetails();
-    },
-    e=>{
-      document.getElementById("gps-icon").textContent="📡";
-      document.getElementById("gps-title").textContent="Mevcut Konumumu Kullan";
-      const msgs={1:"❌ Konum izni reddedildi!\n\nAdres çubuğundaki 🔒 simgesine bas → Konum → İzin ver",2:"GPS sinyali yok. WiFi'yi aç veya dışarı çık.",3:"Zaman aşımı. Tekrar dene."};
-      toast(msgs[e.code]||"Konum alınamadı","err");
-    },
+    p=>{document.getElementById("gps-ic").textContent="📡";document.getElementById("gps-tt").textContent="Mevcut Konumumu Kullan";_plat=p.coords.latitude;_plng=p.coords.longitude;_pbk="pg-am";gtd();},
+    e=>{document.getElementById("gps-ic").textContent="📡";document.getElementById("gps-tt").textContent="Mevcut Konumumu Kullan";const m={1:"Konum izni reddedildi!",2:"GPS sinyali yok.",3:"Zaman aşımı."};toast(m[e.code]||"Konum alınamadı","err");},
     {enableHighAccuracy:true,timeout:15000,maximumAge:0}
   );
 }
 
-// ── ADRES ARAMA ──
-async function doAddrSearch(){
-  const q=document.getElementById("addr-inp").value.trim();
-  if(!q)return toast("Adres yaz!","err");
-  const st=document.getElementById("addr-status");
-  const rs=document.getElementById("addr-results");
+// ADRES
+async function das(){
+  const q=document.getElementById("ai").value.trim();if(!q)return toast("Adres yaz!","err");
+  const st=document.getElementById("ast"),rs=document.getElementById("ars");
   st.style.display="block";st.textContent="⏳ Aranıyor...";rs.innerHTML="";
   try{
-    // CORS header ekle, iki alternatif API dene
-    const url=`https://nominatim.openstreetmap.org/search?q=${encodeURIComponent(q)}&format=json&limit=6&addressdetails=1`;
-    const resp=await fetch(url,{headers:{"Accept-Language":"tr,en","User-Agent":"KonumDefteri/1.0"}});
-    if(!resp.ok)throw new Error("HTTP "+resp.status);
-    const data=await resp.json();
-    st.style.display="none";
-    if(!data||!data.length){st.style.display="block";st.textContent="❌ Sonuç bulunamadı. Farklı kelimeler dene.";return;}
-    const box=document.createElement("div");box.className="addr-box";
-    data.forEach(item=>{
-      const b=document.createElement("button");b.className="addr-result";
-      const parts=item.display_name.split(",");
-      const name=parts[0].trim();
-      const full=item.display_name;
-      b.innerHTML=`<div class="addr-result-name">${name}</div><div class="addr-result-full">${full}</div>`;
-      b.onclick=()=>{
-        _pendingLat=parseFloat(item.lat);_pendingLng=parseFloat(item.lon);_pendingBack="page-add-addr";
-        setTimeout(()=>{const n=document.getElementById("det-name");if(n&&!n.value)n.value=name;},50);
-        goToDetails();
-      };
+    const r=await fetch(`https://nominatim.openstreetmap.org/search?q=${encodeURIComponent(q)}&format=json&limit=6&accept-language=tr,en`,{headers:{"Accept-Language":"tr,en"}});
+    const d=await r.json();st.style.display="none";
+    if(!d?.length){st.style.display="block";st.textContent="❌ Bulunamadı.";return;}
+    const box=document.createElement("div");box.className="abox";
+    d.forEach(item=>{
+      const b=document.createElement("button");b.className="ares";const pts=item.display_name.split(",");
+      b.innerHTML=`<div class="arn">${pts[0].trim()}</div><div class="arf">${item.display_name}</div>`;
+      b.onclick=()=>{_plat=+item.lat;_plng=+item.lon;_pbk="pg-addr";setTimeout(()=>{const n=document.getElementById("dn");if(n&&!n.value)n.value=pts[0].trim();},50);gtd();};
       box.appendChild(b);
-    });
-    rs.appendChild(box);
-  }catch(err){
-    st.style.display="block";
-    st.textContent="❌ Bağlantı hatası. İnternet bağlantını kontrol et.\n"+err.message;
-  }
+    });rs.appendChild(box);
+  }catch{st.style.display="block";st.textContent="❌ Bağlantı hatası.";}
 }
 
-// ── LINK ──
-function parseCoords(txt){
-  if(!txt||!txt.trim())return null;
-  const ps=[
-    /maps\.google\.com\/\?q=([-\d.]+),([-\d.]+)/,
-    /google\.com\/maps\/place\/[^@]*@([-\d.]+),([-\d.]+)/,
-    /[?&]q=([-\d.]+),([-\d.]+)/,
-    /ll=([-\d.]+),([-\d.]+)/,
-    /@([-\d.]+),([-\d.]+)/,
-    /\b([-]?\d{1,3}\.\d{4,})\s*[,;]\s*([-]?\d{1,3}\.\d{4,})\b/,
-  ];
-  for(const p of ps){const m=txt.match(p);if(m){const la=parseFloat(m[1]),ln=parseFloat(m[2]);if(la>=-90&&la<=90&&ln>=-180&&ln<=180&&Math.abs(la)+Math.abs(ln)>0.01)return{lat:la,lng:ln};}}
-  return null;
+// LINK
+let _pc=null;
+function pco(txt){if(!txt)return null;const ps=[/maps\.google\.com\/\?q=([-\d.]+),([-\d.]+)/,/google\.com\/maps\/place\/[^@]+@([-\d.]+),([-\d.]+)/,/[?&]q=([-\d.]+),([-\d.]+)/,/ll=([-\d.]+),([-\d.]+)/,/@([-\d.]+),([-\d.]+)/,/\b([-]?\d{1,3}\.\d{4,})\s*[,;]\s*([-]?\d{1,3}\.\d{4,})\b/];for(const p of ps){const m=txt.match(p);if(m){const la=+m[1],ln=+m[2];if(la>=-90&&la<=90&&ln>=-180&&ln<=180&&Math.abs(la)+Math.abs(ln)>0.01)return{lat:la,lng:ln};}}return null;}
+function oli(v){const c=pco(v);const h=document.getElementById("lh");if(c){_pc=c;h.textContent=`✅ ${c.lat.toFixed(5)}, ${c.lng.toFixed(5)}`;h.style.display="block";}else{_pc=null;h.style.display="none";}}
+function apl(){const c=_pc||pco(document.getElementById("li").value);if(!c)return toast("Koordinat bulunamadı","err");_plat=c.lat;_plng=c.lng;_pbk="pg-link";gtd();}
+function apm(){const la=+document.getElementById("mlat").value.replace(",",".");const ln=+document.getElementById("mlng").value.replace(",",".");if(isNaN(la)||isNaN(ln)||la<-90||la>90||ln<-180||ln>180)return toast("Geçersiz koordinat","err");_plat=la;_plng=ln;_pbk="pg-man";gtd();}
+
+// DETAILS
+function gtd(){
+  document.getElementById("det-crd").textContent=`${_plat.toFixed(5)}, ${_plng.toFixed(5)}`;
+  document.getElementById("det-bk").onclick=()=>sp(_pbk);
+  document.getElementById("dn").value="";document.getElementById("dnt").value="";
+  _pd="";_pcat="diger";_ppid=null;
+  rcc("dc","d");
+  document.getElementById("dpw").innerHTML=`<button class="btn btgh" style="border:2px dashed var(--br)!important" onclick="document.getElementById('dfi').click()">📷 Fotoğraf Ekle (opsiyonel)</button>`;
+  pa("pg-det");
 }
 
-function onLinkInput(val){
-  const c=parseCoords(val);const hint=document.getElementById("link-hint");
-  if(c){_parsedLat=c.lat;_parsedLng=c.lng;hint.textContent=`✅ ${c.lat.toFixed(5)}, ${c.lng.toFixed(5)}`;hint.style.display="block";}
-  else{_parsedLat=null;_parsedLng=null;hint.style.display="none";}
+function rcc(cid,m){
+  const cur=m==="d"?_pcat:_ecat;const cg=document.getElementById(cid);cg.innerHTML="";
+  _C.forEach(c=>{const a=c.id===cur,b=document.createElement("button");b.className="cchip";b.textContent=`${c.icon} ${c.label}`;b.style.cssText=`background:${a?"var(--acc)":"var(--c2)"};border:1px solid ${a?"var(--acc)":"var(--br)"};color:${a?"#fff":"var(--sub)"};font-weight:${a?"700":"400"}`;b.onclick=()=>{if(m==="d")_pcat=c.id;else _ecat=c.id;rcc(cid,m);};cg.appendChild(b);});
 }
 
-function applyLink(){
-  const val=document.getElementById("link-inp").value;
-  const c=parseCoords(val)||(_parsedLat?{lat:_parsedLat,lng:_parsedLng}:null);
-  if(!c)return toast("Koordinat bulunamadı.\nUzun Google Maps linki gerekmeli.\nYa da 'Koordinat Gir' seçeneğini kullan.","err");
-  _pendingLat=c.lat;_pendingLng=c.lng;_pendingBack="page-add-link";
-  goToDetails();
-}
-
-// ── MANUAL ──
-function applyManual(){
-  const la=parseFloat(document.getElementById("man-lat").value.replace(",","."));
-  const ln=parseFloat(document.getElementById("man-lng").value.replace(",","."));
-  if(isNaN(la)||isNaN(ln))return toast("Geçerli sayılar girin","err");
-  if(la<-90||la>90)return toast("Enlem -90 ile 90 arasında olmalı","err");
-  if(ln<-180||ln>180)return toast("Boylam -180 ile 180 arasında olmalı","err");
-  _pendingLat=la;_pendingLng=ln;_pendingBack="page-add-manual";
-  goToDetails();
-}
-
-// ── DETAILS ──
-function goToDetails(){
-  document.getElementById("details-coords").textContent=`${_pendingLat.toFixed(5)}, ${_pendingLng.toFixed(5)}`;
-  document.getElementById("details-back-btn").onclick=()=>showPage(_pendingBack);
-  document.getElementById("det-name").value="";
-  document.getElementById("det-note").value="";
-  _photoData="";_pendingCat="diger";
-  renderCatChips("det-cats","_pendingCat");
-  document.getElementById("det-photo-wrap").innerHTML=`<button class="btn btn-ghost" style="border:2px dashed #252535!important" onclick="document.getElementById('det-photo-inp').click()">📷 Fotoğraf Ekle (opsiyonel)</button>`;
-  document.querySelectorAll(".page").forEach(p=>p.classList.remove("active"));
-  document.getElementById("page-add-details").classList.add("active");
-  window.scrollTo(0,0);
-}
-
-function renderCatChips(containerId,varName){
-  const cg=document.getElementById(containerId);cg.innerHTML="";
-  const cur=varName==="_pendingCat"?_pendingCat:_editCat;
-  _cats.forEach(c=>{
-    const b=document.createElement("button");b.className="cat-chip";b.textContent=`${c.icon} ${c.label}`;
-    b.style.cssText=`background:${c.id===cur?"#7c6df0":"#1c1c2a"};border:1px solid ${c.id===cur?"#7c6df0":"#252535"};color:${c.id===cur?"#fff":"#6b7280"};font-weight:${c.id===cur?"700":"400"}`;
-    b.onclick=()=>{if(varName==="_pendingCat")_pendingCat=c.id;else _editCat=c.id;renderCatChips(containerId,varName);};
-    cg.appendChild(b);
-  });
-}
-
-function handlePhoto(inp,wrapId){
+function hp(inp,m){
   const f=inp.files[0];if(!f)return;
-  if(f.size>900000)return toast("Max 900KB","err");
+  if(f.size>3000000)return toast("Max 3MB","err");
   const r=new FileReader();
   r.onload=()=>{
-    const data=r.result;
-    if(wrapId==="det-photo-wrap")_photoData=data;else _editPhoto=data;
-    document.getElementById(wrapId).innerHTML=`<div style="position:relative"><img src="${data}" style="width:100%;border-radius:12px;max-height:170px;object-fit:cover"/><button onclick="clearPhoto('${wrapId}')" style="position:absolute;top:8px;right:8px;background:#ef4444;border:none;border-radius:50%;width:28px;height:28px;color:#fff;cursor:pointer;font-size:14px">✕</button></div>`;
-  };
-  r.readAsDataURL(f);
+    const img=new Image();img.onload=()=>{
+      const cv=document.createElement("canvas");const mx=900;let w=img.width,h=img.height;
+      if(w>mx){h=h*(mx/w);w=mx;}if(h>mx){w=w*(mx/h);h=mx;}
+      cv.width=w;cv.height=h;cv.getContext("2d").drawImage(img,0,0,w,h);
+      const d=cv.toDataURL("image/jpeg",.72);
+      if(m==="d")_pd=d;else{_ep=d;_epc=true;}
+      const wid=m==="d"?"dpw":"epw",iid=m==="d"?"dfi":"efi";
+      document.getElementById(wid).innerHTML=`<div style="position:relative"><img src="${d}" style="width:100%;border-radius:12px;max-height:170px;object-fit:cover"/><button onclick="clph('${wid}','${m}')" style="position:absolute;top:8px;right:8px;background:var(--red);border:none;border-radius:50%;width:28px;height:28px;color:#fff;cursor:pointer;font-size:14px">✕</button></div>`;
+    };img.src=r.result;
+  };r.readAsDataURL(f);
 }
-function clearPhoto(wrapId){
-  if(wrapId==="det-photo-wrap"){_photoData="";}else{_editPhoto="";}
-  const id=wrapId==="det-photo-wrap"?"det-photo-inp":"edit-photo-inp";
-  document.getElementById(wrapId).innerHTML=`<button class="btn btn-ghost" style="border:2px dashed #252535!important" onclick="document.getElementById('${id}').click()">📷 Fotoğraf Ekle (opsiyonel)</button>`;
+function clph(wid,m){if(m==="d")_pd="";else{_ep="";_epc=true;}document.getElementById(wid).innerHTML=`<button class="btn btgh" style="border:2px dashed var(--br)!important" onclick="document.getElementById('${m==="d"?"dfi":"efi"}').click()">📷 Fotoğraf Ekle</button>`;}
+
+async function svl(){
+  const nm=document.getElementById("dn").value.trim();if(!nm)return toast("İsim girin!","err");if(_plat==null)return toast("Konum seçilmedi","err");
+  const id=Date.now().toString();let pid=null;
+  if(_pd){pid="p_"+id;await sph(pid,_pd);}
+  _L.unshift({id,name:nm,note:document.getElementById("dnt").value.trim(),cat:_pcat,lat:_plat,lng:_plng,pid,date:new Date().toLocaleDateString("tr-TR")});
+  slocs(_L);_plat=null;_plng=null;_pd="";toast("📍 Kaydedildi!");sp("pg-list");
 }
 
-async function saveLocation(){
-  const name=document.getElementById("det-name").value.trim();
-  const note=document.getElementById("det-note").value.trim();
-  if(!name)return toast("İsim girin!","err");
-  if(_pendingLat==null)return toast("Konum seçilmedi","err");
-  const{collection,addDoc}=window._FB;
+// DETAIL VIEW
+async function odv(loc){
+  _sel=loc;const cat=gc(loc.cat);
+  document.getElementById("dv-tit").textContent=loc.name;
+  document.getElementById("dv-nam").textContent=loc.name;
+  document.getElementById("dv-cat").textContent=`${cat.icon} ${cat.label||cat.id}`;
+  document.getElementById("dv-dat").textContent=loc.date||"";
+  document.getElementById("dv-crd").textContent=`${loc.lat?.toFixed(6)}, ${loc.lng?.toFixed(6)}`;
+  const nw=document.getElementById("dv-not");nw.textContent=loc.note||"";nw.style.display=loc.note?"block":"none";
+  const hero=document.getElementById("dv-hero");const ph=loc.pid?await gph(loc.pid):null;
+  if(ph)hero.innerHTML=`<img src="${ph}" style="width:100%;height:100%;object-fit:cover"/>`;
+  else{hero.innerHTML="";hero.textContent=cat.icon;hero.style.background="linear-gradient(135deg,var(--accD),transparent)";}
+  document.getElementById("dv-nav").onclick=()=>window.open(`https://www.google.com/maps/dir/?api=1&destination=${loc.lat},${loc.lng}`,"_blank");
+  document.getElementById("dv-cpy").onclick=()=>{navigator.clipboard?.writeText(`https://maps.google.com/?q=${loc.lat},${loc.lng}`);toast("🔗 Kopyalandı!");};
+  document.getElementById("dv-del").onclick=()=>adel();
+  pa("pg-dv");
+}
+
+function adel(){
+  document.getElementById("mdel-txt").textContent=`"${_sel?.name}" silinecek. Emin misin?`;
+  document.getElementById("mdel-btn").onclick=async()=>{if(_sel?.pid)await dph(_sel.pid);_L=_L.filter(l=>l.id!==_sel.id);slocs(_L);cm("mdel");toast("🗑️ Silindi");sp("pg-list");};
+  om("mdel");
+}
+
+// EDIT
+async function oed(){
+  if(!_sel)return;_ecat=_sel.cat||"diger";_ep="";_epc=false;
+  document.getElementById("en").value=_sel.name||"";document.getElementById("ent").value=_sel.note||"";
+  rcc("ec","e");
+  const ew=document.getElementById("epw");const ph=_sel.pid?await gph(_sel.pid):null;
+  if(ph){_ep=ph;ew.innerHTML=`<div style="position:relative"><img src="${ph}" style="width:100%;border-radius:12px;max-height:170px;object-fit:cover"/><button onclick="clph('epw','e')" style="position:absolute;top:8px;right:8px;background:var(--red);border:none;border-radius:50%;width:28px;height:28px;color:#fff;cursor:pointer;font-size:14px">✕</button></div>`;}
+  else ew.innerHTML=`<button class="btn btgh" style="border:2px dashed var(--br)!important" onclick="document.getElementById('efi').click()">📷 Fotoğraf Ekle</button>`;
+  pa("pg-edt");
+}
+function hch(){if(!_sel)return false;return document.getElementById("en").value.trim()!==(_sel.name||"")||document.getElementById("ent").value.trim()!==(_sel.note||"")||_ecat!==(_sel.cat||"diger")||_epc;}
+function chku(){if(hch()){if(confirm("Değişiklikler kaydedilmedi. Çıkmak istiyor musun?"))odv(_sel);}else odv(_sel);}
+async function sve(){
+  const nm=document.getElementById("en").value.trim();if(!nm)return toast("İsim girin!","err");
+  let pid=_sel.pid;
+  if(_epc){if(_sel.pid)await dph(_sel.pid);if(_ep){pid="p_"+Date.now();await sph(pid,_ep);}else pid=null;}
+  const idx=_L.findIndex(l=>l.id===_sel.id);
+  if(idx>-1){_L[idx]={..._L[idx],name:nm,note:document.getElementById("ent").value.trim(),cat:_ecat,pid};slocs(_L);_sel=_L[idx];}
+  toast("✅ Kaydedildi!");odv(_sel);
+}
+
+// SETTINGS
+function rs(){
+  const tg=document.getElementById("tg");tg.innerHTML="";
+  THS.forEach(t=>{const b=document.createElement("button");b.className="thbtn"+(t.id===_S.th?" on":"");b.innerHTML=`<div style="width:20px;height:20px;border-radius:50%;background:${t.c};flex-shrink:0"></div><span style="font-size:13px;font-weight:600;color:var(--tx)">${t.l}</span>`;b.onclick=()=>{atm(t.id);sset(_S);rs();};tg.appendChild(b);});
+  const ptg=document.getElementById("ptg");if(_S.pinOn)ptg.classList.add("on");else ptg.classList.remove("on");
+  document.getElementById("catlbl").textContent=`${_C.length} kategori`;
+  document.getElementById("verlbl").textContent=`v${VER} - Güncelleme kontrol et`;
+}
+
+function sfb(){const s=encodeURIComponent(`Konum Defteri v${VER} - Geri Bildirim`);window.open(`mailto:${FBK}?subject=${s}`,"_blank");}
+
+async function chkupd(){
+  toast("🔄 Kontrol ediliyor...");
   try{
-    await addDoc(collection(window._db,"users",_user.uid,"locations"),{
-      name,note,cat:_pendingCat,lat:_pendingLat,lng:_pendingLng,
-      photo:_photoData,createdAt:new Date(),date:new Date().toLocaleDateString("tr-TR")
-    });
-    _pendingLat=null;_pendingLng=null;_photoData="";
-    toast("📍 Konum kaydedildi!");
-    showPage("page-list");
-  }catch(e){toast("Kayıt hatası: "+e.message,"err");}
+    const r=await fetch(`https://api.github.com/repos/${REPO}/releases/latest`);
+    const d=await r.json();const lv=(d.tag_name||"v0").replace("v","");
+    if(lv>VER){if(confirm(`Yeni versiyon v${lv} mevcut!\nŞu an: v${VER}\n\nGüncelleme sayfasını aç?`))window.open(d.html_url||`https://github.com/${REPO}/releases`,"_blank");}
+    else toast("✅ En güncel versiyon!");
+  }catch{toast("Kontrol edilemedi","err");}
 }
 
-// ── DETAIL VIEW ──
-function openDetail(loc){
-  _selLoc=loc;const cat=getCat(loc.cat);
-  document.getElementById("detail-title").textContent=loc.name;
-  document.getElementById("detail-name").textContent=loc.name;
-  document.getElementById("detail-cat-badge").textContent=`${cat.icon} ${cat.label||cat.id}`;
-  document.getElementById("detail-date").textContent=loc.date||"";
-  document.getElementById("detail-coords").textContent=`${loc.lat?.toFixed(6)}, ${loc.lng?.toFixed(6)}`;
-  const nw=document.getElementById("detail-note-wrap");
-  nw.textContent=loc.note||"";nw.style.display=loc.note?"block":"none";
-  const hero=document.getElementById("detail-hero");
-  if(loc.photo)hero.innerHTML=`<img src="${loc.photo}" style="width:100%;height:100%;object-fit:cover"/>`;
-  else{hero.innerHTML="";hero.textContent=cat.icon;hero.style.background="linear-gradient(135deg,rgba(124,109,240,.2),rgba(157,143,245,.13))";}
-  document.getElementById("detail-nav-btn").onclick=()=>window.open(`https://www.google.com/maps/dir/?api=1&destination=${loc.lat},${loc.lng}`,"_blank");
-  document.getElementById("detail-copy-btn").onclick=()=>{navigator.clipboard?.writeText(`https://maps.google.com/?q=${loc.lat},${loc.lng}`);toast("🔗 Link kopyalandı!");};
-  document.getElementById("detail-del-btn").onclick=()=>askDelete();
-  showPage("page-detail");
-}
-
-function askDelete(){
-  document.getElementById("modal-del-text").textContent=`"${_selLoc?.name}" konumunu silmek istediğine emin misin?`;
-  document.getElementById("modal-del-btn").onclick=async()=>{
-    const{doc,deleteDoc}=window._FB;
-    await deleteDoc(doc(window._db,"users",_user.uid,"locations",_selLoc.id));
-    closeModal("modal-del");toast("🗑️ Silindi");showPage("page-list");
-  };
-  openModal("modal-del");
-}
-
-// ── EDIT ──
-function openEdit(){
-  if(!_selLoc)return;
-  _editCat=_selLoc.cat||"diger";
-  _editPhoto=_selLoc.photo||"";
-  document.getElementById("edit-name").value=_selLoc.name||"";
-  document.getElementById("edit-note").value=_selLoc.note||"";
-  renderCatChips("edit-cats","_editCat");
-  const ew=document.getElementById("edit-photo-wrap");
-  if(_editPhoto)ew.innerHTML=`<div style="position:relative"><img src="${_editPhoto}" style="width:100%;border-radius:12px;max-height:170px;object-fit:cover"/><button onclick="clearPhoto('edit-photo-wrap')" style="position:absolute;top:8px;right:8px;background:#ef4444;border:none;border-radius:50%;width:28px;height:28px;color:#fff;cursor:pointer;font-size:14px">✕</button></div>`;
-  else ew.innerHTML=`<button class="btn btn-ghost" style="border:2px dashed #252535!important" onclick="document.getElementById('edit-photo-inp').click()">📷 Fotoğraf Değiştir</button>`;
-  showPage("page-edit");
-}
-
-function hasEditChanges(){
-  if(!_selLoc)return false;
-  return document.getElementById("edit-name").value.trim()!==(_selLoc.name||"")
-    ||document.getElementById("edit-note").value.trim()!==(_selLoc.note||"")
-    ||_editCat!==(_selLoc.cat||"diger")
-    ||_editPhoto!==(_selLoc.photo||"");
-}
-
-function checkUnsaved(){
-  if(hasEditChanges())openModal("modal-unsaved");
-  else showPage("page-detail");
-}
-
-function discardEdit(){closeModal("modal-unsaved");showPage("page-detail");}
-
-async function saveEdit(){
-  closeModal("modal-unsaved");
-  const name=document.getElementById("edit-name").value.trim();
-  if(!name)return toast("İsim girin!","err");
-  const{doc,updateDoc}=window._FB;
-  try{
-    await updateDoc(doc(window._db,"users",_user.uid,"locations",_selLoc.id),{
-      name,note:document.getElementById("edit-note").value.trim(),cat:_editCat,photo:_editPhoto
-    });
-    // refresh selLoc
-    _selLoc={..._selLoc,name,note:document.getElementById("edit-note").value.trim(),cat:_editCat,photo:_editPhoto};
-    toast("✅ Değişiklikler kaydedildi!");
-    openDetail(_selLoc);
-  }catch(e){toast("Güncelleme hatası: "+e.message,"err");}
-}
-
-// ── CATEGORIES ──
-let _selCatIconGlobal="📍";
-function renderCats(){
-  const eg=document.getElementById("emoji-grid");eg.innerHTML="";
-  EMOJIS.forEach(e=>{
-    const b=document.createElement("button");b.className="emoji-btn";b.textContent=e;
-    b.style.cssText=`background:${_selCatIconGlobal===e?"#7c6df0":"#1c1c2a"};border:1px solid ${_selCatIconGlobal===e?"#7c6df0":"#252535"}`;
-    b.onclick=()=>{_selCatIconGlobal=e;renderCats();};eg.appendChild(b);
-  });
-  const cl=document.getElementById("cat-list");cl.innerHTML="";
-  _cats.forEach(c=>{
-    const cnt=_locs.filter(l=>l.cat===c.id).length,isDef=DEF_IDS.includes(c.id);
-    const row=document.createElement("div");row.className="cat-item";
-    row.innerHTML=`<span style="font-size:24px">${c.icon}</span><div style="flex:1"><div style="font-weight:600;font-size:14px">${c.label}</div><div style="font-size:11px;color:#6b7280;margin-top:2px">${cnt} konum</div></div>`;
-    if(isDef){const b=document.createElement("span");b.style.cssText="font-size:10px;color:#374151;background:#1c1c2a;padding:3px 8px;border-radius:8px";b.textContent="Varsayılan";row.appendChild(b);}
-    else{const b=document.createElement("button");b.style.cssText="background:none;border:1px solid #ef444430;border-radius:10px;color:#ef4444;padding:5px 12px;font-size:12px;cursor:pointer";b.textContent="Sil";b.onclick=()=>{_delCatId=c.id;openModal("modal-delcat");};row.appendChild(b);}
+// CATS
+function rc(){
+  const eg=document.getElementById("eg");eg.innerHTML="";
+  EMOJ.forEach(e=>{const b=document.createElement("button");b.className="ebtn";b.textContent=e;b.style.cssText=`background:${_sci===e?"var(--acc)":"var(--c2)"};border:1px solid ${_sci===e?"var(--acc)":"var(--br)"}`;b.onclick=()=>{_sci=e;rc();};eg.appendChild(b);});
+  const cl=document.getElementById("cl");cl.innerHTML="";
+  _C.forEach(c=>{
+    const cnt=_L.filter(l=>l.cat===c.id).length,isDef=DID.includes(c.id);
+    const row=document.createElement("div");row.style.cssText="background:var(--card);border:1px solid var(--br);border-radius:14px;padding:13px 16px;display:flex;align-items:center;gap:12px";
+    row.innerHTML=`<span style="font-size:24px">${c.icon}</span><div style="flex:1"><div style="font-weight:600;font-size:14px">${c.label}</div><div style="font-size:11px;color:var(--sub);margin-top:2px">${cnt} konum</div></div>`;
+    if(isDef){const b=document.createElement("span");b.style.cssText="font-size:10px;color:var(--s2);background:var(--c2);padding:3px 8px;border-radius:8px";b.textContent="Varsayılan";row.appendChild(b);}
+    else{const b=document.createElement("button");b.style.cssText="background:none;border:1px solid #ef444430;border-radius:10px;color:var(--red);padding:5px 12px;font-size:12px;cursor:pointer";b.textContent="Sil";b.onclick=()=>{document.getElementById("mdelc-btn").onclick=()=>{_C=_C.filter(x=>x.id!==c.id);scats(_C);cm("mdelc");toast("🗑️ Silindi");rc();};om("mdelc");};row.appendChild(b);}
     cl.appendChild(row);
   });
 }
-async function addCat(){
-  const label=document.getElementById("new-cat-label").value.trim();
-  if(!label)return toast("İsim girin!","err");
-  const{doc,setDoc}=window._FB;const id=Date.now().toString();
-  await setDoc(doc(window._db,"users",_user.uid,"categories",id),{id,icon:_selCatIconGlobal,label,order:_cats.length});
-  document.getElementById("new-cat-label").value="";toast("✅ Kategori eklendi!");
-}
-document.getElementById("confirm-delcat-btn").onclick=async()=>{
-  if(!_delCatId)return;
-  const{doc,deleteDoc}=window._FB;
-  await deleteDoc(doc(window._db,"users",_user.uid,"categories",_delCatId));
-  closeModal("modal-delcat");_delCatId=null;toast("🗑️ Silindi");
-};
-
-// ── SW + INSTALL ──
-let _dp;
-window.addEventListener("beforeinstallprompt",e=>{e.preventDefault();_dp=e;document.getElementById("install-banner").classList.add("show");});
-document.getElementById("ib").onclick=async()=>{if(_dp){_dp.prompt();await _dp.userChoice;_dp=null;document.getElementById("install-banner").classList.remove("show");}};
-document.getElementById("ic").onclick=()=>document.getElementById("install-banner").classList.remove("show");
-// Eski SW varsa unregister et - auth için gerekli
-if("serviceWorker" in navigator){
-  navigator.serviceWorker.getRegistrations().then(regs=>{
-    regs.forEach(r=>r.unregister());
-  });
-}
+function acat(){const l=document.getElementById("ncl").value.trim();if(!l)return toast("İsim girin!","err");const id="c_"+Date.now();_C.push({id,icon:_sci,label:l,order:_C.length});scats(_C);document.getElementById("ncl").value="";toast("✅ Eklendi!");rc();}
 </script>
 </body>
 </html>
