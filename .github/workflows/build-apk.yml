@@ -27,13 +27,6 @@ jobs:
       - name: Setup Android SDK
         uses: android-actions/setup-android@v3
 
-      - name: Setup Fixed Keystore
-        run: |
-          mkdir -p ~/.android
-          echo "${{ secrets.DEBUG_KEYSTORE_BASE64 }}" | base64 -d > ~/.android/debug.keystore
-          ls -la ~/.android/debug.keystore
-          keytool -list -v -keystore ~/.android/debug.keystore -alias androiddebugkey -storepass android -keypass android 2>/dev/null | grep "SHA1:"
-
       - name: Install Dependencies
         run: npm install --legacy-peer-deps
 
@@ -42,19 +35,10 @@ jobs:
           npx cap add android || true
           npx cap sync android
 
-      - name: Copy google-services.json
-        run: cp google-services.json android/app/google-services.json
-
       - name: Fix AndroidManifest
         run: |
           MANIFEST="android/app/src/main/AndroidManifest.xml"
           sed -i 's|<application|<uses-permission android:name="android.permission.INTERNET"/>\n    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>\n    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>\n    <uses-permission android:name="android.permission.CAMERA"/>\n    <uses-permission android:name="android.permission.READ_MEDIA_IMAGES"/>\n    <application|' $MANIFEST
-          sed -i 's|android:label="@string/app_name"|android:label="@string/app_name"\n        android:usesCleartextTraffic="true"|' $MANIFEST
-
-      - name: Add google-services plugin
-        run: |
-          sed -i "s|apply plugin: 'com.android.application'|apply plugin: 'com.android.application'\napply plugin: 'com.google.gms.google-services'|" android/app/build.gradle || true
-          sed -i "s|dependencies {|dependencies {\n        classpath 'com.google.gms:google-services:4.4.0'|" android/build.gradle || true
 
       - name: Make Gradlew Executable
         run: chmod +x android/gradlew
