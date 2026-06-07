@@ -2,17 +2,12 @@
   "appId": "com.koyemirler.konumdefteri",
   "appName": "Konum Defteri",
   "webDir": "www",
-  "plugins": {
-    "GoogleAuth": {
-      "scopes": ["profile", "email"],
-      "serverClientId": "1079347072591-rl8d4lfldjusn84n1q9uefrpcrad25ka.apps.googleusercontent.com",
-      "forceCodeForRefreshToken": true
-    }
-  },
   "server": {
-    "androidScheme": "https"
+    "url": "https://koyemirler-hash.github.io/KonumDefteri/",
+    "cleartext": false
   },
   "android": {
-    "allowMixedContent": true
+    "allowMixedContent": false,
+    "webContentsDebuggingEnabled": false
   }
 }
