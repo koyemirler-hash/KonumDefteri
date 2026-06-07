@@ -91,7 +91,7 @@ textarea{resize:none;line-height:1.6}
 </style>
 <script type="module">
 import{initializeApp}from"https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
-import{getAuth,GoogleAuthProvider,signInWithPopup,signInWithRedirect,getRedirectResult,signOut,onAuthStateChanged,signInWithCredential}from"https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
+import{initializeAuth,indexedDBLocalPersistence,GoogleAuthProvider,signInWithPopup,signInWithRedirect,getRedirectResult,signOut,onAuthStateChanged,signInWithCredential}from"https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
 import{getFirestore,collection,addDoc,deleteDoc,doc,onSnapshot,query,orderBy,setDoc,updateDoc}from"https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
 const app=initializeApp({apiKey:"AIzaSyD9XMN3bMbRb2CCUKaY8wbsUsLUfGCByGc",authDomain:"konumdefteri-c29e6.firebaseapp.com",projectId:"konumdefteri-c29e6",storageBucket:"konumdefteri-c29e6.firebasestorage.app",messagingSenderId:"1079347072591",appId:"1:1079347072591:web:8f4f7ce33c99f657c8243a"});
 window._auth=getAuth(app);window._db=getFirestore(app);window._prov=new GoogleAuthProvider();
@@ -521,42 +521,13 @@ function showPage(id){
 async function doLogin(){
   const btn = document.querySelector("#page-login .login-btn");
   if(btn){btn.textContent="⏳ Bağlanıyor...";btn.disabled=true;}
-  
   try{
-    const isNative = window.Capacitor && window.Capacitor.isNativePlatform();
-    
-    if(isNative){
-      const GoogleAuth = window.Capacitor.Plugins.GoogleAuth;
-      if(!GoogleAuth){
-        throw new Error("GoogleAuth plugin yok! Plugins: " + JSON.stringify(Object.keys(window.Capacitor.Plugins||{})));
-      }
-      
-      // Plugin'i başlat
-      try{
-        await GoogleAuth.initialize({
-          clientId: "1079347072591-rl8d4lfldjusn84n1q9uefrpcrad25ka.apps.googleusercontent.com",
-          scopes: ["profile", "email"],
-          grantOfflineAccess: true
-        });
-      }catch(initE){ /* zaten başlatılmış olabilir */ }
-      
-      const result = await GoogleAuth.signIn();
-      const credential = window._FB.GoogleAuthProvider.credential(result.authentication.idToken);
-      await window._FB.signInWithCredential(window._auth, credential);
-      
-    } else {
-      await window._FB.signInWithPopup(window._auth, window._prov);
-    }
+    // IndexedDB persistence sayesinde popup Capacitor'da da çalışır
+    await window._FB.signInWithPopup(window._auth, window._prov);
   }catch(e){
-    // Tam hata detayı göster
-    const detail = JSON.stringify({
-      msg: e.message,
-      code: e.code, 
-      err: e.errorMessage,
-      type: e.type,
-      full: String(e)
-    });
-    showLoginError(detail);
+    if(e.code !== "auth/popup-closed-by-user" && e.code !== "auth/cancelled-popup-request"){
+      showLoginError("Hata: " + (e.code || e.message));
+    }
   }finally{
     if(btn){btn.textContent="G  Google ile Giriş Yap";btn.disabled=false;}
   }
