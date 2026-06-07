@@ -3,8 +3,7 @@
   "appName": "Konum Defteri",
   "webDir": "www",
   "server": {
-    "url": "https://koyemirler-hash.github.io/KonumDefteri/",
-    "cleartext": false
+    "androidScheme": "https"
   },
   "android": {
     "allowMixedContent": false,
