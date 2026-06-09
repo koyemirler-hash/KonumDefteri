@@ -90,8 +90,8 @@ textarea{resize:none;line-height:1.6}
 .pdot{width:14px;height:14px;border-radius:50%;background:var(--br);transition:background .2s}
 .pdot.f{background:var(--acc)}
 .pgrd{display:flex;flex-wrap:wrap;gap:10px;max-width:260px;margin:0 auto}
-.pkey{background:var(--c2);border:1px solid var(--br);border-radius:14px;width:74px;height:70px;font-size:22px;font-weight:700;cursor:pointer;color:var(--tx);display:flex;align-items:center;justify-content:center;flex:1}
-.pkey:active{background:var(--accD);border-color:var(--acc)}
+.pkey{background:var(--c2);border:1px solid var(--br);border-radius:50%;width:80px;height:80px;font-size:22px;font-weight:700;cursor:pointer;color:var(--tx);display:flex;align-items:center;justify-content:center;transition:all .15s}
+.pkey:active{background:var(--accD);border-color:var(--acc);transform:scale(.95)}
 .odot{width:8px;height:8px;border-radius:50%;background:var(--br);cursor:pointer;transition:all .3s;flex-shrink:0}
 .odot.on{width:24px;border-radius:4px;background:var(--acc)}
 @keyframes si{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
@@ -99,6 +99,8 @@ textarea{resize:none;line-height:1.6}
 @keyframes shk{0%,100%{transform:translateX(0)}25%{transform:translateX(-8px)}75%{transform:translateX(8px)}}
 .shk{animation:shk .3s ease}
 </style>
+
+<script src="https://accounts.google.com/gsi/client" async defer></script>
 </head>
 <body>
 <div class="tst" id="tst"></div>
@@ -128,18 +130,26 @@ textarea{resize:none;line-height:1.6}
 </div>
 
 <!-- PIN -->
-<div class="page active" id="pg-pin" style="align-items:center;justify-content:center;padding:30px">
-  <div style="font-size:52px;margin-bottom:8px">🔐</div>
-  <div style="font-size:22px;font-weight:800;margin-bottom:6px">Konum Defteri</div>
-  <div style="color:var(--sub);font-size:13px;margin-bottom:30px" id="pin-sub">PIN kodunuzu girin</div>
-  <div class="pdots" id="pdots"><div class="pdot"></div><div class="pdot"></div><div class="pdot"></div><div class="pdot"></div></div>
-  <div class="pgrd">
-    <button class="pkey" onclick="pp('1')">1</button><button class="pkey" onclick="pp('2')">2</button><button class="pkey" onclick="pp('3')">3</button>
-    <button class="pkey" onclick="pp('4')">4</button><button class="pkey" onclick="pp('5')">5</button><button class="pkey" onclick="pp('6')">6</button>
-    <button class="pkey" onclick="pp('7')">7</button><button class="pkey" onclick="pp('8')">8</button><button class="pkey" onclick="pp('9')">9</button>
-    <button class="pkey" style="font-size:12px;color:var(--sub)" onclick="pp('C')">Temizle</button>
-    <button class="pkey" onclick="pp('0')">0</button>
-    <button class="pkey" style="font-size:20px" onclick="pp('B')">⌫</button>
+<div class="page active" id="pg-pin" style="align-items:center;justify-content:center;padding:20px;background:var(--bg)">
+  <div style="font-size:48px;margin-bottom:6px">📍</div>
+  <div style="font-size:24px;font-weight:800;margin-bottom:4px">Konum Defteri</div>
+  <div style="color:var(--sub);font-size:13px;margin-bottom:28px" id="pin-sub">PIN kodunuzu girin</div>
+  <div class="pdots" id="pdots" style="margin-bottom:32px">
+    <div class="pdot"></div><div class="pdot"></div><div class="pdot"></div><div class="pdot"></div>
+  </div>
+  <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:12px;max-width:270px;width:100%">
+    <button class="pkey" onclick="pp('1')"><span style="font-size:22px;font-weight:700">1</span></button>
+    <button class="pkey" onclick="pp('2')"><div style="line-height:1"><div style="font-size:22px;font-weight:700">2</div><div style="font-size:9px;color:var(--sub);letter-spacing:1px">ABC</div></div></button>
+    <button class="pkey" onclick="pp('3')"><div style="line-height:1"><div style="font-size:22px;font-weight:700">3</div><div style="font-size:9px;color:var(--sub);letter-spacing:1px">DEF</div></div></button>
+    <button class="pkey" onclick="pp('4')"><div style="line-height:1"><div style="font-size:22px;font-weight:700">4</div><div style="font-size:9px;color:var(--sub);letter-spacing:1px">GHI</div></div></button>
+    <button class="pkey" onclick="pp('5')"><div style="line-height:1"><div style="font-size:22px;font-weight:700">5</div><div style="font-size:9px;color:var(--sub);letter-spacing:1px">JKL</div></div></button>
+    <button class="pkey" onclick="pp('6')"><div style="line-height:1"><div style="font-size:22px;font-weight:700">6</div><div style="font-size:9px;color:var(--sub);letter-spacing:1px">MNO</div></div></button>
+    <button class="pkey" onclick="pp('7')"><div style="line-height:1"><div style="font-size:22px;font-weight:700">7</div><div style="font-size:9px;color:var(--sub);letter-spacing:1px">PQRS</div></div></button>
+    <button class="pkey" onclick="pp('8')"><div style="line-height:1"><div style="font-size:22px;font-weight:700">8</div><div style="font-size:9px;color:var(--sub);letter-spacing:1px">TUV</div></div></button>
+    <button class="pkey" onclick="pp('9')"><div style="line-height:1"><div style="font-size:22px;font-weight:700">9</div><div style="font-size:9px;color:var(--sub);letter-spacing:1px">WXYZ</div></div></button>
+    <button class="pkey" style="background:transparent;border-color:transparent" onclick="pp('C')"><span style="font-size:11px;color:var(--sub)">Temizle</span></button>
+    <button class="pkey" onclick="pp('0')"><span style="font-size:22px;font-weight:700">0</span></button>
+    <button class="pkey" onclick="pp('B')"><span style="font-size:22px">⌫</span></button>
   </div>
 </div>
 
@@ -299,7 +309,14 @@ textarea{resize:none;line-height:1.6}
 <div class="page" id="pg-set">
   <div class="hdr"><div class="hrow"><button class="bbk" onclick="sp('pg-list')">←</button><div class="htit"><div class="hsup">Konum Defteri</div><div class="hmain">⚙️ Ayarlar</div></div></div></div>
   <div class="sec">
-    <div><div class="lbl">🎨 Tema</div><div class="thgrd" id="tg"></div></div>
+    <div style="background:var(--card);border:1px solid var(--br);border-radius:14px;overflow:hidden">
+      <div style="padding:14px 16px;display:flex;align-items:center;cursor:pointer" onclick="toggleTheme()">
+        <span style="font-size:22px;width:36px;text-align:center">🎨</span>
+        <div style="flex:1;margin-left:12px"><div style="font-weight:600;font-size:14px">Tema</div><div style="font-size:11px;color:var(--sub);margin-top:2px" id="cur-theme-lbl">Mor</div></div>
+        <span style="color:var(--s2);font-size:16px;transition:transform .2s" id="theme-arrow">›</span>
+      </div>
+      <div id="theme-panel" style="display:none;padding:0 16px 16px"><div class="thgrd" id="tg"></div></div>
+    </div>
     <div style="background:var(--card);border:1px solid var(--br);border-radius:14px;padding:14px 16px">
       <div style="display:flex;align-items:center;gap:12px"><span style="font-size:22px;width:36px;text-align:center">🔐</span><div style="flex:1"><div style="font-weight:600;font-size:14px">PIN Kilidi</div><div style="font-size:11px;color:var(--sub);margin-top:2px">Uygulamayı açarken PIN sor</div></div><div class="tggl" id="ptg" onclick="tpin()"></div></div>
       <div id="pinwrap" style="display:none;margin-top:14px;padding-top:14px;border-top:1px solid var(--br)">
@@ -311,6 +328,14 @@ textarea{resize:none;line-height:1.6}
     <div class="srow" onclick="sp('pg-cats')"><span style="font-size:22px;width:36px;text-align:center">🗂️</span><div style="flex:1"><div style="font-weight:600;font-size:14px">Kategoriler</div><div style="font-size:11px;color:var(--sub);margin-top:2px" id="catlbl">Kategorileri yönet</div></div><span style="color:var(--s2);font-size:16px">›</span></div>
     <div class="srow" onclick="sfb()"><span style="font-size:22px;width:36px;text-align:center">💬</span><div style="flex:1"><div style="font-weight:600;font-size:14px">Görüş & Öneri</div><div style="font-size:11px;color:var(--sub);margin-top:2px">Geri bildirim gönder</div></div><span style="color:var(--s2);font-size:16px">›</span></div>
     <div class="srow" onclick="chkupd()"><span style="font-size:22px;width:36px;text-align:center">🔄</span><div style="flex:1"><div style="font-weight:600;font-size:14px">Güncelleme Kontrolü</div><div style="font-size:11px;color:var(--sub);margin-top:2px" id="verlbl">v2.0.0</div></div><span style="color:var(--s2);font-size:16px">›</span></div>
+    <div style="background:var(--card);border:1px solid var(--br);border-radius:14px;padding:14px 16px">
+      <div style="font-weight:600;font-size:14px;margin-bottom:10px">☁️ Google Drive Yedekleme</div>
+      <div style="font-size:12px;color:var(--sub);margin-bottom:12px;line-height:1.6">Verilerinizi Google Drive'ınıza yedekleyin veya geri yükleyin.</div>
+      <div style="display:flex;gap:8px">
+        <button class="btn btp" style="flex:1;padding:10px;font-size:13px" onclick="drvBackup()">☁️ Yedekle</button>
+        <button class="btn btgh" style="flex:1;padding:10px;font-size:13px" onclick="drvRestore()">📥 Geri Yükle</button>
+      </div>
+    </div>
     <div class="srow" onclick="sp('pg-prv')"><span style="font-size:22px;width:36px;text-align:center">🔒</span><div style="flex:1"><div style="font-weight:600;font-size:14px">Gizlilik Politikası</div><div style="font-size:11px;color:var(--sub);margin-top:2px">Veriler nasıl korunur?</div></div><span style="color:var(--s2);font-size:16px">›</span></div>
     <div style="background:var(--card);border:1px solid var(--br);border-radius:14px;padding:16px;text-align:center">
       <div style="font-size:32px;margin-bottom:8px">📍</div>
@@ -354,7 +379,8 @@ textarea{resize:none;line-height:1.6}
 </div>
 
 <script>
-const VER="2.0.0",REPO="koyemirler-hash/KonumDefteri",FBK="yasindemirkan83@gmail.com";
+const VER="2.0.0",REPO="koyemirler-hash/KonumDefteri";
+const DRV_CID="923490738617-4f8nkdlahi7gepdglj8h1emlseq12q51.apps.googleusercontent.com";
 const DCATS=[{id:"ev",icon:"🏠",label:"Ev"},{id:"is",icon:"💼",label:"İş"},{id:"restoran",icon:"🍽️",label:"Restoran"},{id:"market",icon:"🛒",label:"Market"},{id:"hastane",icon:"🏥",label:"Hastane"},{id:"okul",icon:"🏫",label:"Okul"},{id:"diger",icon:"📍",label:"Diğer"}];
 const DID=DCATS.map(c=>c.id);
 const EMOJ=["📍","🏠","💼","🍽️","🛒","🏥","🏫","⛽","🏖️","🏋️","🎭","🎓","🏦","🛕","⛪","🏪","🏨","🅿️","🚉","✈️","🌳","🎯","🔧","🎪","💈","🐾","🌊","🏔️","🎠","🏟️"];
@@ -580,15 +606,28 @@ async function sve(){
 }
 
 // SETTINGS
+function toggleTheme(){
+  const panel=document.getElementById("theme-panel");
+  const arrow=document.getElementById("theme-arrow");
+  const open=panel.style.display==="none";
+  panel.style.display=open?"block":"none";
+  arrow.style.transform=open?"rotate(90deg)":"";
+}
 function rs(){
   const tg=document.getElementById("tg");tg.innerHTML="";
+  const curT=THS.find(t=>t.id===_S.th)||THS[0];
+  const lbl=document.getElementById("cur-theme-lbl");if(lbl)lbl.textContent=curT.l;
   THS.forEach(t=>{const b=document.createElement("button");b.className="thbtn"+(t.id===_S.th?" on":"");b.innerHTML=`<div style="width:20px;height:20px;border-radius:50%;background:${t.c};flex-shrink:0"></div><span style="font-size:13px;font-weight:600;color:var(--tx)">${t.l}</span>`;b.onclick=()=>{atm(t.id);sset(_S);rs();};tg.appendChild(b);});
   const ptg=document.getElementById("ptg");if(_S.pinOn)ptg.classList.add("on");else ptg.classList.remove("on");
   document.getElementById("catlbl").textContent=`${_C.length} kategori`;
   document.getElementById("verlbl").textContent=`v${VER} - Güncelleme kontrol et`;
 }
 
-function sfb(){const s=encodeURIComponent(`Konum Defteri v${VER} - Geri Bildirim`);window.open(`mailto:${FBK}?subject=${s}`,"_blank");}
+function sfb(){
+  const e=atob("eWFzaW5kZW1pcmthbjgzQGdtYWlsLmNvbQ==");
+  const s=encodeURIComponent(`Konum Defteri v${VER} - Geri Bildirim`);
+  window.open(`mailto:${e}?subject=${s}`,"_blank");
+}
 
 async function chkupd(){
   toast("🔄 Kontrol ediliyor...");
@@ -615,6 +654,71 @@ function rc(){
   });
 }
 function acat(){const l=document.getElementById("ncl").value.trim();if(!l)return toast("İsim girin!","err");const id="c_"+Date.now();_C.push({id,icon:_sci,label:l,order:_C.length});scats(_C);document.getElementById("ncl").value="";toast("✅ Eklendi!");rc();}
+
+// ══ GOOGLE DRIVE BACKUP ══════════════════════
+let _drv=null,_drvToken=null;
+
+function initDrive(){
+  if(!window.google?.accounts?.oauth2)return;
+  _drv=google.accounts.oauth2.initTokenClient({
+    client_id:DRV_CID,
+    scope:"https://www.googleapis.com/auth/drive.appdata",
+    callback:async(resp)=>{
+      if(resp.error){toast("Drive hatası: "+resp.error,"err");return;}
+      _drvToken=resp.access_token;
+      toast("✅ Drive'a bağlandı!");
+      await drvSync();
+    }
+  });
+}
+
+async function drvSync(){
+  if(!_drvToken)return;
+  try{
+    // Mevcut dosyayı ara
+    const q=await fetch("https://www.googleapis.com/drive/v3/files?spaces=appDataFolder&q=name='konum-defteri.json'",{headers:{Authorization:"Bearer "+_drvToken}});
+    const qd=await q.json();
+    if(qd.files?.length){
+      // Güncelle
+      const fid=qd.files[0].id;
+      await fetch(`https://www.googleapis.com/upload/drive/v3/files/${fid}?uploadType=media`,{method:"PATCH",headers:{Authorization:"Bearer "+_drvToken,"Content-Type":"application/json"},body:drvData()});
+    } else {
+      // Yeni oluştur
+      const meta=await fetch("https://www.googleapis.com/drive/v3/files",{method:"POST",headers:{Authorization:"Bearer "+_drvToken,"Content-Type":"application/json"},body:JSON.stringify({name:"konum-defteri.json",parents:["appDataFolder"]})});
+      const md=await meta.json();
+      await fetch(`https://www.googleapis.com/upload/drive/v3/files/${md.id}?uploadType=media`,{method:"PATCH",headers:{Authorization:"Bearer "+_drvToken,"Content-Type":"application/json"},body:drvData()});
+    }
+    toast("☁️ Drive'a yedeklendi!");
+  }catch(e){toast("Yedekleme hatası","err");}
+}
+
+async function drvRestore(){
+  if(!_drvToken){_drv?.requestAccessToken();return;}
+  try{
+    const q=await fetch("https://www.googleapis.com/drive/v3/files?spaces=appDataFolder&q=name='konum-defteri.json'",{headers:{Authorization:"Bearer "+_drvToken}});
+    const qd=await q.json();
+    if(!qd.files?.length){toast("Drive'da yedek bulunamadı","err");return;}
+    const fid=qd.files[0].id;
+    const r=await fetch(`https://www.googleapis.com/drive/v3/files/${fid}?alt=media`,{headers:{Authorization:"Bearer "+_drvToken}});
+    const d=await r.json();
+    if(d.locs){_L=d.locs;slocs(_L);}
+    if(d.cats){_C=d.cats;scats(_C);}
+    toast("✅ Geri yüklendi!");rl();
+  }catch{toast("Geri yükleme hatası","err");}
+}
+
+function drvData(){return JSON.stringify({locs:_L,cats:_C,ver:VER,date:new Date().toISOString()});}
+
+function drvBackup(){
+  if(!_drv){toast("Drive henüz hazır değil, bekleyin...","err");return;}
+  if(_drvToken)drvSync();
+  else _drv.requestAccessToken();
+}
+
+window.addEventListener("load",()=>{
+  setTimeout(initDrive,2000);
+},true);
+
 </script>
 </body>
 </html>
