@@ -100,7 +100,6 @@ textarea{resize:none;line-height:1.6}
 .shk{animation:shk .3s ease}
 </style>
 
-<script src="https://accounts.google.com/gsi/client" async defer></script>
 </head>
 <body>
 <div class="tst" id="tst"></div>
@@ -326,14 +325,14 @@ textarea{resize:none;line-height:1.6}
       </div>
     </div>
     <div class="srow" onclick="sp('pg-cats')"><span style="font-size:22px;width:36px;text-align:center">🗂️</span><div style="flex:1"><div style="font-weight:600;font-size:14px">Kategoriler</div><div style="font-size:11px;color:var(--sub);margin-top:2px" id="catlbl">Kategorileri yönet</div></div><span style="color:var(--s2);font-size:16px">›</span></div>
-    <div class="srow" onclick="sfb()"><span style="font-size:22px;width:36px;text-align:center">💬</span><div style="flex:1"><div style="font-weight:600;font-size:14px">Görüş & Öneri</div><div style="font-size:11px;color:var(--sub);margin-top:2px">Geri bildirim gönder</div></div><span style="color:var(--s2);font-size:16px">›</span></div>
+    <div class="srow" onclick="sp('pg-fbk')"><span style="font-size:22px;width:36px;text-align:center">💬</span><div style="flex:1"><div style="font-weight:600;font-size:14px">Görüş & Öneri</div><div style="font-size:11px;color:var(--sub);margin-top:2px">Geri bildirim gönder</div></div><span style="color:var(--s2);font-size:16px">›</span></div>
     <div class="srow" onclick="chkupd()"><span style="font-size:22px;width:36px;text-align:center">🔄</span><div style="flex:1"><div style="font-weight:600;font-size:14px">Güncelleme Kontrolü</div><div style="font-size:11px;color:var(--sub);margin-top:2px" id="verlbl">v2.0.0</div></div><span style="color:var(--s2);font-size:16px">›</span></div>
     <div style="background:var(--card);border:1px solid var(--br);border-radius:14px;padding:14px 16px">
-      <div style="font-weight:600;font-size:14px;margin-bottom:10px">☁️ Google Drive Yedekleme</div>
-      <div style="font-size:12px;color:var(--sub);margin-bottom:12px;line-height:1.6">Verilerinizi Google Drive'ınıza yedekleyin veya geri yükleyin.</div>
+      <div style="font-weight:600;font-size:14px;margin-bottom:6px">💾 Yedekleme</div>
+      <div style="font-size:12px;color:var(--sub);margin-bottom:12px;line-height:1.6">Verilerinizi yedekleyin. Drive, WhatsApp veya istediğiniz yere gönderin.</div>
       <div style="display:flex;gap:8px">
-        <button class="btn btp" style="flex:1;padding:10px;font-size:13px" onclick="drvBackup()">☁️ Yedekle</button>
-        <button class="btn btgh" style="flex:1;padding:10px;font-size:13px" onclick="drvRestore()">📥 Geri Yükle</button>
+        <button class="btn btp" style="flex:1;padding:10px;font-size:13px" onclick="drvBackup()">📤 Dışa Aktar</button>
+        <button class="btn btgh" style="flex:1;padding:10px;font-size:13px" onclick="drvRestore()">📥 İçe Aktar</button>
       </div>
     </div>
     <div class="srow" onclick="sp('pg-prv')"><span style="font-size:22px;width:36px;text-align:center">🔒</span><div style="flex:1"><div style="font-weight:600;font-size:14px">Gizlilik Politikası</div><div style="font-size:11px;color:var(--sub);margin-top:2px">Veriler nasıl korunur?</div></div><span style="color:var(--s2);font-size:16px">›</span></div>
@@ -360,6 +359,27 @@ textarea{resize:none;line-height:1.6}
   </div>
 </div>
 
+<!-- FEEDBACK -->
+<div class="page" id="pg-fbk">
+  <div class="hdr"><div class="hrow"><button class="bbk" onclick="sp('pg-set')">←</button><div class="htit"><div class="hsup">Konum Defteri</div><div class="hmain">💬 Görüş & Öneri</div></div></div></div>
+  <div class="sec">
+    <div class="ibox" style="font-size:13px;line-height:1.8">Görüş ve önerileriniz bizim için değerlidir. Aşağıdaki formu doldurun, mesajınızı gönderin.</div>
+    <div><div class="lbl">Adınız (opsiyonel)</div><input id="fbk-name" placeholder="İsminiz..."/></div>
+    <div><div class="lbl">Mesajınız *</div><textarea id="fbk-msg" placeholder="Görüş, öneri veya sorunuzu yazın..." rows="5"></textarea></div>
+    <div>
+      <div class="lbl">Tür</div>
+      <div style="display:flex;gap:8px;flex-wrap:wrap" id="fbk-types">
+        <button class="cchip on" id="fbt-0" onclick="selFbk(0)" style="background:var(--acc);border:1px solid var(--acc);color:#fff">💡 Öneri</button>
+        <button class="cchip" id="fbt-1" onclick="selFbk(1)" style="background:var(--card);border:1px solid var(--br);color:var(--sub)">🐛 Hata Bildirimi</button>
+        <button class="cchip" id="fbt-2" onclick="selFbk(2)" style="background:var(--card);border:1px solid var(--br);color:var(--sub)">⭐ Değerlendirme</button>
+        <button class="cchip" id="fbt-3" onclick="selFbk(3)" style="background:var(--card);border:1px solid var(--br);color:var(--sub)">❓ Diğer</button>
+      </div>
+    </div>
+    <button class="btn btp" onclick="sendFbk()">📨 Gönder</button>
+    <div style="font-size:11px;color:var(--s2);text-align:center;line-height:1.6">Mesajınız güvenli şekilde iletilir. İletişim bilgisi paylaşmak zorunda değilsiniz.</div>
+  </div>
+</div>
+
 <!-- PRIVACY -->
 <div class="page" id="pg-prv">
   <div class="hdr"><div class="hrow"><button class="bbk" onclick="sp('pg-set')">←</button><div class="htit"><div class="hsup">Konum Defteri</div><div class="hmain">Gizlilik</div></div></div></div>
@@ -380,7 +400,6 @@ textarea{resize:none;line-height:1.6}
 
 <script>
 const VER="2.0.0",REPO="koyemirler-hash/KonumDefteri";
-const DRV_CID="923490738617-4f8nkdlahi7gepdglj8h1emlseq12q51.apps.googleusercontent.com";
 const DCATS=[{id:"ev",icon:"🏠",label:"Ev"},{id:"is",icon:"💼",label:"İş"},{id:"restoran",icon:"🍽️",label:"Restoran"},{id:"market",icon:"🛒",label:"Market"},{id:"hastane",icon:"🏥",label:"Hastane"},{id:"okul",icon:"🏫",label:"Okul"},{id:"diger",icon:"📍",label:"Diğer"}];
 const DID=DCATS.map(c=>c.id);
 const EMOJ=["📍","🏠","💼","🍽️","🛒","🏥","🏫","⛽","🏖️","🏋️","🎭","🎓","🏦","🛕","⛪","🏪","🏨","🅿️","🚉","✈️","🌳","🎯","🔧","🎪","💈","🐾","🌊","🏔️","🎠","🏟️"];
@@ -655,69 +674,72 @@ function rc(){
 }
 function acat(){const l=document.getElementById("ncl").value.trim();if(!l)return toast("İsim girin!","err");const id="c_"+Date.now();_C.push({id,icon:_sci,label:l,order:_C.length});scats(_C);document.getElementById("ncl").value="";toast("✅ Eklendi!");rc();}
 
-// ══ GOOGLE DRIVE BACKUP ══════════════════════
-let _drv=null,_drvToken=null;
 
-function initDrive(){
-  if(!window.google?.accounts?.oauth2)return;
-  _drv=google.accounts.oauth2.initTokenClient({
-    client_id:DRV_CID,
-    scope:"https://www.googleapis.com/auth/drive.appdata",
-    callback:async(resp)=>{
-      if(resp.error){toast("Drive hatası: "+resp.error,"err");return;}
-      _drvToken=resp.access_token;
-      toast("✅ Drive'a bağlandı!");
-      await drvSync();
-    }
-  });
+// ══ FEEDBACK ═══════════════════════════════
+let _fbkT=0;
+const FBK_TYPES=["💡 Öneri","🐛 Hata Bildirimi","⭐ Değerlendirme","❓ Diğer"];
+function selFbk(i){
+  _fbkT=i;
+  for(let j=0;j<4;j++){
+    const b=document.getElementById("fbt-"+j);if(!b)continue;
+    b.style.background=j===i?"var(--acc)":"var(--card)";
+    b.style.borderColor=j===i?"var(--acc)":"var(--br)";
+    b.style.color=j===i?"#fff":"var(--sub)";
+  }
 }
-
-async function drvSync(){
-  if(!_drvToken)return;
-  try{
-    // Mevcut dosyayı ara
-    const q=await fetch("https://www.googleapis.com/drive/v3/files?spaces=appDataFolder&q=name='konum-defteri.json'",{headers:{Authorization:"Bearer "+_drvToken}});
-    const qd=await q.json();
-    if(qd.files?.length){
-      // Güncelle
-      const fid=qd.files[0].id;
-      await fetch(`https://www.googleapis.com/upload/drive/v3/files/${fid}?uploadType=media`,{method:"PATCH",headers:{Authorization:"Bearer "+_drvToken,"Content-Type":"application/json"},body:drvData()});
-    } else {
-      // Yeni oluştur
-      const meta=await fetch("https://www.googleapis.com/drive/v3/files",{method:"POST",headers:{Authorization:"Bearer "+_drvToken,"Content-Type":"application/json"},body:JSON.stringify({name:"konum-defteri.json",parents:["appDataFolder"]})});
-      const md=await meta.json();
-      await fetch(`https://www.googleapis.com/upload/drive/v3/files/${md.id}?uploadType=media`,{method:"PATCH",headers:{Authorization:"Bearer "+_drvToken,"Content-Type":"application/json"},body:drvData()});
-    }
-    toast("☁️ Drive'a yedeklendi!");
-  }catch(e){toast("Yedekleme hatası","err");}
+function sendFbk(){
+  const msg=document.getElementById("fbk-msg")?.value?.trim();
+  if(!msg)return toast("Mesaj yazın!","err");
+  const name=document.getElementById("fbk-name")?.value?.trim()||"Anonim";
+  const type=FBK_TYPES[_fbkT];
+  const body=encodeURIComponent(`Ad: ${name}\nTür: ${type}\nUygulama: Konum Defteri v${VER}\n\nMesaj:\n${msg}`);
+  const sub=encodeURIComponent(`Konum Defteri - ${type}`);
+  const e=atob("eWFzaW5kZW1pcmthbjgzQGdtYWlsLmNvbQ==");
+  window.open(`mailto:${e}?subject=${sub}&body=${body}`,"_blank");
+  document.getElementById("fbk-msg").value="";
+  document.getElementById("fbk-name").value="";
+  toast("✅ Mail uygulaması açıldı!");
 }
-
-async function drvRestore(){
-  if(!_drvToken){_drv?.requestAccessToken();return;}
-  try{
-    const q=await fetch("https://www.googleapis.com/drive/v3/files?spaces=appDataFolder&q=name='konum-defteri.json'",{headers:{Authorization:"Bearer "+_drvToken}});
-    const qd=await q.json();
-    if(!qd.files?.length){toast("Drive'da yedek bulunamadı","err");return;}
-    const fid=qd.files[0].id;
-    const r=await fetch(`https://www.googleapis.com/drive/v3/files/${fid}?alt=media`,{headers:{Authorization:"Bearer "+_drvToken}});
-    const d=await r.json();
-    if(d.locs){_L=d.locs;slocs(_L);}
-    if(d.cats){_C=d.cats;scats(_C);}
-    toast("✅ Geri yüklendi!");rl();
-  }catch{toast("Geri yükleme hatası","err");}
-}
-
-function drvData(){return JSON.stringify({locs:_L,cats:_C,ver:VER,date:new Date().toISOString()});}
-
+// ══ YEDEKLEME ══════════════════════════════
 function drvBackup(){
-  if(!_drv){toast("Drive henüz hazır değil, bekleyin...","err");return;}
-  if(_drvToken)drvSync();
-  else _drv.requestAccessToken();
+  try{
+    const data={locs:_L,cats:_C,ver:VER,date:new Date().toISOString()};
+    const json=JSON.stringify(data,null,2);
+    const dateStr=new Date().toLocaleDateString("tr-TR").replace(/\./g,"-");
+    const fname=`konum-defteri-${dateStr}.json`;
+    // Web Share API (Android'de Drive, WhatsApp vb.)
+    if(navigator.share){
+      const file=new File([json],fname,{type:"application/json"});
+      if(navigator.canShare&&navigator.canShare({files:[file]})){
+        navigator.share({title:"Konum Defteri Yedek",files:[file]}).catch(()=>{});
+        return;
+      }
+    }
+    // Fallback: indir
+    const blob=new Blob([json],{type:"application/json"});
+    const url=URL.createObjectURL(blob);
+    const a=document.createElement("a");a.href=url;a.download=fname;a.click();
+    setTimeout(()=>URL.revokeObjectURL(url),1000);
+    toast("📤 Yedek dosyası hazır!");
+  }catch(e){toast("Yedekleme hatası: "+e.message,"err");}
 }
 
-window.addEventListener("load",()=>{
-  setTimeout(initDrive,2000);
-},true);
+function drvRestore(){
+  const inp=document.createElement("input");inp.type="file";inp.accept=".json,application/json";
+  inp.onchange=async(e)=>{
+    const file=e.target.files[0];if(!file)return;
+    try{
+      const text=await file.text();
+      const data=JSON.parse(text);
+      if(!data.locs&&!data.cats){toast("Geçersiz yedek dosyası","err");return;}
+      if(data.locs){_L=data.locs;slocs(_L);}
+      if(data.cats){_C=data.cats;scats(_C);}
+      toast(`✅ Geri yüklendi! ${_L.length} konum`);
+      rl();
+    }catch{toast("Dosya okunamadı","err");}
+  };
+  inp.click();
+}
 
 </script>
 </body>
