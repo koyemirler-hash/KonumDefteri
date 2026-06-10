@@ -11,7 +11,7 @@
 .th-green{--acc:#16a34a;--accL:#22c55e;--accD:rgba(22,163,74,.13);--hdr:linear-gradient(135deg,#15803d,#16a34a);}
 .th-red{--acc:#dc2626;--accL:#ef4444;--accD:rgba(220,38,38,.13);--hdr:linear-gradient(135deg,#b91c1c,#dc2626);}
 .th-orange{--acc:#ea580c;--accL:#f97316;--accD:rgba(234,88,12,.13);--hdr:linear-gradient(135deg,#c2410c,#ea580c);}
-.th-light{--bg:#f1f5f9;--card:#fff;--c2:#f8fafc;--br:#e2e8f0;--tx:#1e293b;--sub:#64748b;--s2:#94a3b8;}
+.th-light{--bg:#f1f5f9;--card:#fff;--c2:#f8fafc;--br:#e2e8f0;--tx:#1e293b;--sub:#64748b;--s2:#94a3b8;--hdr:linear-gradient(135deg,#4f46e5,#7c3aed);}
 *{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
 html,body{height:100%;background:var(--bg);color:var(--tx);font-family:'Segoe UI',system-ui,sans-serif;overflow-x:hidden}
 .page{display:none;flex-direction:column;min-height:100dvh;max-width:430px;margin:0 auto}
@@ -20,7 +20,7 @@ input,textarea,button{font-family:inherit}
 input,textarea{background:var(--c2);border:1px solid var(--br);border-radius:12px;color:var(--tx);padding:12px 14px;font-size:14px;width:100%;outline:none;transition:border-color .2s}
 input:focus,textarea:focus{border-color:var(--acc)}
 textarea{resize:none;line-height:1.6}
-.btn{display:block;width:100%;border:none;border-radius:14px;padding:14px;font-size:15px;font-weight:700;cursor:pointer;text-align:center}
+.btn{display:block;width:100%;border:none;border-radius:14px;padding:14px;font-size:15px;font-weight:700;cursor:pointer;text-align:center;transition:opacity .15s}
 .btn:active{opacity:.8}
 .btp{background:linear-gradient(135deg,var(--acc),var(--accL));color:#fff}
 .btg{background:linear-gradient(135deg,#15803d,#22c55e);color:#fff}
@@ -40,9 +40,9 @@ textarea{resize:none;line-height:1.6}
 .sbar input::placeholder{color:rgba(255,255,255,.5)}
 .cscr{display:flex;gap:7px;overflow-x:auto;padding:14px 14px 0;flex-shrink:0}
 .cscr::-webkit-scrollbar{display:none}
-.cchip{border:none;border-radius:20px;padding:6px 13px;font-size:12px;cursor:pointer;white-space:nowrap;flex-shrink:0}
+.cchip{border:none;border-radius:20px;padding:6px 13px;font-size:12px;cursor:pointer;white-space:nowrap;flex-shrink:0;transition:all .15s}
 .lloc{display:flex;flex-direction:column;gap:10px;padding:10px 14px 100px;overflow-y:auto;flex:1}
-.lcard{background:var(--card);border:1px solid var(--br);border-radius:16px;overflow:hidden;display:flex;cursor:pointer}
+.lcard{background:var(--card);border:1px solid var(--br);border-radius:16px;overflow:hidden;display:flex;cursor:pointer;transition:border-color .15s}
 .lcard:active{border-color:var(--acc)}
 .lthumb{width:72px;height:84px;object-fit:cover;flex-shrink:0}
 .lthi{width:72px;height:84px;display:flex;align-items:center;justify-content:center;font-size:28px;flex-shrink:0;background:var(--accD)}
@@ -52,7 +52,7 @@ textarea{resize:none;line-height:1.6}
 .ltag{display:flex;align-items:center;gap:8px;margin-top:7px}
 .lcat{background:var(--accD);color:var(--accL);font-size:10px;padding:2px 9px;border-radius:10px}
 .ldat{font-size:10px;color:var(--s2)}
-.mbtn{background:var(--card);border:1px solid var(--br);border-radius:16px;padding:14px 16px;display:flex;align-items:center;gap:14px;cursor:pointer;width:100%;text-align:left}
+.mbtn{background:var(--card);border:1px solid var(--br);border-radius:16px;padding:14px 16px;display:flex;align-items:center;gap:14px;cursor:pointer;width:100%;text-align:left;transition:border-color .15s}
 .mbtn:active{border-color:var(--acc)}
 .ibox{background:var(--accD);border:1px solid rgba(124,109,240,.25);border-radius:14px;padding:12px 16px;font-size:12px;color:var(--sub);line-height:1.7}
 .ibox b{color:var(--tx)}
@@ -65,7 +65,7 @@ textarea{resize:none;line-height:1.6}
 .cbdg{background:var(--c2);border-radius:12px;padding:10px 14px;display:flex;align-items:center;gap:10px}
 .fab{position:fixed;bottom:0;left:50%;transform:translateX(-50%);width:100%;max-width:430px;padding:12px 18px 28px;background:linear-gradient(transparent,var(--bg) 40%);pointer-events:none;z-index:50}
 .fab button{pointer-events:all}
-.tst{position:fixed;top:18px;left:50%;transform:translateX(-50%);padding:10px 20px;border-radius:30px;z-index:9999;font-size:13px;font-weight:600;box-shadow:0 4px 24px rgba(0,0,0,.5);text-align:center;max-width:88vw;pointer-events:none;display:none}
+.tst{position:fixed;top:18px;left:50%;transform:translateX(-50%);padding:10px 20px;border-radius:30px;z-index:9999;font-size:13px;font-weight:600;box-shadow:0 4px 24px rgba(0,0,0,.5);text-align:center;max-width:88vw;pointer-events:none;display:none;white-space:pre-wrap}
 .tst.show{display:block}
 .tst.ok{background:#0d2b1a;color:#86efac;border:1px solid #22c55e40}
 .tst.err{background:#3b0d0d;color:#fca5a5;border:1px solid #ef444440}
@@ -77,116 +77,96 @@ textarea{resize:none;line-height:1.6}
 .mbtns{display:flex;gap:10px}
 .egrd{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:12px}
 .ebtn{border-radius:8px;width:36px;height:36px;font-size:18px;cursor:pointer;border:1px solid var(--br);background:var(--c2)}
-.srow{background:var(--card);border:1px solid var(--br);border-radius:14px;padding:14px 16px;display:flex;align-items:center;gap:12px;cursor:pointer}
+.srow{background:var(--card);border:1px solid var(--br);border-radius:14px;padding:14px 16px;display:flex;align-items:center;gap:12px;cursor:pointer;transition:border-color .15s}
 .srow:active{border-color:var(--acc)}
 .tggl{width:44px;height:24px;background:var(--br);border-radius:12px;position:relative;cursor:pointer;transition:background .2s;flex-shrink:0}
 .tggl.on{background:var(--acc)}
 .tggl::after{content:'';position:absolute;width:18px;height:18px;background:#fff;border-radius:50%;top:3px;left:3px;transition:transform .2s;box-shadow:0 1px 4px rgba(0,0,0,.3)}
 .tggl.on::after{transform:translateX(20px)}
 .thgrd{display:flex;flex-wrap:wrap;gap:10px}
-.thbtn{border:2px solid var(--br);border-radius:12px;padding:10px;display:flex;align-items:center;gap:8px;cursor:pointer;flex:1;min-width:calc(50% - 5px);background:var(--c2)}
+.thbtn{border:2px solid var(--br);border-radius:12px;padding:10px;display:flex;align-items:center;gap:8px;cursor:pointer;flex:1;min-width:calc(50% - 5px);background:var(--c2);transition:border-color .15s}
 .thbtn.on{border-color:var(--acc)}
-.pdots{display:flex;gap:16px;justify-content:center;margin:20px 0}
+.pdots{display:flex;gap:16px;justify-content:center;margin-bottom:28px}
 .pdot{width:14px;height:14px;border-radius:50%;background:var(--br);transition:background .2s}
 .pdot.f{background:var(--acc)}
-.pgrd{display:flex;flex-wrap:wrap;gap:10px;max-width:260px;margin:0 auto}
-.pkey{background:var(--c2);border:1px solid var(--br);border-radius:50%;width:80px;height:80px;font-size:22px;font-weight:700;cursor:pointer;color:var(--tx);display:flex;align-items:center;justify-content:center;transition:all .15s}
+.pkey{background:var(--c2);border:1px solid var(--br);border-radius:50%;width:80px;height:80px;font-size:20px;font-weight:700;cursor:pointer;color:var(--tx);display:flex;align-items:center;justify-content:center;transition:all .15s;flex-direction:column;gap:1px}
 .pkey:active{background:var(--accD);border-color:var(--acc);transform:scale(.95)}
 .odot{width:8px;height:8px;border-radius:50%;background:var(--br);cursor:pointer;transition:all .3s;flex-shrink:0}
 .odot.on{width:24px;border-radius:4px;background:var(--acc)}
+.langbtn{background:var(--c2);border:2px solid var(--br);border-radius:14px;padding:14px 16px;display:flex;align-items:center;gap:12px;cursor:pointer;transition:all .15s;width:100%}
+.langbtn.on{border-color:var(--acc);background:var(--accD)}
 @keyframes si{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
 .si{animation:si .2s ease}
 @keyframes shk{0%,100%{transform:translateX(0)}25%{transform:translateX(-8px)}75%{transform:translateX(8px)}}
 .shk{animation:shk .3s ease}
+.drv-badge{background:var(--accD);border:1px solid var(--acc);border-radius:10px;padding:3px 10px;font-size:11px;color:var(--accL);font-weight:600}
 </style>
-
 </head>
 <body>
 <div class="tst" id="tst"></div>
-
-<!-- MODAL SİL -->
-<div class="mov" id="mdel">
-  <div class="mod">
-    <h3>🗑️ Konumu Sil</h3>
-    <p id="mdel-txt">Emin misin?</p>
-    <div class="mbtns">
-      <button class="btn btgh" style="flex:1" onclick="cm('mdel')">İptal</button>
-      <button class="btn btd" style="flex:1" id="mdel-btn">Sil</button>
-    </div>
-  </div>
-</div>
-
-<!-- MODAL KAT SİL -->
-<div class="mov" id="mdelc">
-  <div class="mod">
-    <h3>Kategoriyi Sil</h3>
-    <p>Bu kategorideki konumlar "Diğer" olarak kalır.</p>
-    <div class="mbtns">
-      <button class="btn btgh" style="flex:1" onclick="cm('mdelc')">İptal</button>
-      <button class="btn btd" style="flex:1" id="mdelc-btn">Sil</button>
-    </div>
-  </div>
-</div>
+<div class="mov" id="mdel"><div class="mod"><h3 id="mdel-h">🗑️</h3><p id="mdel-txt"></p><div class="mbtns"><button class="btn btgh" style="flex:1" id="mdel-no">İptal</button><button class="btn btd" style="flex:1" id="mdel-btn">Sil</button></div></div></div>
+<div class="mov" id="mdelc"><div class="mod"><h3 id="mdelc-h">Kategori Sil</h3><p id="mdelc-txt"></p><div class="mbtns"><button class="btn btgh" style="flex:1" id="mdelc-no">İptal</button><button class="btn btd" style="flex:1" id="mdelc-btn">Sil</button></div></div></div>
+<div class="mov" id="munsv"><div class="mod"><h3 id="munsv-h">💾</h3><p id="munsv-txt"></p><div class="mbtns"><button class="btn btgh" style="flex:1" id="munsv-discard">Vazgeç</button><button class="btn btp" style="flex:1" onclick="sve()">Kaydet</button></div></div></div>
 
 <!-- PIN -->
-<div class="page active" id="pg-pin" style="align-items:center;justify-content:center;padding:20px;background:var(--bg)">
+<div class="page active" id="pg-pin" style="align-items:center;justify-content:center;padding:20px">
   <div style="font-size:48px;margin-bottom:6px">📍</div>
-  <div style="font-size:24px;font-weight:800;margin-bottom:4px">Konum Defteri</div>
-  <div style="color:var(--sub);font-size:13px;margin-bottom:28px" id="pin-sub">PIN kodunuzu girin</div>
-  <div class="pdots" id="pdots" style="margin-bottom:32px">
-    <div class="pdot"></div><div class="pdot"></div><div class="pdot"></div><div class="pdot"></div>
-  </div>
-  <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:12px;max-width:270px;width:100%">
-    <button class="pkey" onclick="pp('1')"><span style="font-size:22px;font-weight:700">1</span></button>
-    <button class="pkey" onclick="pp('2')"><div style="line-height:1"><div style="font-size:22px;font-weight:700">2</div><div style="font-size:9px;color:var(--sub);letter-spacing:1px">ABC</div></div></button>
-    <button class="pkey" onclick="pp('3')"><div style="line-height:1"><div style="font-size:22px;font-weight:700">3</div><div style="font-size:9px;color:var(--sub);letter-spacing:1px">DEF</div></div></button>
-    <button class="pkey" onclick="pp('4')"><div style="line-height:1"><div style="font-size:22px;font-weight:700">4</div><div style="font-size:9px;color:var(--sub);letter-spacing:1px">GHI</div></div></button>
-    <button class="pkey" onclick="pp('5')"><div style="line-height:1"><div style="font-size:22px;font-weight:700">5</div><div style="font-size:9px;color:var(--sub);letter-spacing:1px">JKL</div></div></button>
-    <button class="pkey" onclick="pp('6')"><div style="line-height:1"><div style="font-size:22px;font-weight:700">6</div><div style="font-size:9px;color:var(--sub);letter-spacing:1px">MNO</div></div></button>
-    <button class="pkey" onclick="pp('7')"><div style="line-height:1"><div style="font-size:22px;font-weight:700">7</div><div style="font-size:9px;color:var(--sub);letter-spacing:1px">PQRS</div></div></button>
-    <button class="pkey" onclick="pp('8')"><div style="line-height:1"><div style="font-size:22px;font-weight:700">8</div><div style="font-size:9px;color:var(--sub);letter-spacing:1px">TUV</div></div></button>
-    <button class="pkey" onclick="pp('9')"><div style="line-height:1"><div style="font-size:22px;font-weight:700">9</div><div style="font-size:9px;color:var(--sub);letter-spacing:1px">WXYZ</div></div></button>
-    <button class="pkey" style="background:transparent;border-color:transparent" onclick="pp('C')"><span style="font-size:11px;color:var(--sub)">Temizle</span></button>
-    <button class="pkey" onclick="pp('0')"><span style="font-size:22px;font-weight:700">0</span></button>
-    <button class="pkey" onclick="pp('B')"><span style="font-size:22px">⌫</span></button>
+  <div style="font-size:24px;font-weight:800;margin-bottom:4px" id="pin-app">Konum Defteri</div>
+  <div style="color:var(--sub);font-size:13px;margin-bottom:24px" id="pin-sub">PIN kodunuzu girin</div>
+  <div class="pdots" id="pdots"><div class="pdot"></div><div class="pdot"></div><div class="pdot"></div><div class="pdot"></div></div>
+  <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:12px;max-width:280px;width:100%">
+    <button class="pkey" onclick="pp('1')"><span>1</span></button>
+    <button class="pkey" onclick="pp('2')"><span>2</span><span style="font-size:9px;color:var(--sub);letter-spacing:1px">ABC</span></button>
+    <button class="pkey" onclick="pp('3')"><span>3</span><span style="font-size:9px;color:var(--sub);letter-spacing:1px">DEF</span></button>
+    <button class="pkey" onclick="pp('4')"><span>4</span><span style="font-size:9px;color:var(--sub);letter-spacing:1px">GHI</span></button>
+    <button class="pkey" onclick="pp('5')"><span>5</span><span style="font-size:9px;color:var(--sub);letter-spacing:1px">JKL</span></button>
+    <button class="pkey" onclick="pp('6')"><span>6</span><span style="font-size:9px;color:var(--sub);letter-spacing:1px">MNO</span></button>
+    <button class="pkey" onclick="pp('7')"><span>7</span><span style="font-size:9px;color:var(--sub);letter-spacing:1px">PQRS</span></button>
+    <button class="pkey" onclick="pp('8')"><span>8</span><span style="font-size:9px;color:var(--sub);letter-spacing:1px">TUV</span></button>
+    <button class="pkey" onclick="pp('9')"><span>9</span><span style="font-size:9px;color:var(--sub);letter-spacing:1px">WXYZ</span></button>
+    <button class="pkey" style="background:transparent;border-color:transparent" onclick="pp('C')"><span style="font-size:11px;color:var(--sub)" id="pin-clr">Temizle</span></button>
+    <button class="pkey" onclick="pp('0')"><span>0</span></button>
+    <button class="pkey" onclick="pp('B')"><span>⌫</span></button>
   </div>
 </div>
 
 <!-- ONBOARDING -->
 <div class="page" id="pg-ob">
   <div style="flex:1;display:flex;flex-direction:column;overflow:hidden;background:linear-gradient(160deg,var(--bg) 60%,#1a0d2e)">
-    <div style="flex:1;overflow:hidden;position:relative" id="ob-sl">
+    <div style="flex:1;overflow:hidden;position:relative">
       <div id="ob-0" style="padding:40px 30px 20px;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;height:100%">
         <div style="font-size:80px;margin-bottom:16px">📍</div>
-        <div style="font-size:28px;font-weight:800;line-height:1.3">Konum Defteri</div>
-        <div style="color:var(--sub);font-size:15px;margin-top:14px;line-height:1.7;max-width:280px">Gittiğin yerleri kaydet, WhatsApp konumlarını sakla, tek tıkla yol tarifi al.</div>
+        <div style="font-size:28px;font-weight:800;line-height:1.3" id="ob-t0">Konum Defteri</div>
+        <div style="color:var(--sub);font-size:15px;margin-top:14px;line-height:1.7;max-width:280px" id="ob-s0">Gittiğin yerleri kaydet, konumlarını sakla, tek tıkla yol tarifi al.</div>
         <div style="margin-top:24px;background:var(--accD);border:1px solid rgba(124,109,240,.3);border-radius:16px;padding:16px 20px;max-width:300px;width:100%">
-          <div style="font-size:12px;color:var(--accL);font-weight:600;letter-spacing:1px;text-transform:uppercase;margin-bottom:6px">🔒 Tamamen Gizli</div>
-          <div style="font-size:13px;color:var(--sub)">Veriler yalnızca telefonunuzda. İnternet gerekmez, hesap açılmaz.</div>
+          <div style="font-size:12px;color:var(--accL);font-weight:600;letter-spacing:1px;text-transform:uppercase;margin-bottom:6px" id="ob-b0">🔒 Tamamen Gizli</div>
+          <div style="font-size:13px;color:var(--sub)" id="ob-bs0">Veriler yalnızca telefonunuzda. İnternet gerekmez, hesap açılmaz.</div>
         </div>
       </div>
       <div id="ob-1" style="padding:40px 30px 20px;display:none;flex-direction:column;align-items:center;justify-content:center;text-align:center;height:100%">
         <div style="font-size:80px;margin-bottom:16px">🗺️</div>
-        <div style="font-size:26px;font-weight:800">4 Yöntemle Ekle</div>
+        <div style="font-size:26px;font-weight:800" id="ob-t1">4 Farklı Yöntem</div>
         <div style="margin-top:20px;display:flex;flex-direction:column;gap:10px;width:100%;max-width:300px">
-          <div style="background:var(--card);border:1px solid var(--br);border-radius:12px;padding:12px 16px;display:flex;align-items:center;gap:12px;text-align:left"><span style="font-size:24px">📡</span><div><div style="font-weight:600;font-size:13px">GPS</div><div style="font-size:11px;color:var(--sub)">Anlık konumunu kaydet</div></div></div>
-          <div style="background:var(--card);border:1px solid var(--br);border-radius:12px;padding:12px 16px;display:flex;align-items:center;gap:12px;text-align:left"><span style="font-size:24px">🔍</span><div><div style="font-weight:600;font-size:13px">Adres Ara</div><div style="font-size:11px;color:var(--sub)">Mahalle, cadde, şehir yaz</div></div></div>
-          <div style="background:var(--card);border:1px solid var(--br);border-radius:12px;padding:12px 16px;display:flex;align-items:center;gap:12px;text-align:left"><span style="font-size:24px">🔗</span><div><div style="font-weight:600;font-size:13px">Link Yapıştır</div><div style="font-size:11px;color:var(--sub)">WhatsApp / Google Maps linki</div></div></div>
-          <div style="background:var(--card);border:1px solid var(--br);border-radius:12px;padding:12px 16px;display:flex;align-items:center;gap:12px;text-align:left"><span style="font-size:24px">🎯</span><div><div style="font-weight:600;font-size:13px">Koordinat Gir</div><div style="font-size:11px;color:var(--sub)">Enlem / boylam</div></div></div>
+          <div style="background:var(--card);border:1px solid var(--br);border-radius:12px;padding:12px 16px;display:flex;align-items:center;gap:12px;text-align:left"><span style="font-size:22px">📡</span><div><div style="font-weight:600;font-size:13px" id="ob-m1a">GPS ile anlık konum</div></div></div>
+          <div style="background:var(--card);border:1px solid var(--br);border-radius:12px;padding:12px 16px;display:flex;align-items:center;gap:12px;text-align:left"><span style="font-size:22px">🔍</span><div><div style="font-weight:600;font-size:13px" id="ob-m1b">Adres arama</div></div></div>
+          <div style="background:var(--card);border:1px solid var(--br);border-radius:12px;padding:12px 16px;display:flex;align-items:center;gap:12px;text-align:left"><span style="font-size:22px">🔗</span><div><div style="font-weight:600;font-size:13px" id="ob-m1c">Google Maps linki</div></div></div>
+          <div style="background:var(--card);border:1px solid var(--br);border-radius:12px;padding:12px 16px;display:flex;align-items:center;gap:12px;text-align:left"><span style="font-size:22px">🎯</span><div><div style="font-weight:600;font-size:13px" id="ob-m1d">Koordinat gir</div></div></div>
         </div>
       </div>
       <div id="ob-2" style="padding:40px 30px 20px;display:none;flex-direction:column;align-items:center;justify-content:center;text-align:center;height:100%">
         <div style="font-size:80px;margin-bottom:16px">✨</div>
-        <div style="font-size:26px;font-weight:800">Özellikler</div>
-        <div style="margin-top:20px;background:var(--card);border:1px solid var(--br);border-radius:16px;padding:20px;max-width:300px;width:100%">
-          <div style="font-size:13px;color:var(--sub);line-height:2.2;text-align:left">📷 Fotoğraf ekle &nbsp;&nbsp; 🗂️ Kategorile<br>📝 Not ekle &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 🧭 Yol tarifi<br>🔗 Konum paylaş &nbsp; 🎨 Tema seç<br>🔐 PIN kilidi &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 🔄 Güncelleme</div>
+        <div style="font-size:26px;font-weight:800" id="ob-t2">Özellikler</div>
+        <div style="margin-top:20px;background:var(--card);border:1px solid var(--br);border-radius:16px;padding:20px;max-width:300px;width:100%;text-align:left">
+          <div style="font-size:13px;color:var(--sub);line-height:2.2">
+            📷 <span id="ob-f1">Fotoğraf ekle</span><br>🗂️ <span id="ob-f2">Kategorilere ayır</span><br>📝 <span id="ob-f3">Not ekle</span><br>🧭 <span id="ob-f4">Yol tarifi</span><br>🔗 <span id="ob-f5">Konum paylaş</span><br>🎨 <span id="ob-f6">Tema seç</span><br>🔐 <span id="ob-f7">PIN kilidi</span><br>☁️ <span id="ob-f8">Yedekleme</span>
+          </div>
         </div>
       </div>
       <div id="ob-3" style="padding:40px 30px 20px;display:none;flex-direction:column;align-items:center;justify-content:center;text-align:center;height:100%">
         <div style="font-size:80px;margin-bottom:16px">🚀</div>
-        <div style="font-size:26px;font-weight:800">Hazırsın!</div>
-        <div style="color:var(--sub);font-size:15px;margin-top:14px;line-height:1.7;max-width:280px">Konum Defteri'ne hoş geldin. Verileriniz tamamen telefonunda güvende.</div>
-        <div style="margin-top:14px;font-size:11px;color:var(--s2)"><span onclick="sp('pg-prv')" style="color:var(--acc);cursor:pointer">Gizlilik Politikası</span></div>
+        <div style="font-size:26px;font-weight:800" id="ob-t3">Hazırsın!</div>
+        <div style="color:var(--sub);font-size:15px;margin-top:14px;line-height:1.7;max-width:280px" id="ob-s3">Konum Defteri'ne hoş geldin. Verileriniz tamamen telefonunda güvende.</div>
+        <div style="margin-top:14px;font-size:11px;color:var(--s2)"><span onclick="sp('pg-prv')" style="color:var(--acc);cursor:pointer" id="ob-prv">Gizlilik Politikası</span></div>
       </div>
     </div>
     <div style="padding:20px 30px 40px;flex-shrink:0">
@@ -194,7 +174,7 @@ textarea{resize:none;line-height:1.6}
         <div class="odot on" onclick="gs(0)"></div><div class="odot" onclick="gs(1)"></div><div class="odot" onclick="gs(2)"></div><div class="odot" onclick="gs(3)"></div>
       </div>
       <button id="ob-nb" class="btn btp" style="font-size:16px;padding:15px" onclick="obn()">Devam →</button>
-      <button onclick="obf()" style="background:none;border:none;color:var(--s2);font-size:13px;cursor:pointer;width:100%;margin-top:12px;padding:8px">Atla</button>
+      <button onclick="obf()" style="background:none;border:none;color:var(--s2);font-size:13px;cursor:pointer;width:100%;margin-top:12px;padding:8px" id="ob-skip">Atla</button>
     </div>
   </div>
 </div>
@@ -203,34 +183,34 @@ textarea{resize:none;line-height:1.6}
 <div class="page" id="pg-list">
   <div class="hdr">
     <div class="hrow">
-      <div class="htit"><div class="hsup">Konum Defteri</div><div class="hmain">📍 Konumlarım</div></div>
+      <div class="htit"><div class="hsup" id="list-sup">Konum Defteri</div><div class="hmain" id="list-title">📍 Konumlarım</div></div>
       <button onclick="sp('pg-set')" style="background:rgba(255,255,255,.15);border:none;border-radius:10px;padding:6px 10px;color:#fff;font-size:18px;cursor:pointer">⚙️</button>
     </div>
-    <div class="sbar"><span style="opacity:.6">🔍</span><input id="si" placeholder="Konum ara..." oninput="fl()"/><button id="scl" onclick="cs()" style="background:none;border:none;color:rgba(255,255,255,.5);cursor:pointer;font-size:18px;display:none">✕</button></div>
+    <div class="sbar"><span style="opacity:.6">🔍</span><input id="si" oninput="fl()"/><button id="scl" onclick="cs()" style="background:none;border:none;color:rgba(255,255,255,.5);cursor:pointer;font-size:18px;display:none">✕</button></div>
   </div>
   <div class="cscr" id="cf"></div>
   <div id="ll" class="lloc"></div>
-  <div class="fab"><button class="btn btp" style="font-size:15px;padding:15px;box-shadow:0 6px 28px rgba(0,0,0,.3)" onclick="sp('pg-am')">＋  Yeni Konum Ekle</button></div>
+  <div class="fab"><button class="btn btp" id="fab-add" style="font-size:15px;padding:15px;box-shadow:0 6px 28px rgba(0,0,0,.3)" onclick="sp('pg-am')">＋  Yeni Konum Ekle</button></div>
 </div>
 
 <!-- ADD METHOD -->
 <div class="page" id="pg-am">
-  <div class="hdr"><div class="hrow"><button class="bbk" onclick="sp('pg-list')">←</button><div class="htit"><div class="hsup">Konum Defteri</div><div class="hmain">Konum Ekle</div></div></div></div>
+  <div class="hdr"><div class="hrow"><button class="bbk" onclick="sp('pg-list')">←</button><div class="htit"><div class="hsup" id="am-sup">Konum Defteri</div><div class="hmain" id="am-title">Konum Ekle</div></div></div></div>
   <div class="sec">
-    <div style="color:var(--sub);font-size:13px">Konumu nasıl eklemek istersin?</div>
-    <button class="mbtn" onclick="startGPS()"><span style="font-size:28px;width:40px;text-align:center;flex-shrink:0" id="gps-ic">📡</span><div style="flex:1"><div style="color:var(--tx);font-weight:700;font-size:15px" id="gps-tt">Mevcut Konumumu Kullan</div><div style="color:var(--sub);font-size:12px;margin-top:3px">GPS ile anlık konum al</div></div><span style="color:var(--s2);font-size:18px;margin-left:auto">›</span></button>
-    <button class="mbtn" onclick="sp('pg-addr')"><span style="font-size:28px;width:40px;text-align:center;flex-shrink:0">🔍</span><div style="flex:1"><div style="color:var(--tx);font-weight:700;font-size:15px">Adres ile Ara</div><div style="color:var(--sub);font-size:12px;margin-top:3px">Mahalle, sokak, şehir adı yaz</div></div><span style="color:var(--s2);font-size:18px;margin-left:auto">›</span></button>
-    <button class="mbtn" onclick="sp('pg-link')"><span style="font-size:28px;width:40px;text-align:center;flex-shrink:0">🔗</span><div style="flex:1"><div style="color:var(--tx);font-weight:700;font-size:15px">Google Maps Linki</div><div style="color:var(--sub);font-size:12px;margin-top:3px">Koordinatlı uzun link yapıştır</div></div><span style="color:var(--s2);font-size:18px;margin-left:auto">›</span></button>
-    <button class="mbtn" onclick="sp('pg-man')"><span style="font-size:28px;width:40px;text-align:center;flex-shrink:0">🎯</span><div style="flex:1"><div style="color:var(--tx);font-weight:700;font-size:15px">Koordinat Gir</div><div style="color:var(--sub);font-size:12px;margin-top:3px">Enlem / boylam biliyorsan</div></div><span style="color:var(--s2);font-size:18px;margin-left:auto">›</span></button>
+    <div style="color:var(--sub);font-size:13px" id="am-hint">Konumu nasıl eklemek istersin?</div>
+    <button class="mbtn" onclick="startGPS()"><span style="font-size:26px;width:40px;text-align:center;flex-shrink:0" id="gps-ic">📡</span><div style="flex:1"><div style="color:var(--tx);font-weight:700;font-size:15px" id="gps-tt">Mevcut Konumumu Kullan</div><div style="color:var(--sub);font-size:12px;margin-top:3px" id="gps-sub">GPS ile anlık konum al</div></div><span style="color:var(--s2);font-size:18px;margin-left:auto">›</span></button>
+    <button class="mbtn" onclick="sp('pg-addr')"><span style="font-size:26px;width:40px;text-align:center;flex-shrink:0">🔍</span><div style="flex:1"><div style="color:var(--tx);font-weight:700;font-size:15px" id="addr-tt">Adres ile Ara</div><div style="color:var(--sub);font-size:12px;margin-top:3px" id="addr-sub">Mahalle, sokak, şehir adı yaz</div></div><span style="color:var(--s2);font-size:18px;margin-left:auto">›</span></button>
+    <button class="mbtn" onclick="sp('pg-link')"><span style="font-size:26px;width:40px;text-align:center;flex-shrink:0">🔗</span><div style="flex:1"><div style="color:var(--tx);font-weight:700;font-size:15px" id="link-tt">Google Maps Linki</div><div style="color:var(--sub);font-size:12px;margin-top:3px" id="link-sub">Koordinatlı uzun link yapıştır</div></div><span style="color:var(--s2);font-size:18px;margin-left:auto">›</span></button>
+    <button class="mbtn" onclick="sp('pg-man')"><span style="font-size:26px;width:40px;text-align:center;flex-shrink:0">🎯</span><div style="flex:1"><div style="color:var(--tx);font-weight:700;font-size:15px" id="man-tt">Koordinat Gir</div><div style="color:var(--sub);font-size:12px;margin-top:3px" id="man-sub">Enlem / boylam biliyorsan</div></div><span style="color:var(--s2);font-size:18px;margin-left:auto">›</span></button>
   </div>
 </div>
 
 <!-- ADD ADDR -->
 <div class="page" id="pg-addr">
-  <div class="hdr"><div class="hrow"><button class="bbk" onclick="sp('pg-am')">←</button><div class="htit"><div class="hsup">Konum Defteri</div><div class="hmain">Adres Ara</div></div></div></div>
+  <div class="hdr"><div class="hrow"><button class="bbk" onclick="sp('pg-am')">←</button><div class="htit"><div class="hsup" id="addr-sup">Konum Defteri</div><div class="hmain" id="addr-title">Adres Ara</div></div></div></div>
   <div class="sec">
-    <div class="ibox">Mahalle, cadde, ilçe veya şehir adı yaz.<br>Örn: <b>Kadıköy İstanbul</b>, <b>Kızılay Ankara</b></div>
-    <div style="display:flex;gap:10px"><input id="ai" placeholder="Adres yaz..." style="flex:1" onkeydown="if(event.key==='Enter'){event.preventDefault();das();}"/><button onclick="das()" style="background:var(--acc);border:none;border-radius:12px;color:#fff;padding:12px 18px;font-size:16px;cursor:pointer;flex-shrink:0;font-weight:700">Ara</button></div>
+    <div class="ibox" id="addr-ibox">Mahalle, cadde, ilçe veya şehir adı yaz.</div>
+    <div style="display:flex;gap:10px"><input id="ai" style="flex:1" onkeydown="if(event.key==='Enter'){event.preventDefault();das();}"/><button onclick="das()" style="background:var(--acc);border:none;border-radius:12px;color:#fff;padding:12px 18px;font-size:16px;cursor:pointer;flex-shrink:0;font-weight:700" id="addr-btn">Ara</button></div>
     <div id="ast" style="display:none;text-align:center;color:var(--sub);padding:16px;background:var(--c2);border-radius:12px"></div>
     <div id="ars"></div>
   </div>
@@ -238,43 +218,43 @@ textarea{resize:none;line-height:1.6}
 
 <!-- ADD LINK -->
 <div class="page" id="pg-link">
-  <div class="hdr"><div class="hrow"><button class="bbk" onclick="sp('pg-am')">←</button><div class="htit"><div class="hsup">Konum Defteri</div><div class="hmain">Link Yapıştır</div></div></div></div>
+  <div class="hdr"><div class="hrow"><button class="bbk" onclick="sp('pg-am')">←</button><div class="htit"><div class="hsup" id="link-sup">Konum Defteri</div><div class="hmain" id="link-page-title">Link Yapıştır</div></div></div></div>
   <div class="sec">
-    <div class="ibox">✅ <b>Çalışır:</b> maps.google.com/?q=41.01,28.97<br>❌ <b>Çalışmaz:</b> maps.app.goo.gl/... (kısa link)</div>
-    <div><div class="lbl">Link veya Koordinat</div><textarea id="li" placeholder="https://maps.google.com/?q=41.01,28.97&#10;veya: 41.01, 28.97" rows="4" oninput="oli(this.value)"></textarea><div id="lh" style="display:none;font-size:12px;color:var(--grn);margin-top:6px;font-family:monospace"></div></div>
-    <button class="btn btp" onclick="apl()">Devam Et →</button>
-    <button class="btn btgh" onclick="sp('pg-man')">🎯 Koordinat Gir</button>
+    <div class="ibox" id="link-ibox">✅ maps.google.com/?q=41.01,28.97<br>❌ maps.app.goo.gl/... (kısa link çalışmaz)</div>
+    <div><div class="lbl" id="link-lbl">Link veya Koordinat</div><textarea id="li" rows="4" oninput="oli(this.value)"></textarea><div id="lh" style="display:none;font-size:12px;color:var(--grn);margin-top:6px;font-family:monospace"></div></div>
+    <button class="btn btp" id="link-go" onclick="apl()">Devam Et →</button>
+    <button class="btn btgh" id="link-man" onclick="sp('pg-man')">🎯 Koordinat Gir</button>
   </div>
 </div>
 
 <!-- ADD MANUAL -->
 <div class="page" id="pg-man">
-  <div class="hdr"><div class="hrow"><button class="bbk" onclick="sp('pg-am')">←</button><div class="htit"><div class="hsup">Konum Defteri</div><div class="hmain">Koordinat Gir</div></div></div></div>
+  <div class="hdr"><div class="hrow"><button class="bbk" onclick="sp('pg-am')">←</button><div class="htit"><div class="hsup" id="man-sup">Konum Defteri</div><div class="hmain" id="man-title">Koordinat Gir</div></div></div></div>
   <div class="sec">
-    <div class="ibox">Google Maps'te bir konuma <b>uzun bas</b> → koordinatlar görünür → aşağıya gir.</div>
-    <div><div class="lbl">Enlem (Latitude)</div><input id="mlat" type="text" inputmode="decimal" placeholder="Örn: 41.0082376"/></div>
-    <div><div class="lbl">Boylam (Longitude)</div><input id="mlng" type="text" inputmode="decimal" placeholder="Örn: 28.9783589"/></div>
-    <button class="btn btp" onclick="apm()">Onayla →</button>
-    <button class="btn btgh" onclick="window.open('https://maps.google.com','_blank')">🗺️ Google Maps'i Aç</button>
+    <div class="ibox" id="man-ibox">Google Maps'te bir konuma <b>uzun bas</b> → koordinatlar görünür.</div>
+    <div><div class="lbl" id="man-lat-lbl">Enlem (Latitude)</div><input id="mlat" type="text" inputmode="decimal"/></div>
+    <div><div class="lbl" id="man-lng-lbl">Boylam (Longitude)</div><input id="mlng" type="text" inputmode="decimal"/></div>
+    <button class="btn btp" id="man-go" onclick="apm()">Onayla →</button>
+    <button class="btn btgh" onclick="window.open('https://maps.google.com','_blank')" id="man-open">🗺️ Google Maps'i Aç</button>
   </div>
 </div>
 
 <!-- ADD DETAILS -->
 <div class="page" id="pg-det">
-  <div class="hdr"><div class="hrow"><button class="bbk" id="det-bk">←</button><div class="htit"><div class="hsup">Konum Defteri</div><div class="hmain">Detaylar</div></div></div></div>
+  <div class="hdr"><div class="hrow"><button class="bbk" id="det-bk">←</button><div class="htit"><div class="hsup" id="det-sup">Konum Defteri</div><div class="hmain" id="det-title">Detaylar</div></div></div></div>
   <div class="sec">
-    <div class="cbdg"><span style="font-size:22px">📍</span><div><div style="font-size:11px;color:var(--sub)">Seçilen konum</div><div id="det-crd" style="font-size:12px;color:var(--grn);font-family:monospace"></div></div><button onclick="sp('pg-am')" style="margin-left:auto;background:none;border:none;color:var(--sub);cursor:pointer;font-size:13px">Değiştir</button></div>
-    <div><div class="lbl">İsim *</div><input id="dn" placeholder="Konum adı..."/></div>
-    <div><div class="lbl">Notlar</div><input id="dnt" placeholder="Açıklama, not..."/></div>
-    <div><div class="lbl">Kategori</div><div id="dc" style="display:flex;flex-wrap:wrap;gap:8px"></div></div>
-    <div><div class="lbl">Fotoğraf</div><input type="file" accept="image/*" id="dfi" style="display:none" onchange="hp(this,'d')"/><div id="dpw"><button class="btn btgh" style="border:2px dashed var(--br)!important" onclick="document.getElementById('dfi').click()">📷 Fotoğraf Ekle (opsiyonel)</button></div></div>
-    <button class="btn btp" onclick="svl()">💾 Kaydet</button>
+    <div class="cbdg"><span style="font-size:22px">📍</span><div><div style="font-size:11px;color:var(--sub)" id="sel-loc-lbl">Seçilen konum</div><div id="det-crd" style="font-size:12px;color:var(--grn);font-family:monospace"></div></div><button onclick="sp('pg-am')" style="margin-left:auto;background:none;border:none;color:var(--sub);cursor:pointer;font-size:13px" id="det-chg">Değiştir</button></div>
+    <div><div class="lbl" id="det-name-lbl">İsim *</div><input id="dn"/></div>
+    <div><div class="lbl" id="det-note-lbl">Notlar</div><input id="dnt"/></div>
+    <div><div class="lbl" id="det-cat-lbl">Kategori</div><div id="dc" style="display:flex;flex-wrap:wrap;gap:8px"></div></div>
+    <div><div class="lbl" id="det-photo-lbl">Fotoğraf</div><input type="file" accept="image/*" id="dfi" style="display:none" onchange="hp(this,'d')"/><div id="dpw"></div></div>
+    <button class="btn btp" id="det-save" onclick="svl()">💾 Kaydet</button>
   </div>
 </div>
 
 <!-- DETAIL VIEW -->
 <div class="page" id="pg-dv">
-  <div class="hdr"><div class="hrow"><button class="bbk" onclick="sp('pg-list')">←</button><div class="htit"><div class="hsup">Konum Defteri</div><div class="hmain" id="dv-tit" style="font-size:17px"></div></div><button onclick="oed()" style="background:rgba(255,255,255,.15);border:none;border-radius:10px;padding:6px 12px;color:#fff;font-size:12px;cursor:pointer;font-weight:600;flex-shrink:0">✏️ Düzenle</button></div></div>
+  <div class="hdr"><div class="hrow"><button class="bbk" onclick="sp('pg-list')">←</button><div class="htit"><div class="hsup" id="dv-sup">Konum Defteri</div><div class="hmain" id="dv-tit" style="font-size:17px"></div></div><button onclick="oed()" style="background:rgba(255,255,255,.15);border:none;border-radius:10px;padding:6px 12px;color:#fff;font-size:12px;cursor:pointer;font-weight:600;flex-shrink:0" id="dv-edit-btn">✏️ Düzenle</button></div></div>
   <div style="overflow-y:auto;flex:1;padding-bottom:40px">
     <div id="dv-hero" style="width:100%;height:200px;display:flex;align-items:center;justify-content:center;font-size:64px;flex-shrink:0"></div>
     <div style="padding:18px;display:flex;flex-direction:column;gap:12px">
@@ -283,7 +263,7 @@ textarea{resize:none;line-height:1.6}
         <div style="font-size:11px;color:var(--sub);flex-shrink:0;padding-top:4px" id="dv-dat"></div>
       </div>
       <div id="dv-not" style="display:none;background:var(--card);border-radius:12px;padding:14px;color:var(--sub);font-size:14px;line-height:1.6;border:1px solid var(--br)"></div>
-      <div style="background:var(--card);border-radius:12px;padding:12px 16px;border:1px solid var(--br)"><div class="lbl">Koordinatlar</div><div id="dv-crd" style="font-size:13px;color:var(--sub);font-family:monospace"></div></div>
+      <div style="background:var(--card);border-radius:12px;padding:12px 16px;border:1px solid var(--br)"><div class="lbl" id="dv-crd-lbl">Koordinatlar</div><div id="dv-crd" style="font-size:13px;color:var(--sub);font-family:monospace"></div></div>
       <button class="btn btg" id="dv-nav">🧭 Google Maps'te Yol Tarifi Al</button>
       <button class="btn bto" id="dv-cpy">🔗 Konum Linkini Kopyala</button>
       <button class="btn btd" id="dv-del">🗑️ Konumu Sil</button>
@@ -293,123 +273,346 @@ textarea{resize:none;line-height:1.6}
 
 <!-- EDIT -->
 <div class="page" id="pg-edt">
-  <div class="hdr"><div class="hrow"><button class="bbk" onclick="chku()">←</button><div class="htit"><div class="hsup">Konum Defteri</div><div class="hmain">Düzenle</div></div></div></div>
+  <div class="hdr"><div class="hrow"><button class="bbk" onclick="chku()">←</button><div class="htit"><div class="hsup" id="edt-sup">Konum Defteri</div><div class="hmain" id="edt-title">Düzenle</div></div></div></div>
   <div class="sec">
-    <div><div class="lbl">İsim *</div><input id="en" placeholder="Konum adı..."/></div>
-    <div><div class="lbl">Notlar</div><input id="ent" placeholder="Açıklama, not..."/></div>
-    <div><div class="lbl">Kategori</div><div id="ec" style="display:flex;flex-wrap:wrap;gap:8px"></div></div>
-    <div><div class="lbl">Fotoğraf</div><input type="file" accept="image/*" id="efi" style="display:none" onchange="hp(this,'e')"/><div id="epw"></div></div>
-    <button class="btn btp" onclick="sve()">💾 Değişiklikleri Kaydet</button>
-    <button class="btn btd" onclick="adel()">🗑️ Konumu Sil</button>
+    <div><div class="lbl" id="edt-name-lbl">İsim *</div><input id="en"/></div>
+    <div><div class="lbl" id="edt-note-lbl">Notlar</div><input id="ent"/></div>
+    <div><div class="lbl" id="edt-cat-lbl">Kategori</div><div id="ec" style="display:flex;flex-wrap:wrap;gap:8px"></div></div>
+    <div><div class="lbl" id="edt-photo-lbl">Fotoğraf</div><input type="file" accept="image/*" id="efi" style="display:none" onchange="hp(this,'e')"/><div id="epw"></div></div>
+    <button class="btn btp" id="edt-save" onclick="sve()">💾 Değişiklikleri Kaydet</button>
+    <button class="btn btd" id="edt-del" onclick="adel()">🗑️ Konumu Sil</button>
   </div>
 </div>
 
 <!-- SETTINGS -->
 <div class="page" id="pg-set">
-  <div class="hdr"><div class="hrow"><button class="bbk" onclick="sp('pg-list')">←</button><div class="htit"><div class="hsup">Konum Defteri</div><div class="hmain">⚙️ Ayarlar</div></div></div></div>
+  <div class="hdr"><div class="hrow"><button class="bbk" onclick="sp('pg-list')">←</button><div class="htit"><div class="hsup" id="set-sup">Konum Defteri</div><div class="hmain" id="set-title">⚙️ Ayarlar</div></div></div></div>
   <div class="sec">
+    <!-- Tema -->
     <div style="background:var(--card);border:1px solid var(--br);border-radius:14px;overflow:hidden">
-      <div style="padding:14px 16px;display:flex;align-items:center;cursor:pointer" onclick="toggleTheme()">
+      <div style="padding:14px 16px;display:flex;align-items:center;cursor:pointer" onclick="togTheme()">
         <span style="font-size:22px;width:36px;text-align:center">🎨</span>
-        <div style="flex:1;margin-left:12px"><div style="font-weight:600;font-size:14px">Tema</div><div style="font-size:11px;color:var(--sub);margin-top:2px" id="cur-theme-lbl">Mor</div></div>
-        <span style="color:var(--s2);font-size:16px;transition:transform .2s" id="theme-arrow">›</span>
+        <div style="flex:1;margin-left:12px"><div style="font-weight:600;font-size:14px" id="set-theme">Tema</div><div style="font-size:11px;color:var(--sub);margin-top:2px" id="cur-th-lbl">Mor</div></div>
+        <span style="color:var(--s2);font-size:16px;transition:transform .3s" id="th-arrow">›</span>
       </div>
-      <div id="theme-panel" style="display:none;padding:0 16px 16px"><div class="thgrd" id="tg"></div></div>
+      <div id="th-panel" style="display:none;padding:0 16px 16px"><div class="thgrd" id="tg"></div></div>
     </div>
+    <!-- Dil -->
+    <div class="srow" onclick="sp('pg-lang')">
+      <span style="font-size:22px;width:36px;text-align:center">🌍</span>
+      <div style="flex:1;margin-left:12px"><div style="font-weight:600;font-size:14px" id="set-lang">Dil</div><div style="font-size:11px;color:var(--sub);margin-top:2px" id="cur-lang-lbl">Türkçe</div></div>
+      <span style="color:var(--s2);font-size:16px">›</span>
+    </div>
+    <!-- PIN -->
     <div style="background:var(--card);border:1px solid var(--br);border-radius:14px;padding:14px 16px">
-      <div style="display:flex;align-items:center;gap:12px"><span style="font-size:22px;width:36px;text-align:center">🔐</span><div style="flex:1"><div style="font-weight:600;font-size:14px">PIN Kilidi</div><div style="font-size:11px;color:var(--sub);margin-top:2px">Uygulamayı açarken PIN sor</div></div><div class="tggl" id="ptg" onclick="tpin()"></div></div>
+      <div style="display:flex;align-items:center;gap:12px"><span style="font-size:22px;width:36px;text-align:center">🔐</span><div style="flex:1;margin-left:0"><div style="font-weight:600;font-size:14px" id="set-pin">PIN Kilidi</div><div style="font-size:11px;color:var(--sub);margin-top:2px" id="set-pin-sub">Uygulamayı açarken PIN sor</div></div><div class="tggl" id="ptg" onclick="tpin()"></div></div>
       <div id="pinwrap" style="display:none;margin-top:14px;padding-top:14px;border-top:1px solid var(--br)">
-        <div class="lbl">PIN Kodu (4 hane)</div>
-        <input id="pinset" type="password" inputmode="numeric" maxlength="4" placeholder="••••" style="max-width:120px;text-align:center;font-size:20px;letter-spacing:8px"/>
-        <button class="btn btp" style="margin-top:10px" onclick="spin()">PIN'i Kaydet</button>
+        <div class="lbl" id="pin-set-lbl">PIN Kodu (4 hane)</div>
+        <input id="pinset" type="password" inputmode="numeric" maxlength="4" style="max-width:120px;text-align:center;font-size:20px;letter-spacing:8px"/>
+        <button class="btn btp" style="margin-top:10px" id="pin-save-btn" onclick="spin()">PIN'i Kaydet</button>
       </div>
     </div>
-    <div class="srow" onclick="sp('pg-cats')"><span style="font-size:22px;width:36px;text-align:center">🗂️</span><div style="flex:1"><div style="font-weight:600;font-size:14px">Kategoriler</div><div style="font-size:11px;color:var(--sub);margin-top:2px" id="catlbl">Kategorileri yönet</div></div><span style="color:var(--s2);font-size:16px">›</span></div>
-    <div class="srow" onclick="sp('pg-fbk')"><span style="font-size:22px;width:36px;text-align:center">💬</span><div style="flex:1"><div style="font-weight:600;font-size:14px">Görüş & Öneri</div><div style="font-size:11px;color:var(--sub);margin-top:2px">Geri bildirim gönder</div></div><span style="color:var(--s2);font-size:16px">›</span></div>
-    <div class="srow" onclick="chkupd()"><span style="font-size:22px;width:36px;text-align:center">🔄</span><div style="flex:1"><div style="font-weight:600;font-size:14px">Güncelleme Kontrolü</div><div style="font-size:11px;color:var(--sub);margin-top:2px" id="verlbl">v2.0.0</div></div><span style="color:var(--s2);font-size:16px">›</span></div>
+    <!-- Kategoriler -->
+    <div class="srow" onclick="sp('pg-cats')"><span style="font-size:22px;width:36px;text-align:center">🗂️</span><div style="flex:1;margin-left:12px"><div style="font-weight:600;font-size:14px" id="set-cats">Kategoriler</div><div style="font-size:11px;color:var(--sub);margin-top:2px" id="catlbl">7 kategori</div></div><span style="color:var(--s2);font-size:16px">›</span></div>
+    <!-- Drive -->
     <div style="background:var(--card);border:1px solid var(--br);border-radius:14px;padding:14px 16px">
-      <div style="font-weight:600;font-size:14px;margin-bottom:6px">💾 Yedekleme</div>
-      <div style="font-size:12px;color:var(--sub);margin-bottom:12px;line-height:1.6">Verilerinizi yedekleyin. Drive, WhatsApp veya istediğiniz yere gönderin.</div>
+      <div style="display:flex;align-items:center;gap:10px;margin-bottom:10px">
+        <span style="font-size:22px">☁️</span>
+        <div style="flex:1"><div style="font-weight:600;font-size:14px" id="set-drv">Google Drive Yedekleme</div><div style="font-size:11px;color:var(--sub);margin-top:2px" id="drv-status-lbl">Bağlı değil</div></div>
+        <div id="drv-badge" style="display:none" class="drv-badge">✓ Bağlı</div>
+      </div>
+      <div style="font-size:12px;color:var(--sub);margin-bottom:12px;line-height:1.6" id="drv-desc">Verilerinizi Google Drive'ınıza otomatik yedekleyin.</div>
       <div style="display:flex;gap:8px">
-        <button class="btn btp" style="flex:1;padding:10px;font-size:13px" onclick="drvBackup()">📤 Dışa Aktar</button>
-        <button class="btn btgh" style="flex:1;padding:10px;font-size:13px" onclick="drvRestore()">📥 İçe Aktar</button>
+        <button class="btn btp" style="flex:1;padding:10px;font-size:13px" id="drv-conn-btn" onclick="drvConnect()">Google ile Bağlan</button>
+        <button class="btn btgh" style="flex:1;padding:10px;font-size:13px" id="drv-rest-btn" onclick="drvRestore()">📥 Geri Yükle</button>
       </div>
     </div>
-    <div class="srow" onclick="sp('pg-prv')"><span style="font-size:22px;width:36px;text-align:center">🔒</span><div style="flex:1"><div style="font-weight:600;font-size:14px">Gizlilik Politikası</div><div style="font-size:11px;color:var(--sub);margin-top:2px">Veriler nasıl korunur?</div></div><span style="color:var(--s2);font-size:16px">›</span></div>
+    <!-- Yedek -->
+    <div style="background:var(--card);border:1px solid var(--br);border-radius:14px;padding:14px 16px">
+      <div style="font-weight:600;font-size:14px;margin-bottom:6px" id="set-backup">Dosya Yedekleme</div>
+      <div style="font-size:12px;color:var(--sub);margin-bottom:12px;line-height:1.6" id="set-backup-desc">JSON dosyası olarak aktar/içe al.</div>
+      <div style="display:flex;gap:8px">
+        <button class="btn bto" style="flex:1;padding:10px;font-size:13px" id="exp-btn" onclick="expBkp()">📤 Dışa Aktar</button>
+        <button class="btn btgh" style="flex:1;padding:10px;font-size:13px" id="imp-btn" onclick="impBkp()">📥 İçe Al</button>
+      </div>
+    </div>
+    <!-- Feedback -->
+    <div class="srow" onclick="sp('pg-fbk')"><span style="font-size:22px;width:36px;text-align:center">💬</span><div style="flex:1;margin-left:12px"><div style="font-weight:600;font-size:14px" id="set-fbk">Görüş & Öneri</div><div style="font-size:11px;color:var(--sub);margin-top:2px" id="set-fbk-sub">Geri bildirim gönder</div></div><span style="color:var(--s2);font-size:16px">›</span></div>
+    <!-- Gizlilik -->
+    <div class="srow" onclick="sp('pg-prv')"><span style="font-size:22px;width:36px;text-align:center">🔒</span><div style="flex:1;margin-left:12px"><div style="font-weight:600;font-size:14px" id="set-prv">Gizlilik Politikası</div><div style="font-size:11px;color:var(--sub);margin-top:2px" id="set-prv-sub">Veriler nasıl korunur?</div></div><span style="color:var(--s2);font-size:16px">›</span></div>
+    <!-- About -->
     <div style="background:var(--card);border:1px solid var(--br);border-radius:14px;padding:16px;text-align:center">
       <div style="font-size:32px;margin-bottom:8px">📍</div>
       <div style="font-weight:700;font-size:15px">Konum Defteri</div>
-      <div style="font-size:12px;color:var(--sub);margin-top:4px">Versiyon 2.0.0</div>
-      <div style="font-size:11px;color:var(--s2);margin-top:8px;line-height:1.6">Veriler yalnızca telefonunuzda saklanır.<br>İnternet: yalnızca adres arama & yol tarifi.</div>
+      <div style="font-size:12px;color:var(--sub);margin-top:4px" id="ver-lbl">Versiyon 2.0.0</div>
+      <div style="font-size:11px;color:var(--s2);margin-top:8px;line-height:1.6" id="about-desc">Veriler yalnızca telefonunuzda saklanır.</div>
     </div>
+  </div>
+</div>
+
+<!-- LANGUAGE -->
+<div class="page" id="pg-lang">
+  <div class="hdr"><div class="hrow"><button class="bbk" onclick="sp('pg-set')">←</button><div class="htit"><div class="hsup" id="lang-sup">Konum Defteri</div><div class="hmain" id="lang-title">🌍 Dil Seçimi</div></div></div></div>
+  <div class="sec">
+    <div id="lang-list" style="display:flex;flex-direction:column;gap:10px"></div>
   </div>
 </div>
 
 <!-- CATEGORIES -->
 <div class="page" id="pg-cats">
-  <div class="hdr"><div class="hrow"><button class="bbk" onclick="sp('pg-set')">←</button><div class="htit"><div class="hsup">Konum Defteri</div><div class="hmain">Kategoriler</div></div></div></div>
+  <div class="hdr"><div class="hrow"><button class="bbk" onclick="sp('pg-set')">←</button><div class="htit"><div class="hsup" id="cats-sup">Konum Defteri</div><div class="hmain" id="cats-title">Kategoriler</div></div></div></div>
   <div class="sec">
     <div style="background:var(--card);border:1px solid var(--br);border-radius:16px;padding:16px">
-      <div class="lbl" style="margin-bottom:12px">➕ Yeni Kategori</div>
+      <div class="lbl" style="margin-bottom:12px" id="cats-new">➕ Yeni Kategori</div>
       <div class="egrd" id="eg"></div>
-      <div style="display:flex;gap:10px"><input id="ncl" placeholder="Kategori adı..." style="flex:1;border-radius:11px"/><button onclick="acat()" style="background:var(--acc);border:none;border-radius:11px;color:#fff;padding:10px 16px;font-size:14px;font-weight:700;cursor:pointer;flex-shrink:0">Ekle</button></div>
+      <div style="display:flex;gap:10px"><input id="ncl" style="flex:1;border-radius:11px"/><button onclick="acat()" style="background:var(--acc);border:none;border-radius:11px;color:#fff;padding:10px 16px;font-size:14px;font-weight:700;cursor:pointer;flex-shrink:0" id="cats-add">Ekle</button></div>
     </div>
-    <div class="lbl">Mevcut Kategoriler</div>
+    <div class="lbl" id="cats-list-lbl">Mevcut Kategoriler</div>
     <div id="cl" style="display:flex;flex-direction:column;gap:8px"></div>
   </div>
 </div>
 
 <!-- FEEDBACK -->
 <div class="page" id="pg-fbk">
-  <div class="hdr"><div class="hrow"><button class="bbk" onclick="sp('pg-set')">←</button><div class="htit"><div class="hsup">Konum Defteri</div><div class="hmain">💬 Görüş & Öneri</div></div></div></div>
+  <div class="hdr"><div class="hrow"><button class="bbk" onclick="sp('pg-set')">←</button><div class="htit"><div class="hsup" id="fbk-sup">Konum Defteri</div><div class="hmain" id="fbk-title">💬 Görüş & Öneri</div></div></div></div>
   <div class="sec">
-    <div class="ibox" style="font-size:13px;line-height:1.8">Görüş ve önerileriniz bizim için değerlidir. Aşağıdaki formu doldurun, mesajınızı gönderin.</div>
-    <div><div class="lbl">Adınız (opsiyonel)</div><input id="fbk-name" placeholder="İsminiz..."/></div>
-    <div><div class="lbl">Mesajınız *</div><textarea id="fbk-msg" placeholder="Görüş, öneri veya sorunuzu yazın..." rows="5"></textarea></div>
+    <div class="ibox" id="fbk-ibox">Görüş ve önerileriniz uygulamanın gelişimi için değerlidir.</div>
+    <div><div class="lbl" id="fbk-name-lbl">Adınız (opsiyonel)</div><input id="fbk-name"/></div>
+    <div><div class="lbl" id="fbk-msg-lbl">Mesajınız *</div><textarea id="fbk-msg" rows="5"></textarea></div>
     <div>
-      <div class="lbl">Tür</div>
+      <div class="lbl" id="fbk-type-lbl">Tür</div>
       <div style="display:flex;gap:8px;flex-wrap:wrap" id="fbk-types">
-        <button class="cchip on" id="fbt-0" onclick="selFbk(0)" style="background:var(--acc);border:1px solid var(--acc);color:#fff">💡 Öneri</button>
-        <button class="cchip" id="fbt-1" onclick="selFbk(1)" style="background:var(--card);border:1px solid var(--br);color:var(--sub)">🐛 Hata Bildirimi</button>
-        <button class="cchip" id="fbt-2" onclick="selFbk(2)" style="background:var(--card);border:1px solid var(--br);color:var(--sub)">⭐ Değerlendirme</button>
-        <button class="cchip" id="fbt-3" onclick="selFbk(3)" style="background:var(--card);border:1px solid var(--br);color:var(--sub)">❓ Diğer</button>
+        <button class="cchip" id="fbt-0" onclick="selFbk(0)">💡</button>
+        <button class="cchip" id="fbt-1" onclick="selFbk(1)">🐛</button>
+        <button class="cchip" id="fbt-2" onclick="selFbk(2)">⭐</button>
+        <button class="cchip" id="fbt-3" onclick="selFbk(3)">❓</button>
       </div>
     </div>
-    <button class="btn btp" onclick="sendFbk()">📨 Gönder</button>
-    <div style="font-size:11px;color:var(--s2);text-align:center;line-height:1.6">Mesajınız güvenli şekilde iletilir. İletişim bilgisi paylaşmak zorunda değilsiniz.</div>
+    <button class="btn btp" id="fbk-send" onclick="sendFbk()">📨 Gönder</button>
+    <div style="font-size:11px;color:var(--s2);text-align:center;line-height:1.6" id="fbk-note">Mesajınız gizli tutulur.</div>
   </div>
 </div>
 
 <!-- PRIVACY -->
 <div class="page" id="pg-prv">
-  <div class="hdr"><div class="hrow"><button class="bbk" onclick="sp('pg-set')">←</button><div class="htit"><div class="hsup">Konum Defteri</div><div class="hmain">Gizlilik</div></div></div></div>
+  <div class="hdr"><div class="hrow"><button class="bbk" onclick="sp('pg-set')">←</button><div class="htit"><div class="hsup" id="prv-sup">Konum Defteri</div><div class="hmain" id="prv-title">🔒 Gizlilik</div></div></div></div>
   <div class="sec" style="font-size:13px;color:var(--sub);line-height:1.8">
-    <div style="color:var(--tx);font-size:16px;font-weight:700">Gizlilik Politikası</div>
-    <div style="color:var(--s2);font-size:11px">Haziran 2025</div>
-    <div style="color:var(--accL);font-weight:600;margin-top:8px">Veri Saklama</div>
-    <div>Tüm verileriniz (konumlar, fotoğraflar, notlar) yalnızca telefonunuzun yerel depolama alanında saklanır. Hiçbir veri sunucuya gönderilmez.</div>
-    <div style="color:var(--accL);font-weight:600;margin-top:8px">İnternet Kullanımı</div>
-    <div>Sadece: Adres arama (OpenStreetMap), Google Maps yol tarifi, güncelleme kontrolü.</div>
-    <div style="color:var(--accL);font-weight:600;margin-top:8px">Konum İzni</div>
-    <div>Yalnızca "Mevcut Konumumu Kullan" tıklandığında anlık olarak kullanılır.</div>
-    <div style="color:var(--accL);font-weight:600;margin-top:8px">İletişim</div>
-    <div>Görüş & Öneri bölümünden ulaşabilirsiniz.</div>
-    <button class="btn btp" style="margin-top:16px" onclick="sp('pg-set')">Anladım ✓</button>
+    <div style="color:var(--tx);font-size:16px;font-weight:700" id="prv-h1">Gizlilik Politikası</div>
+    <div style="color:var(--s2);font-size:11px" id="prv-date">Haziran 2025</div>
+    <div style="color:var(--accL);font-weight:600;margin-top:8px" id="prv-s1">Veri Saklama</div>
+    <div id="prv-t1">Tüm verileriniz yalnızca telefonunuzun yerel depolama alanında saklanır. Sunucuya gönderilmez.</div>
+    <div style="color:var(--accL);font-weight:600;margin-top:8px" id="prv-s2">İnternet Kullanımı</div>
+    <div id="prv-t2">Sadece: Adres arama (OpenStreetMap), Google Maps yol tarifi, Drive yedekleme (isteğe bağlı).</div>
+    <div style="color:var(--accL);font-weight:600;margin-top:8px" id="prv-s3">Konum İzni</div>
+    <div id="prv-t3">Yalnızca GPS butonu tıklandığında anlık olarak kullanılır.</div>
+    <button class="btn btp" style="margin-top:16px" id="prv-ok" onclick="sp('pg-set')">Anladım ✓</button>
   </div>
 </div>
 
 <script>
-const VER="2.0.0",REPO="koyemirler-hash/KonumDefteri";
-const DCATS=[{id:"ev",icon:"🏠",label:"Ev"},{id:"is",icon:"💼",label:"İş"},{id:"restoran",icon:"🍽️",label:"Restoran"},{id:"market",icon:"🛒",label:"Market"},{id:"hastane",icon:"🏥",label:"Hastane"},{id:"okul",icon:"🏫",label:"Okul"},{id:"diger",icon:"📍",label:"Diğer"}];
+const VER="2.0.0";
+const DRV_CID="923490738617-4f8nkdlahi7gepdglj8h1emlseq12q51.apps.googleusercontent.com";
+const DRV_SCOPE="https://www.googleapis.com/auth/drive.appdata";
+
+// ══ ÇEVIRI SİSTEMİ ══════════════════════════════════════════
+const LANGS={
+  tr:{name:"Türkçe",flag:"🇹🇷",strings:{
+    app:"Konum Defteri",locations:"📍 Konumlarım",search:"Konum ara...",
+    add:"＋  Yeni Konum Ekle",settings:"⚙️ Ayarlar",edit:"✏️ Düzenle",
+    addLoc:"Konum Ekle",howAdd:"Konumu nasıl eklemek istersin?",
+    gpsTitle:"Mevcut Konumumu Kullan",gpsSub:"GPS ile anlık konum al",
+    addrTitle:"Adres ile Ara",addrSub:"Mahalle, sokak, şehir adı yaz",
+    linkTitle:"Google Maps Linki",linkSub:"Koordinatlı uzun link yapıştır",
+    manTitle:"Koordinat Gir",manSub:"Enlem / boylam biliyorsan",
+    addrSearch:"Ara",addrBox:"Mahalle, cadde, ilçe veya şehir adı yaz. Örn: Kadıköy İstanbul",
+    linkBox:"✅ maps.google.com/?q=41.01,28.97\n❌ maps.app.goo.gl/... (kısa link çalışmaz)",
+    manBox:"Google Maps'te bir konuma uzun bas → koordinatlar görünür.",
+    latLbl:"Enlem (Latitude)",lngLbl:"Boylam (Longitude)",
+    latPh:"Örn: 41.0082376",lngPh:"Örn: 28.9783589",
+    confirm:"Onayla →",openMaps:"🗺️ Google Maps'i Aç",
+    details:"Detaylar",selLoc:"Seçilen konum",change:"Değiştir",
+    nameLbl:"İsim *",namePh:"Konum adı...",noteLbl:"Notlar",notePh:"Açıklama, not...",
+    catLbl:"Kategori",photoLbl:"Fotoğraf",addPhoto:"📷 Fotoğraf Ekle (opsiyonel)",
+    save:"💾 Kaydet",coords:"Koordinatlar",
+    navBtn:"🧭 Google Maps'te Yol Tarifi Al",copyBtn:"🔗 Konum Linkini Kopyala",
+    delBtn:"🗑️ Konumu Sil",editPage:"Düzenle",saveChanges:"💾 Değişiklikleri Kaydet",
+    theme:"Tema",language:"Dil",curLang:"Türkçe",
+    pin:"PIN Kilidi",pinSub:"Uygulamayı açarken PIN sor",pinCode:"PIN Kodu (4 hane)",
+    savePin:"PIN'i Kaydet",categories:"Kategoriler",
+    drvTitle:"Google Drive Yedekleme",drvDesc:"Verilerinizi Google Drive'ınıza otomatik yedekleyin.",
+    drvConnect:"Google ile Bağlan",drvRestore:"📥 Geri Yükle",drvConnected:"✓ Bağlı",drvNotConn:"Bağlı değil",
+    backup:"Dosya Yedekleme",backupDesc:"JSON dosyası olarak aktar/içe al.",
+    export:"📤 Dışa Aktar",import:"📥 İçe Al",
+    feedback:"Görüş & Öneri",feedbackSub:"Geri bildirim gönder",
+    fbkName:"Adınız (opsiyonel)",fbkMsg:"Mesajınız *",fbkType:"Tür",fbkSend:"📨 Gönder",
+    fbkNote:"Mesajınız gizli tutulur.",fbkBox:"Görüş ve önerileriniz uygulamanın gelişimi için değerlidir.",
+    fbkTypes:["💡 Öneri","🐛 Hata Bildirimi","⭐ Değerlendirme","❓ Diğer"],
+    privacy:"Gizlilik Politikası",privacySub:"Veriler nasıl korunur?",
+    privacyOk:"Anladım ✓",about:"Hakkında",
+    newCat:"➕ Yeni Kategori",addCat:"Ekle",existingCats:"Mevcut Kategoriler",
+    defaultCat:"Varsayılan",langTitle:"🌍 Dil Seçimi",
+    pinSubEnter:"PIN kodunuzu girin",pinClear:"Temizle",pinWrong:"Yanlış PIN!",
+    searching:"⏳ Aranıyor...",notFound:"❌ Bulunamadı.",connErr:"❌ Bağlantı hatası.",
+    coordFound:"✅ Koordinat bulundu!",invalidCoord:"Geçersiz koordinat",
+    nameRequired:"İsim girin!",locRequired:"Konum seçilmedi",saved:"📍 Kaydedildi!",
+    deleted:"🗑️ Silindi",confirmDel:"silmek istediğine emin misin?",
+    editSaved:"✅ Kaydedildi!",unsaved:"Değişiklikler kaydedilmedi. Çıkmak istiyor musun?",
+    copied:"🔗 Link kopyalandı!",drvSaved:"☁️ Drive'a yedeklendi!",
+    drvLoading:"Drive yükleniyor...",drvConnOk:"✅ Drive'a bağlandı!",
+    drvErr:"Drive bağlantı hatası",drvNoBackup:"Drive'da yedek bulunamadı",
+    drvRestored:"✅ Geri yüklendi!",expDone:"📤 Yedek hazır!",
+    impDone:"✅ Geri yüklendi!",impErr:"Geçersiz yedek dosyası",
+    gpsErr:"Konum izni reddedildi!",gpsNoSig:"GPS sinyali yok.",gpsTimeout:"Zaman aşımı.",
+    pinSaved:"✅ PIN kaydedildi!",pinOff:"PIN kilidi kapatıldı",pinEnter:"4 haneli sayısal PIN girin!",
+    fbkSent:"📨 Mail uygulaması açıldı!",fbkRequired:"Mesaj yazın!",
+    obNext:"Devam →",obStart:"Başlayalım 🚀",obSkip:"Atla",
+    obPrivacy:"Gizlilik Politikası",
+    obTitle0:"Konum Defteri",obSub0:"Gittiğin yerleri kaydet, konumlarını sakla, tek tıkla yol tarifi al.",
+    obBadge0:"🔒 Tamamen Gizli",obBadgeSub0:"Veriler yalnızca telefonunuzda. İnternet gerekmez.",
+    obTitle1:"4 Farklı Yöntem",obTitle2:"Özellikler",obTitle3:"Hazırsın!",
+    obSub3:"Konum Defteri'ne hoş geldin. Verileriniz tamamen telefonunda güvende.",
+    obFeat:["Fotoğraf ekle","Kategorilere ayır","Not ekle","Yol tarifi","Konum paylaş","Tema seç","PIN kilidi","Yedekleme"],
+    prvTitle:"Gizlilik Politikası",prvDate:"Haziran 2025",
+    prvS1:"Veri Saklama",prvT1:"Tüm verileriniz yalnızca telefonunuzun yerel depolama alanında saklanır.",
+    prvS2:"İnternet Kullanımı",prvT2:"Sadece: Adres arama, Google Maps, Drive yedekleme (isteğe bağlı).",
+    prvS3:"Konum İzni",prvT3:"Yalnızca GPS butonu tıklandığında anlık olarak kullanılır.",
+  }},
+  en:{name:"English",flag:"🇬🇧",strings:{
+    app:"Location Notebook",locations:"📍 My Locations",search:"Search locations...",
+    add:"＋  Add New Location",settings:"⚙️ Settings",edit:"✏️ Edit",
+    addLoc:"Add Location",howAdd:"How would you like to add the location?",
+    gpsTitle:"Use Current Location",gpsSub:"Get instant GPS location",
+    addrTitle:"Search by Address",addrSub:"Enter neighborhood, street, city",
+    linkTitle:"Google Maps Link",linkSub:"Paste a link with coordinates",
+    manTitle:"Enter Coordinates",manSub:"If you know lat/lng",
+    addrSearch:"Search",addrBox:"Enter neighborhood, street, or city. E.g: Times Square New York",
+    linkBox:"✅ maps.google.com/?q=41.01,28.97\n❌ maps.app.goo.gl/... (short links don't work)",
+    manBox:"Long press on a location in Google Maps → coordinates appear.",
+    latLbl:"Latitude",lngLbl:"Longitude",latPh:"E.g: 41.0082376",lngPh:"E.g: 28.9783589",
+    confirm:"Confirm →",openMaps:"🗺️ Open Google Maps",
+    details:"Details",selLoc:"Selected location",change:"Change",
+    nameLbl:"Name *",namePh:"Location name...",noteLbl:"Notes",notePh:"Description, note...",
+    catLbl:"Category",photoLbl:"Photo",addPhoto:"📷 Add Photo (optional)",
+    save:"💾 Save",coords:"Coordinates",
+    navBtn:"🧭 Get Directions in Google Maps",copyBtn:"🔗 Copy Location Link",
+    delBtn:"🗑️ Delete Location",editPage:"Edit",saveChanges:"💾 Save Changes",
+    theme:"Theme",language:"Language",curLang:"English",
+    pin:"PIN Lock",pinSub:"Ask for PIN when opening app",pinCode:"PIN Code (4 digits)",
+    savePin:"Save PIN",categories:"Categories",
+    drvTitle:"Google Drive Backup",drvDesc:"Automatically backup your data to Google Drive.",
+    drvConnect:"Connect with Google",drvRestore:"📥 Restore",drvConnected:"✓ Connected",drvNotConn:"Not connected",
+    backup:"File Backup",backupDesc:"Export/import as JSON file.",
+    export:"📤 Export",import:"📥 Import",
+    feedback:"Feedback",feedbackSub:"Send feedback",
+    fbkName:"Your name (optional)",fbkMsg:"Your message *",fbkType:"Type",fbkSend:"📨 Send",
+    fbkNote:"Your message is kept private.",fbkBox:"Your feedback helps improve the app.",
+    fbkTypes:["💡 Suggestion","🐛 Bug Report","⭐ Review","❓ Other"],
+    privacy:"Privacy Policy",privacySub:"How is data protected?",
+    privacyOk:"Got it ✓",about:"About",
+    newCat:"➕ New Category",addCat:"Add",existingCats:"Existing Categories",
+    defaultCat:"Default",langTitle:"🌍 Language",
+    pinSubEnter:"Enter your PIN",pinClear:"Clear",pinWrong:"Wrong PIN!",
+    searching:"⏳ Searching...",notFound:"❌ Not found.",connErr:"❌ Connection error.",
+    coordFound:"✅ Coordinates found!",invalidCoord:"Invalid coordinates",
+    nameRequired:"Enter a name!",locRequired:"No location selected",saved:"📍 Saved!",
+    deleted:"🗑️ Deleted",confirmDel:"are you sure you want to delete?",
+    editSaved:"✅ Saved!",unsaved:"Changes not saved. Do you want to exit?",
+    copied:"🔗 Link copied!",drvSaved:"☁️ Saved to Drive!",
+    drvLoading:"Loading Drive...",drvConnOk:"✅ Connected to Drive!",
+    drvErr:"Drive connection error",drvNoBackup:"No backup found in Drive",
+    drvRestored:"✅ Restored!",expDone:"📤 Backup ready!",
+    impDone:"✅ Restored!",impErr:"Invalid backup file",
+    gpsErr:"Location permission denied!",gpsNoSig:"No GPS signal.",gpsTimeout:"Timeout.",
+    pinSaved:"✅ PIN saved!",pinOff:"PIN lock disabled",pinEnter:"Enter a 4-digit numeric PIN!",
+    fbkSent:"📨 Mail app opened!",fbkRequired:"Write a message!",
+    obNext:"Next →",obStart:"Let's Start 🚀",obSkip:"Skip",
+    obPrivacy:"Privacy Policy",
+    obTitle0:"Location Notebook",obSub0:"Save places, store locations, get directions with one tap.",
+    obBadge0:"🔒 Completely Private",obBadgeSub0:"Data only on your phone. No internet needed.",
+    obTitle1:"4 Methods",obTitle2:"Features",obTitle3:"You're Ready!",
+    obSub3:"Welcome to Location Notebook. Your data is safe on your device.",
+    obFeat:["Add photos","Organize by category","Add notes","Get directions","Share location","Change theme","PIN lock","Backup"],
+    prvTitle:"Privacy Policy",prvDate:"June 2025",
+    prvS1:"Data Storage",prvT1:"All your data is stored only on your device's local storage.",
+    prvS2:"Internet Usage",prvT2:"Only for: Address search, Google Maps, Drive backup (optional).",
+    prvS3:"Location Permission",prvT3:"Only used instantly when GPS button is pressed.",
+  }},
+  de:{name:"Deutsch",flag:"🇩🇪",strings:{
+    app:"Ortsnotizblock",locations:"📍 Meine Orte",search:"Orte suchen...",
+    add:"＋  Neuen Ort hinzufügen",settings:"⚙️ Einstellungen",edit:"✏️ Bearbeiten",
+    addLoc:"Ort hinzufügen",howAdd:"Wie möchtest du den Ort hinzufügen?",
+    gpsTitle:"Aktuellen Standort verwenden",gpsSub:"GPS-Standort abrufen",
+    addrTitle:"Nach Adresse suchen",addrSub:"Straße, Viertel, Stadt eingeben",
+    linkTitle:"Google Maps Link",linkSub:"Link mit Koordinaten einfügen",
+    manTitle:"Koordinaten eingeben",manSub:"Wenn du Lat/Lng kennst",
+    addrSearch:"Suchen",addrBox:"Straße, Viertel oder Stadt eingeben.",
+    linkBox:"✅ maps.google.com/?q=41.01,28.97\n❌ maps.app.goo.gl/... (Kurzlinks funktionieren nicht)",
+    manBox:"Auf Google Maps lange auf einen Ort drücken → Koordinaten erscheinen.",
+    latLbl:"Breitengrad",lngLbl:"Längengrad",latPh:"Z.B: 48.1351",lngPh:"Z.B: 11.5820",
+    confirm:"Bestätigen →",openMaps:"🗺️ Google Maps öffnen",
+    details:"Details",selLoc:"Ausgewählter Ort",change:"Ändern",
+    nameLbl:"Name *",namePh:"Ortsname...",noteLbl:"Notizen",notePh:"Beschreibung...",
+    catLbl:"Kategorie",photoLbl:"Foto",addPhoto:"📷 Foto hinzufügen (optional)",
+    save:"💾 Speichern",coords:"Koordinaten",
+    navBtn:"🧭 Route in Google Maps",copyBtn:"🔗 Link kopieren",
+    delBtn:"🗑️ Ort löschen",editPage:"Bearbeiten",saveChanges:"💾 Änderungen speichern",
+    theme:"Thema",language:"Sprache",curLang:"Deutsch",
+    pin:"PIN-Sperre",pinSub:"PIN beim Öffnen abfragen",pinCode:"PIN-Code (4 Ziffern)",
+    savePin:"PIN speichern",categories:"Kategorien",
+    drvTitle:"Google Drive Backup",drvDesc:"Daten automatisch in Google Drive sichern.",
+    drvConnect:"Mit Google verbinden",drvRestore:"📥 Wiederherstellen",drvConnected:"✓ Verbunden",drvNotConn:"Nicht verbunden",
+    backup:"Datei-Backup",backupDesc:"Als JSON-Datei exportieren/importieren.",
+    export:"📤 Exportieren",import:"📥 Importieren",
+    feedback:"Feedback",feedbackSub:"Feedback senden",
+    fbkName:"Ihr Name (optional)",fbkMsg:"Ihre Nachricht *",fbkType:"Typ",fbkSend:"📨 Senden",
+    fbkNote:"Ihre Nachricht wird vertraulich behandelt.",fbkBox:"Ihr Feedback hilft uns, die App zu verbessern.",
+    fbkTypes:["💡 Vorschlag","🐛 Fehlerbericht","⭐ Bewertung","❓ Sonstiges"],
+    privacy:"Datenschutzerklärung",privacySub:"Wie werden Daten geschützt?",
+    privacyOk:"Verstanden ✓",about:"Über",
+    newCat:"➕ Neue Kategorie",addCat:"Hinzufügen",existingCats:"Vorhandene Kategorien",
+    defaultCat:"Standard",langTitle:"🌍 Sprache",
+    pinSubEnter:"PIN eingeben",pinClear:"Löschen",pinWrong:"Falscher PIN!",
+    searching:"⏳ Suche...",notFound:"❌ Nicht gefunden.",connErr:"❌ Verbindungsfehler.",
+    coordFound:"✅ Koordinaten gefunden!",invalidCoord:"Ungültige Koordinaten",
+    nameRequired:"Name eingeben!",locRequired:"Kein Ort ausgewählt",saved:"📍 Gespeichert!",
+    deleted:"🗑️ Gelöscht",confirmDel:"wirklich löschen?",
+    editSaved:"✅ Gespeichert!",unsaved:"Änderungen nicht gespeichert. Verlassen?",
+    copied:"🔗 Link kopiert!",drvSaved:"☁️ In Drive gespeichert!",
+    drvLoading:"Drive wird geladen...",drvConnOk:"✅ Mit Drive verbunden!",
+    drvErr:"Drive-Verbindungsfehler",drvNoBackup:"Kein Backup in Drive gefunden",
+    drvRestored:"✅ Wiederhergestellt!",expDone:"📤 Backup bereit!",
+    impDone:"✅ Wiederhergestellt!",impErr:"Ungültige Backup-Datei",
+    gpsErr:"Standortberechtigung verweigert!",gpsNoSig:"Kein GPS-Signal.",gpsTimeout:"Zeitüberschreitung.",
+    pinSaved:"✅ PIN gespeichert!",pinOff:"PIN-Sperre deaktiviert",pinEnter:"4-stellige PIN eingeben!",
+    fbkSent:"📨 Mail-App geöffnet!",fbkRequired:"Nachricht eingeben!",
+    obNext:"Weiter →",obStart:"Los geht's 🚀",obSkip:"Überspringen",
+    obPrivacy:"Datenschutzerklärung",
+    obTitle0:"Ortsnotizblock",obSub0:"Orte speichern, Standorte verwalten, Routen mit einem Tippen.",
+    obBadge0:"🔒 Vollständig privat",obBadgeSub0:"Daten nur auf Ihrem Gerät.",
+    obTitle1:"4 Methoden",obTitle2:"Funktionen",obTitle3:"Sie sind bereit!",
+    obSub3:"Willkommen beim Ortsnotizblock. Ihre Daten sind sicher.",
+    obFeat:["Fotos hinzufügen","Nach Kategorie sortieren","Notizen","Routen","Standort teilen","Thema wählen","PIN-Sperre","Backup"],
+    prvTitle:"Datenschutzerklärung",prvDate:"Juni 2025",
+    prvS1:"Datenspeicherung",prvT1:"Alle Daten werden nur im lokalen Speicher Ihres Geräts gespeichert.",
+    prvS2:"Internetnutzung",prvT2:"Nur für: Adresssuche, Google Maps, Drive-Backup (optional).",
+    prvS3:"Standortberechtigung",prvT3:"Wird nur sofort verwendet, wenn die GPS-Schaltfläche gedrückt wird.",
+  }}
+};
+
+function t(k){return LANGS[_lang]?.strings?.[k]||LANGS.tr.strings[k]||k;}
+
+// ══ SABITLER ════════════════════════════════════════════════
+const DCATS=[{id:"ev",icon:"🏠",label:{tr:"Ev",en:"Home",de:"Zuhause"}},{id:"is",icon:"💼",label:{tr:"İş",en:"Work",de:"Arbeit"}},{id:"restoran",icon:"🍽️",label:{tr:"Restoran",en:"Restaurant",de:"Restaurant"}},{id:"market",icon:"🛒",label:{tr:"Market",en:"Market",de:"Markt"}},{id:"hastane",icon:"🏥",label:{tr:"Hastane",en:"Hospital",de:"Krankenhaus"}},{id:"okul",icon:"🏫",label:{tr:"Okul",en:"School",de:"Schule"}},{id:"diger",icon:"📍",label:{tr:"Diğer",en:"Other",de:"Sonstiges"}}];
 const DID=DCATS.map(c=>c.id);
 const EMOJ=["📍","🏠","💼","🍽️","🛒","🏥","🏫","⛽","🏖️","🏋️","🎭","🎓","🏦","🛕","⛪","🏪","🏨","🅿️","🚉","✈️","🌳","🎯","🔧","🎪","💈","🐾","🌊","🏔️","🎠","🏟️"];
-const THS=[{id:"purple",l:"Mor",c:"#7c6df0",cl:""},{id:"blue",l:"Mavi",c:"#3b82f6",cl:"th-blue"},{id:"green",l:"Yeşil",c:"#16a34a",cl:"th-green"},{id:"red",l:"Kırmızı",c:"#dc2626",cl:"th-red"},{id:"orange",l:"Turuncu",c:"#ea580c",cl:"th-orange"},{id:"light",l:"Açık",c:"#7c6df0",cl:"th-light"}];
+const THS=[{id:"purple",l:{tr:"Mor",en:"Purple",de:"Lila"},c:"#7c6df0",cl:""},{id:"blue",l:{tr:"Mavi",en:"Blue",de:"Blau"},c:"#3b82f6",cl:"th-blue"},{id:"green",l:{tr:"Yeşil",en:"Green",de:"Grün"},c:"#16a34a",cl:"th-green"},{id:"red",l:{tr:"Kırmızı",en:"Red",de:"Rot"},c:"#dc2626",cl:"th-red"},{id:"orange",l:{tr:"Turuncu",en:"Orange",de:"Orange"},c:"#ea580c",cl:"th-orange"},{id:"light",l:{tr:"Açık",en:"Light",de:"Hell"},c:"#7c6df0",cl:"th-light"}];
 
-function gset(){try{return JSON.parse(localStorage.getItem("kd_s")||"null")||{th:"purple",pin:"",pinOn:false};}catch{return{th:"purple",pin:"",pinOn:false};}}
+// ══ STORAGE ═══════════════════════════════════════════════
+function gset(){try{return JSON.parse(localStorage.getItem("kd_s")||"null")||{th:"purple",pin:"",pinOn:false,lang:""};}catch{return{th:"purple",pin:"",pinOn:false,lang:""};}}
 function sset(s){localStorage.setItem("kd_s",JSON.stringify(s));}
 function glocs(){try{return JSON.parse(localStorage.getItem("kd_l")||"[]");}catch{return[];}}
 function slocs(a){localStorage.setItem("kd_l",JSON.stringify(a));}
-function gcats(){try{const c=JSON.parse(localStorage.getItem("kd_c")||"null");return c||[...DCATS];}catch{return[...DCATS];}}
+function gcats(){try{const c=JSON.parse(localStorage.getItem("kd_c")||"null");return c||DCATS.map(c=>({...c,label:c.label[_lang]||c.label.tr}));}catch{return DCATS.map(c=>({...c,label:c.label[_lang]||c.label.tr}));}}
 function scats(a){localStorage.setItem("kd_c",JSON.stringify(a));}
 
 let PDB=null;
@@ -419,74 +622,247 @@ async function gph(id){if(!id)return null;const db=await opdb();return new Promi
 async function dph(id){if(!id)return;const db=await opdb();const tx=db.transaction("p","readwrite");tx.objectStore("p").delete(id);}
 
 let _L=[],_C=[],_S={};
-let _fc="all",_sel=null,_sci="📍";
+let _lang="tr",_fc="all",_sel=null,_sci="📍";
 let _plat=null,_plng=null,_pbk="pg-am";
 let _pcat="diger",_pd="",_ppid=null;
 let _ecat="diger",_ep="",_epc=false;
-let _dcid=null,_obs=0;
-let _pin="",_pmode="u";
+let _dcid=null,_obs=0,_pin="",_pmode="u";
+let _fbkT=0;
 
+// ══ INIT ════════════════════════════════════════════════════
 window.addEventListener("load",async()=>{
-  _S=gset();_L=glocs();_C=gcats();
-  atm(_S.th);await opdb();
+  _S=gset();_L=glocs();
+  // Dil: kayıtlı > tarayıcı dili > tr
+  const devLang=(navigator.language||"tr").substring(0,2).toLowerCase();
+  _lang=_S.lang||(LANGS[devLang]?devLang:"tr");
+  _C=gcats();
+  applyTheme(_S.th);
+  await opdb();
+  applyLang();
   const od=localStorage.getItem("kd_ob")==="1";
   if(!od){pa("pg-ob");return;}
   if(_S.pinOn&&_S.pin){pa("pg-pin");_pmode="u";}
   else sp("pg-list");
+  setTimeout(loadGIS,3000);
 });
 
+// ══ DİL ═════════════════════════════════════════════════════
+function applyLang(){
+  document.documentElement.lang=_lang;
+  // Tüm çevirilebilir elementleri güncelle
+  const s=LANGS[_lang].strings;
+  // Onboarding
+  if(document.getElementById("ob-t0"))document.getElementById("ob-t0").textContent=s.obTitle0;
+  if(document.getElementById("ob-s0"))document.getElementById("ob-s0").textContent=s.obSub0;
+  if(document.getElementById("ob-b0"))document.getElementById("ob-b0").textContent=s.obBadge0;
+  if(document.getElementById("ob-bs0"))document.getElementById("ob-bs0").textContent=s.obBadgeSub0;
+  if(document.getElementById("ob-t1"))document.getElementById("ob-t1").textContent=s.obTitle1;
+  if(document.getElementById("ob-t2"))document.getElementById("ob-t2").textContent=s.obTitle2;
+  if(document.getElementById("ob-t3"))document.getElementById("ob-t3").textContent=s.obTitle3;
+  if(document.getElementById("ob-s3"))document.getElementById("ob-s3").textContent=s.obSub3;
+  if(document.getElementById("ob-nb"))document.getElementById("ob-nb").textContent=_obs===3?s.obStart:s.obNext;
+  if(document.getElementById("ob-skip"))document.getElementById("ob-skip").textContent=s.obSkip;
+  if(document.getElementById("ob-prv"))document.getElementById("ob-prv").textContent=s.obPrivacy;
+  if(s.obFeat&&document.getElementById("ob-f1")){
+    ["ob-f1","ob-f2","ob-f3","ob-f4","ob-f5","ob-f6","ob-f7","ob-f8"].forEach((id,i)=>{if(document.getElementById(id))document.getElementById(id).textContent=s.obFeat[i];});
+  }
+  // List
+  if(document.getElementById("list-title"))document.getElementById("list-title").textContent=s.locations;
+  if(document.getElementById("si"))document.getElementById("si").placeholder=s.search;
+  if(document.getElementById("fab-add"))document.getElementById("fab-add").textContent=s.add;
+  // Add method
+  if(document.getElementById("am-title"))document.getElementById("am-title").textContent=s.addLoc;
+  if(document.getElementById("am-hint"))document.getElementById("am-hint").textContent=s.howAdd;
+  if(document.getElementById("gps-tt"))document.getElementById("gps-tt").textContent=s.gpsTitle;
+  if(document.getElementById("gps-sub"))document.getElementById("gps-sub").textContent=s.gpsSub;
+  if(document.getElementById("addr-tt"))document.getElementById("addr-tt").textContent=s.addrTitle;
+  if(document.getElementById("addr-sub"))document.getElementById("addr-sub").textContent=s.addrSub;
+  if(document.getElementById("link-tt"))document.getElementById("link-tt").textContent=s.linkTitle;
+  if(document.getElementById("link-sub"))document.getElementById("link-sub").textContent=s.linkSub;
+  if(document.getElementById("man-tt"))document.getElementById("man-tt").textContent=s.manTitle;
+  if(document.getElementById("man-sub"))document.getElementById("man-sub").textContent=s.manSub;
+  // Addr
+  if(document.getElementById("addr-title"))document.getElementById("addr-title").textContent=s.addrTitle;
+  if(document.getElementById("addr-ibox"))document.getElementById("addr-ibox").textContent=s.addrBox;
+  if(document.getElementById("addr-btn"))document.getElementById("addr-btn").textContent=s.addrSearch;
+  if(document.getElementById("ai"))document.getElementById("ai").placeholder=s.addrBox.split(".")[0]+"...";
+  // Link
+  if(document.getElementById("link-page-title"))document.getElementById("link-page-title").textContent=s.linkTitle;
+  if(document.getElementById("link-ibox"))document.getElementById("link-ibox").innerHTML=s.linkBox.replace("\n","<br>");
+  if(document.getElementById("link-go"))document.getElementById("link-go").textContent=s.confirm;
+  if(document.getElementById("link-man"))document.getElementById("link-man").textContent=s.openMaps.replace("🗺️ ","🎯 ")+"-"+s.manTitle;
+  // Manual
+  if(document.getElementById("man-title"))document.getElementById("man-title").textContent=s.manTitle;
+  if(document.getElementById("man-ibox"))document.getElementById("man-ibox").innerHTML=s.manBox;
+  if(document.getElementById("man-lat-lbl"))document.getElementById("man-lat-lbl").textContent=s.latLbl;
+  if(document.getElementById("man-lng-lbl"))document.getElementById("man-lng-lbl").textContent=s.lngLbl;
+  if(document.getElementById("mlat"))document.getElementById("mlat").placeholder=s.latPh;
+  if(document.getElementById("mlng"))document.getElementById("mlng").placeholder=s.lngPh;
+  if(document.getElementById("man-go"))document.getElementById("man-go").textContent=s.confirm;
+  if(document.getElementById("man-open"))document.getElementById("man-open").textContent=s.openMaps;
+  // Details
+  if(document.getElementById("det-title"))document.getElementById("det-title").textContent=s.details;
+  if(document.getElementById("sel-loc-lbl"))document.getElementById("sel-loc-lbl").textContent=s.selLoc;
+  if(document.getElementById("det-chg"))document.getElementById("det-chg").textContent=s.change;
+  if(document.getElementById("det-name-lbl"))document.getElementById("det-name-lbl").textContent=s.nameLbl;
+  if(document.getElementById("dn"))document.getElementById("dn").placeholder=s.namePh;
+  if(document.getElementById("det-note-lbl"))document.getElementById("det-note-lbl").textContent=s.noteLbl;
+  if(document.getElementById("dnt"))document.getElementById("dnt").placeholder=s.notePh;
+  if(document.getElementById("det-cat-lbl"))document.getElementById("det-cat-lbl").textContent=s.catLbl;
+  if(document.getElementById("det-photo-lbl"))document.getElementById("det-photo-lbl").textContent=s.photoLbl;
+  if(document.getElementById("det-save"))document.getElementById("det-save").textContent=s.save;
+  updatePhotoBtn("dpw",s);
+  // Detail view
+  if(document.getElementById("dv-edit-btn"))document.getElementById("dv-edit-btn").textContent="✏️ "+s.edit;
+  if(document.getElementById("dv-crd-lbl"))document.getElementById("dv-crd-lbl").textContent=s.coords;
+  if(document.getElementById("dv-nav"))document.getElementById("dv-nav").textContent=s.navBtn;
+  if(document.getElementById("dv-cpy"))document.getElementById("dv-cpy").textContent=s.copyBtn;
+  if(document.getElementById("dv-del"))document.getElementById("dv-del").textContent=s.delBtn;
+  // Edit
+  if(document.getElementById("edt-title"))document.getElementById("edt-title").textContent=s.editPage;
+  if(document.getElementById("edt-name-lbl"))document.getElementById("edt-name-lbl").textContent=s.nameLbl;
+  if(document.getElementById("en"))document.getElementById("en").placeholder=s.namePh;
+  if(document.getElementById("edt-note-lbl"))document.getElementById("edt-note-lbl").textContent=s.noteLbl;
+  if(document.getElementById("ent"))document.getElementById("ent").placeholder=s.notePh;
+  if(document.getElementById("edt-cat-lbl"))document.getElementById("edt-cat-lbl").textContent=s.catLbl;
+  if(document.getElementById("edt-photo-lbl"))document.getElementById("edt-photo-lbl").textContent=s.photoLbl;
+  if(document.getElementById("edt-save"))document.getElementById("edt-save").textContent=s.saveChanges;
+  if(document.getElementById("edt-del"))document.getElementById("edt-del").textContent=s.delBtn;
+  // Settings
+  if(document.getElementById("set-title"))document.getElementById("set-title").textContent="⚙️ "+s.settings.replace("⚙️ ","");
+  if(document.getElementById("set-theme"))document.getElementById("set-theme").textContent=s.theme;
+  if(document.getElementById("set-lang"))document.getElementById("set-lang").textContent=s.language;
+  if(document.getElementById("cur-lang-lbl"))document.getElementById("cur-lang-lbl").textContent=LANGS[_lang].strings.curLang;
+  if(document.getElementById("set-pin"))document.getElementById("set-pin").textContent=s.pin;
+  if(document.getElementById("set-pin-sub"))document.getElementById("set-pin-sub").textContent=s.pinSub;
+  if(document.getElementById("pin-set-lbl"))document.getElementById("pin-set-lbl").textContent=s.pinCode;
+  if(document.getElementById("pin-save-btn"))document.getElementById("pin-save-btn").textContent=s.savePin;
+  if(document.getElementById("set-cats"))document.getElementById("set-cats").textContent=s.categories;
+  if(document.getElementById("set-drv"))document.getElementById("set-drv").textContent=s.drvTitle;
+  if(document.getElementById("drv-desc"))document.getElementById("drv-desc").textContent=s.drvDesc;
+  if(document.getElementById("drv-conn-btn"))document.getElementById("drv-conn-btn").textContent=s.drvConnect;
+  if(document.getElementById("drv-rest-btn"))document.getElementById("drv-rest-btn").textContent=s.drvRestore;
+  if(document.getElementById("drv-status-lbl"))document.getElementById("drv-status-lbl").textContent=_drvTok?s.drvConnected:s.drvNotConn;
+  if(document.getElementById("set-backup"))document.getElementById("set-backup").textContent=s.backup;
+  if(document.getElementById("set-backup-desc"))document.getElementById("set-backup-desc").textContent=s.backupDesc;
+  if(document.getElementById("exp-btn"))document.getElementById("exp-btn").textContent=s.export;
+  if(document.getElementById("imp-btn"))document.getElementById("imp-btn").textContent=s.import;
+  if(document.getElementById("set-fbk"))document.getElementById("set-fbk").textContent=s.feedback;
+  if(document.getElementById("set-fbk-sub"))document.getElementById("set-fbk-sub").textContent=s.feedbackSub;
+  if(document.getElementById("set-prv"))document.getElementById("set-prv").textContent=s.privacy;
+  if(document.getElementById("set-prv-sub"))document.getElementById("set-prv-sub").textContent=s.privacySub;
+  if(document.getElementById("ver-lbl"))document.getElementById("ver-lbl").textContent="v"+VER;
+  if(document.getElementById("about-desc"))document.getElementById("about-desc").textContent=s.prvT1;
+  // Language page
+  if(document.getElementById("lang-title"))document.getElementById("lang-title").textContent=s.langTitle;
+  // Cats
+  if(document.getElementById("cats-title"))document.getElementById("cats-title").textContent=s.categories;
+  if(document.getElementById("cats-new"))document.getElementById("cats-new").textContent=s.newCat;
+  if(document.getElementById("cats-add"))document.getElementById("cats-add").textContent=s.addCat;
+  if(document.getElementById("cats-list-lbl"))document.getElementById("cats-list-lbl").textContent=s.existingCats;
+  if(document.getElementById("ncl"))document.getElementById("ncl").placeholder=s.namePh;
+  // Feedback
+  if(document.getElementById("fbk-title"))document.getElementById("fbk-title").textContent="💬 "+s.feedback;
+  if(document.getElementById("fbk-ibox"))document.getElementById("fbk-ibox").textContent=s.fbkBox;
+  if(document.getElementById("fbk-name-lbl"))document.getElementById("fbk-name-lbl").textContent=s.fbkName;
+  if(document.getElementById("fbk-name"))document.getElementById("fbk-name").placeholder=s.fbkName;
+  if(document.getElementById("fbk-msg-lbl"))document.getElementById("fbk-msg-lbl").textContent=s.fbkMsg;
+  if(document.getElementById("fbk-msg"))document.getElementById("fbk-msg").placeholder=s.fbkMsg;
+  if(document.getElementById("fbk-type-lbl"))document.getElementById("fbk-type-lbl").textContent=s.fbkType;
+  if(document.getElementById("fbk-send"))document.getElementById("fbk-send").textContent=s.fbkSend;
+  if(document.getElementById("fbk-note"))document.getElementById("fbk-note").textContent=s.fbkNote;
+  if(s.fbkTypes){s.fbkTypes.forEach((tp,i)=>{const b=document.getElementById("fbt-"+i);if(b)b.textContent=tp;});}
+  // Privacy
+  if(document.getElementById("prv-title"))document.getElementById("prv-title").textContent=s.prvTitle;
+  if(document.getElementById("prv-date"))document.getElementById("prv-date").textContent=s.prvDate;
+  if(document.getElementById("prv-s1"))document.getElementById("prv-s1").textContent=s.prvS1;
+  if(document.getElementById("prv-t1"))document.getElementById("prv-t1").textContent=s.prvT1;
+  if(document.getElementById("prv-s2"))document.getElementById("prv-s2").textContent=s.prvS2;
+  if(document.getElementById("prv-t2"))document.getElementById("prv-t2").textContent=s.prvT2;
+  if(document.getElementById("prv-s3"))document.getElementById("prv-s3").textContent=s.prvS3;
+  if(document.getElementById("prv-t3"))document.getElementById("prv-t3").textContent=s.prvT3;
+  if(document.getElementById("prv-ok"))document.getElementById("prv-ok").textContent=s.privacyOk;
+  // PIN
+  if(document.getElementById("pin-sub"))document.getElementById("pin-sub").textContent=s.pinSubEnter;
+  if(document.getElementById("pin-clr"))document.getElementById("pin-clr").textContent=s.pinClear;
+  // Modals
+  if(document.getElementById("mdel-no"))document.getElementById("mdel-no").textContent=LANGS[_lang].strings.obSkip.replace("Atla","İptal").replace("Skip","Cancel").replace("Überspringen","Abbrechen");
+  if(document.getElementById("mdelc-no"))document.getElementById("mdelc-no").textContent=document.getElementById("mdel-no").textContent;
+  if(document.getElementById("munsv-discard"))document.getElementById("munsv-discard").textContent=LANGS[_lang].strings.obSkip.replace("Atla","Vazgeç").replace("Skip","Discard").replace("Überspringen","Verwerfen");
+  // Theme current
+  const curT=THS.find(t=>t.id===_S.th)||THS[0];
+  if(document.getElementById("cur-th-lbl"))document.getElementById("cur-th-lbl").textContent=curT.l[_lang]||curT.l.tr;
+  // FBK types update
+  selFbk(_fbkT);
+}
+
+function updatePhotoBtn(wrapId,s){
+  const w=document.getElementById(wrapId);
+  if(w&&!w.querySelector("img")){
+    const b=w.querySelector("button");
+    if(b&&b.textContent.includes("📷"))b.textContent=s.addPhoto;
+  }
+}
+
+// ══ TEMA ════════════════════════════════════════════════════
+function applyTheme(id){const t=THS.find(x=>x.id===id)||THS[0];document.body.className=t.cl;_S.th=id;}
+function togTheme(){const p=document.getElementById("th-panel"),a=document.getElementById("th-arrow");const o=p.style.display==="none";p.style.display=o?"block":"none";a.style.transform=o?"rotate(90deg)":"";}
+
+// ══ TOAST ════════════════════════════════════════════════════
+let _ttm;
+function toast(m,tp="ok"){const e=document.getElementById("tst");e.textContent=m;e.className="tst show "+tp;clearTimeout(_ttm);_ttm=setTimeout(()=>{e.className="tst";},3200);}
+function cm(id){document.getElementById(id).classList.remove("show");}
+function om(id){document.getElementById(id).classList.add("show");}
+
+// ══ NAVİGASYON ════════════════════════════════════════════════
 function pa(id){document.querySelectorAll(".page").forEach(p=>p.classList.remove("active"));document.getElementById(id).classList.add("active");window.scrollTo(0,0);}
 function sp(id){
   pa(id);
   if(id==="pg-list")rl();
   if(id==="pg-cats")rc();
   if(id==="pg-set")rs();
+  if(id==="pg-lang")renderLangPage();
   if(id==="pg-addr"){document.getElementById("ai").value="";document.getElementById("ars").innerHTML="";document.getElementById("ast").style.display="none";}
   if(id==="pg-link"){document.getElementById("li").value="";document.getElementById("lh").style.display="none";}
   if(id==="pg-man"){document.getElementById("mlat").value="";document.getElementById("mlng").value="";}
 }
-function cm(id){document.getElementById(id).classList.remove("show");}
-function om(id){document.getElementById(id).classList.add("show");}
 
-// TEMA
-function atm(id){const t=THS.find(x=>x.id===id)||THS[0];document.body.className=t.cl;_S.th=id;}
-
-// TOAST
-let _ttm;
-function toast(m,t="ok"){const e=document.getElementById("tst");e.textContent=m;e.className="tst show "+t;clearTimeout(_ttm);_ttm=setTimeout(()=>{e.className="tst";},3000);}
-
-// ONBOARDING
+// ══ ONBOARDING ════════════════════════════════════════════════
 function obn(){if(_obs<3)gs(_obs+1);else obf();}
-function gs(n){document.getElementById("ob-"+_obs).style.display="none";_obs=n;const e=document.getElementById("ob-"+n);e.style.display="flex";document.querySelectorAll(".odot").forEach((d,i)=>d.classList.toggle("on",i===n));document.getElementById("ob-nb").textContent=n===3?"Başlayalım 🚀":"Devam →";}
+function gs(n){document.getElementById("ob-"+_obs).style.display="none";_obs=n;const e=document.getElementById("ob-"+n);e.style.display="flex";document.querySelectorAll(".odot").forEach((d,i)=>d.classList.toggle("on",i===n));document.getElementById("ob-nb").textContent=n===3?t("obStart"):t("obNext");}
 function obf(){localStorage.setItem("kd_ob","1");sp("pg-list");}
 
-// PIN
+// ══ PIN ════════════════════════════════════════════════════════
 function pp(v){
-  if(v==="C"){_pin="";upd();return;}
-  if(v==="B"){_pin=_pin.slice(0,-1);upd();return;}
-  if(_pin.length>=4)return;
-  _pin+=v;upd();
+  if(v==="C"){_pin="";upd();return;}if(v==="B"){_pin=_pin.slice(0,-1);upd();return;}
+  if(_pin.length>=4)return;_pin+=v;upd();
   if(_pin.length===4){
     if(_pmode==="u"){
       if(_pin===_S.pin){_pin="";upd();sp("pg-list");}
-      else{_pin="";upd();const d=document.getElementById("pdots");d.classList.add("shk");setTimeout(()=>d.classList.remove("shk"),300);toast("Yanlış PIN!","err");}
+      else{_pin="";upd();const d=document.getElementById("pdots");d.classList.add("shk");setTimeout(()=>d.classList.remove("shk"),300);toast(t("pinWrong"),"err");}
     }
   }
 }
 function upd(){document.querySelectorAll(".pdot").forEach((d,i)=>d.classList.toggle("f",i<_pin.length));}
-function tpin(){const t=document.getElementById("ptg");if(_S.pinOn){_S.pinOn=false;_S.pin="";sset(_S);t.classList.remove("on");document.getElementById("pinwrap").style.display="none";toast("PIN kilidi kapatıldı");}else{document.getElementById("pinwrap").style.display="block";t.classList.add("on");}}
-function spin(){const p=document.getElementById("pinset").value;if(p.length!==4||!/^\d{4}$/.test(p))return toast("4 haneli sayısal PIN girin!","err");_S.pinOn=true;_S.pin=p;sset(_S);document.getElementById("pinset").value="";document.getElementById("pinwrap").style.display="none";toast("✅ PIN kaydedildi!");}
+function tpin(){const tg=document.getElementById("ptg");if(_S.pinOn){_S.pinOn=false;_S.pin="";sset(_S);tg.classList.remove("on");document.getElementById("pinwrap").style.display="none";toast(t("pinOff"));}else{document.getElementById("pinwrap").style.display="block";tg.classList.add("on");}}
+function spin(){const p=document.getElementById("pinset").value;if(p.length!==4||!/^\d{4}$/.test(p))return toast(t("pinEnter"),"err");_S.pinOn=true;_S.pin=p;sset(_S);document.getElementById("pinset").value="";document.getElementById("pinwrap").style.display="none";toast(t("pinSaved"));}
 
-// LIST
-function gc(id){return _C.find(c=>c.id===id)||DCATS.find(c=>c.id===id)||{icon:"📍",label:id};}
+// ══ LIST ════════════════════════════════════════════════════
+function gc(id){
+  const c=_C.find(c=>c.id===id);if(c)return c;
+  const d=DCATS.find(c=>c.id===id);
+  if(d)return{...d,label:d.label[_lang]||d.label.tr};
+  return{icon:"📍",label:id};
+}
 async function rl(){
   if(!document.getElementById("pg-list").classList.contains("active"))return;
   const cf=document.getElementById("cf");cf.innerHTML="";
-  [{id:"all",icon:"🌍",label:"Tümü"},..._C].forEach(c=>{const a=_fc===c.id,b=document.createElement("button");b.className="cchip";b.textContent=`${c.icon} ${c.label}`;b.style.cssText=`background:${a?"var(--acc)":"var(--card)"};border:1px solid ${a?"var(--acc)":"var(--br)"};color:${a?"#fff":"var(--sub)"};font-weight:${a?"700":"400"}`;b.onclick=()=>{_fc=c.id;rl();};cf.appendChild(b);});
+  const allCat={id:"all",icon:"🌍",label:_lang==="de"?"Alle":_lang==="en"?"All":"Tümü"};
+  [allCat,..._C].forEach(c=>{const a=_fc===c.id,b=document.createElement("button");b.className="cchip";b.textContent=`${c.icon} ${c.label}`;b.style.cssText=`background:${a?"var(--acc)":"var(--card)"};border:1px solid ${a?"var(--acc)":"var(--br)"};color:${a?"#fff":"var(--sub)"};font-weight:${a?"700":"400"}`;b.onclick=()=>{_fc=c.id;rl();};cf.appendChild(b);});
   const q=(document.getElementById("si").value||"").toLowerCase();
   const fll=_L.filter(l=>(l.cat===_fc||_fc==="all")&&((l.name||"").toLowerCase().includes(q)||(l.note||"").toLowerCase().includes(q)));
   const ll=document.getElementById("ll");ll.innerHTML="";
-  if(!fll.length){ll.innerHTML=`<div style="display:flex;flex-direction:column;align-items:center;padding:60px 20px;text-align:center"><div style="font-size:52px">🗺️</div><div style="margin-top:12px;font-size:15px;color:var(--sub)">Henüz konum yok</div><div style="font-size:12px;margin-top:4px;color:var(--s2)">Aşağıdan yeni ekle</div></div>`;return;}
+  if(!fll.length){const e=document.createElement("div");e.style.cssText="display:flex;flex-direction:column;align-items:center;padding:60px 20px;text-align:center;flex:1";e.innerHTML=`<div style="font-size:52px">🗺️</div><div style="margin-top:12px;font-size:15px;color:var(--sub)">${_lang==="de"?"Noch keine Orte":_lang==="en"?"No locations yet":"Henüz konum yok"}</div>`;ll.appendChild(e);return;}
   for(const loc of fll){
     const cat=gc(loc.cat),card=document.createElement("div");card.className="lcard si";card.onclick=()=>odv(loc);
     const ph=loc.pid?await gph(loc.pid):null;
@@ -500,26 +876,26 @@ async function rl(){
 function fl(){const v=document.getElementById("si").value;document.getElementById("scl").style.display=v?"block":"none";rl();}
 function cs(){document.getElementById("si").value="";document.getElementById("scl").style.display="none";rl();}
 
-// GPS
+// ══ GPS ═════════════════════════════════════════════════════
 function startGPS(){
   if(!navigator.geolocation)return toast("GPS desteklenmiyor","err");
-  document.getElementById("gps-ic").textContent="⏳";document.getElementById("gps-tt").textContent="Alınıyor...";
+  document.getElementById("gps-ic").textContent="⏳";document.getElementById("gps-tt").textContent=t("gpsTitle")+"...";
   navigator.geolocation.getCurrentPosition(
-    p=>{document.getElementById("gps-ic").textContent="📡";document.getElementById("gps-tt").textContent="Mevcut Konumumu Kullan";_plat=p.coords.latitude;_plng=p.coords.longitude;_pbk="pg-am";gtd();},
-    e=>{document.getElementById("gps-ic").textContent="📡";document.getElementById("gps-tt").textContent="Mevcut Konumumu Kullan";const m={1:"Konum izni reddedildi!",2:"GPS sinyali yok.",3:"Zaman aşımı."};toast(m[e.code]||"Konum alınamadı","err");},
+    p=>{document.getElementById("gps-ic").textContent="📡";document.getElementById("gps-tt").textContent=t("gpsTitle");_plat=p.coords.latitude;_plng=p.coords.longitude;_pbk="pg-am";gtd();},
+    e=>{document.getElementById("gps-ic").textContent="📡";document.getElementById("gps-tt").textContent=t("gpsTitle");const m={1:t("gpsErr"),2:t("gpsNoSig"),3:t("gpsTimeout")};toast(m[e.code]||t("gpsErr"),"err");},
     {enableHighAccuracy:true,timeout:15000,maximumAge:0}
   );
 }
 
-// ADRES
+// ══ ADRES ════════════════════════════════════════════════════
 async function das(){
-  const q=document.getElementById("ai").value.trim();if(!q)return toast("Adres yaz!","err");
+  const q=document.getElementById("ai").value.trim();if(!q)return;
   const st=document.getElementById("ast"),rs=document.getElementById("ars");
-  st.style.display="block";st.textContent="⏳ Aranıyor...";rs.innerHTML="";
+  st.style.display="block";st.textContent=t("searching");rs.innerHTML="";
   try{
-    const r=await fetch(`https://nominatim.openstreetmap.org/search?q=${encodeURIComponent(q)}&format=json&limit=6&accept-language=tr,en`,{headers:{"Accept-Language":"tr,en"}});
+    const r=await fetch(`https://nominatim.openstreetmap.org/search?q=${encodeURIComponent(q)}&format=json&limit=6&accept-language=${_lang},en`,{headers:{"Accept-Language":_lang+",en"}});
     const d=await r.json();st.style.display="none";
-    if(!d?.length){st.style.display="block";st.textContent="❌ Bulunamadı.";return;}
+    if(!d?.length){st.style.display="block";st.textContent=t("notFound");return;}
     const box=document.createElement("div");box.className="abox";
     d.forEach(item=>{
       const b=document.createElement("button");b.className="ares";const pts=item.display_name.split(",");
@@ -527,220 +903,165 @@ async function das(){
       b.onclick=()=>{_plat=+item.lat;_plng=+item.lon;_pbk="pg-addr";setTimeout(()=>{const n=document.getElementById("dn");if(n&&!n.value)n.value=pts[0].trim();},50);gtd();};
       box.appendChild(b);
     });rs.appendChild(box);
-  }catch{st.style.display="block";st.textContent="❌ Bağlantı hatası.";}
+  }catch{st.style.display="block";st.textContent=t("connErr");}
 }
 
-// LINK
+// ══ LINK ═════════════════════════════════════════════════════
 let _pc=null;
-function pco(txt){if(!txt)return null;const ps=[/maps\.google\.com\/\?q=([-\d.]+),([-\d.]+)/,/google\.com\/maps\/place\/[^@]+@([-\d.]+),([-\d.]+)/,/[?&]q=([-\d.]+),([-\d.]+)/,/ll=([-\d.]+),([-\d.]+)/,/@([-\d.]+),([-\d.]+)/,/\b([-]?\d{1,3}\.\d{4,})\s*[,;]\s*([-]?\d{1,3}\.\d{4,})\b/];for(const p of ps){const m=txt.match(p);if(m){const la=+m[1],ln=+m[2];if(la>=-90&&la<=90&&ln>=-180&&ln<=180&&Math.abs(la)+Math.abs(ln)>0.01)return{lat:la,lng:ln};}}return null;}
+function pco(txt){if(!txt)return null;const ps=[/maps\.google\.com\/\?q=([-\d.]+),([-\d.]+)/,/google\.com\/maps\/place\/[^@]+@([-\d.]+),([-\d.]+)/,/[?&]q=([-\d.]+),([-\d.]+)/,/ll=([-\d.]+),([-\d.]+)/,/@([-\d.]+),([-\d.]+)/,/([-]?\d{1,3}\.\d{4,})\s*[,;]\s*([-]?\d{1,3}\.\d{4,})/];for(const p of ps){const m=txt.match(p);if(m){const la=+m[1],ln=+m[2];if(la>=-90&&la<=90&&ln>=-180&&ln<=180&&Math.abs(la)+Math.abs(ln)>0.01)return{lat:la,lng:ln};}}return null;}
 function oli(v){const c=pco(v);const h=document.getElementById("lh");if(c){_pc=c;h.textContent=`✅ ${c.lat.toFixed(5)}, ${c.lng.toFixed(5)}`;h.style.display="block";}else{_pc=null;h.style.display="none";}}
-function apl(){const c=_pc||pco(document.getElementById("li").value);if(!c)return toast("Koordinat bulunamadı","err");_plat=c.lat;_plng=c.lng;_pbk="pg-link";gtd();}
-function apm(){const la=+document.getElementById("mlat").value.replace(",",".");const ln=+document.getElementById("mlng").value.replace(",",".");if(isNaN(la)||isNaN(ln)||la<-90||la>90||ln<-180||ln>180)return toast("Geçersiz koordinat","err");_plat=la;_plng=ln;_pbk="pg-man";gtd();}
+function apl(){const c=_pc||pco(document.getElementById("li").value);if(!c)return toast(t("invalidCoord"),"err");_plat=c.lat;_plng=c.lng;_pbk="pg-link";gtd();}
+function apm(){const la=+document.getElementById("mlat").value.replace(",",".");const ln=+document.getElementById("mlng").value.replace(",",".");if(isNaN(la)||isNaN(ln)||la<-90||la>90||ln<-180||ln>180)return toast(t("invalidCoord"),"err");_plat=la;_plng=ln;_pbk="pg-man";gtd();}
 
-// DETAILS
+// ══ DETAILS ══════════════════════════════════════════════════
 function gtd(){
   document.getElementById("det-crd").textContent=`${_plat.toFixed(5)}, ${_plng.toFixed(5)}`;
   document.getElementById("det-bk").onclick=()=>sp(_pbk);
   document.getElementById("dn").value="";document.getElementById("dnt").value="";
-  _pd="";_pcat="diger";_ppid=null;
-  rcc("dc","d");
-  document.getElementById("dpw").innerHTML=`<button class="btn btgh" style="border:2px dashed var(--br)!important" onclick="document.getElementById('dfi').click()">📷 Fotoğraf Ekle (opsiyonel)</button>`;
+  _pd="";_pcat="diger";_ppid=null;rcc("dc","d");
+  document.getElementById("dpw").innerHTML=`<button class="btn btgh" style="border:2px dashed var(--br)!important" onclick="document.getElementById('dfi').click()">${t("addPhoto")}</button>`;
   pa("pg-det");
 }
+function rcc(cid,m){const cur=m==="d"?_pcat:_ecat;const cg=document.getElementById(cid);cg.innerHTML="";_C.forEach(c=>{const a=c.id===cur,b=document.createElement("button");b.className="cchip";b.textContent=`${c.icon} ${c.label}`;b.style.cssText=`background:${a?"var(--acc)":"var(--c2)"};border:1px solid ${a?"var(--acc)":"var(--br)"};color:${a?"#fff":"var(--sub)"};font-weight:${a?"700":"400"}`;b.onclick=()=>{if(m==="d")_pcat=c.id;else _ecat=c.id;rcc(cid,m);};cg.appendChild(b);});}
+function hp(inp,m){const f=inp.files[0];if(!f)return;if(f.size>3000000)return toast("Max 3MB","err");const r=new FileReader();r.onload=()=>{const img=new Image();img.onload=()=>{const cv=document.createElement("canvas");const mx=900;let w=img.width,h=img.height;if(w>mx){h=h*(mx/w);w=mx;}if(h>mx){w=w*(mx/h);h=mx;}cv.width=w;cv.height=h;cv.getContext("2d").drawImage(img,0,0,w,h);const d=cv.toDataURL("image/jpeg",.72);if(m==="d")_pd=d;else{_ep=d;_epc=true;}const wid=m==="d"?"dpw":"epw",iid=m==="d"?"dfi":"efi";document.getElementById(wid).innerHTML=`<div style="position:relative"><img src="${d}" style="width:100%;border-radius:12px;max-height:170px;object-fit:cover"/><button onclick="clph('${wid}','${m}')" style="position:absolute;top:8px;right:8px;background:var(--red);border:none;border-radius:50%;width:28px;height:28px;color:#fff;cursor:pointer;font-size:14px">✕</button></div>`;};img.src=r.result;};r.readAsDataURL(f);}
+function clph(wid,m){if(m==="d")_pd="";else{_ep="";_epc=true;}document.getElementById(wid).innerHTML=`<button class="btn btgh" style="border:2px dashed var(--br)!important" onclick="document.getElementById('${m==="d"?"dfi":"efi"}').click()">${t("addPhoto")}</button>`;}
+async function svl(){const nm=document.getElementById("dn").value.trim();if(!nm)return toast(t("nameRequired"),"err");if(_plat==null)return toast(t("locRequired"),"err");const id=Date.now().toString();let pid=null;if(_pd){pid="p_"+id;await sph(pid,_pd);}_L.unshift({id,name:nm,note:document.getElementById("dnt").value.trim(),cat:_pcat,lat:_plat,lng:_plng,pid,date:new Date().toLocaleDateString(_lang==="de"?"de-DE":_lang==="en"?"en-US":"tr-TR")});slocs(_L);_plat=null;_plng=null;_pd="";toast(t("saved"));sp("pg-list");if(_drvTok)setTimeout(drvSave,1000);}
 
-function rcc(cid,m){
-  const cur=m==="d"?_pcat:_ecat;const cg=document.getElementById(cid);cg.innerHTML="";
-  _C.forEach(c=>{const a=c.id===cur,b=document.createElement("button");b.className="cchip";b.textContent=`${c.icon} ${c.label}`;b.style.cssText=`background:${a?"var(--acc)":"var(--c2)"};border:1px solid ${a?"var(--acc)":"var(--br)"};color:${a?"#fff":"var(--sub)"};font-weight:${a?"700":"400"}`;b.onclick=()=>{if(m==="d")_pcat=c.id;else _ecat=c.id;rcc(cid,m);};cg.appendChild(b);});
-}
+// ══ DETAIL VIEW ════════════════════════════════════════════
+async function odv(loc){_sel=loc;const cat=gc(loc.cat);document.getElementById("dv-tit").textContent=loc.name;document.getElementById("dv-nam").textContent=loc.name;document.getElementById("dv-cat").textContent=`${cat.icon} ${cat.label||cat.id}`;document.getElementById("dv-dat").textContent=loc.date||"";document.getElementById("dv-crd").textContent=`${loc.lat?.toFixed(6)}, ${loc.lng?.toFixed(6)}`;const nw=document.getElementById("dv-not");nw.textContent=loc.note||"";nw.style.display=loc.note?"block":"none";const hero=document.getElementById("dv-hero");const ph=loc.pid?await gph(loc.pid):null;if(ph)hero.innerHTML=`<img src="${ph}" style="width:100%;height:100%;object-fit:cover"/>`;else{hero.innerHTML="";hero.textContent=cat.icon;hero.style.background="linear-gradient(135deg,var(--accD),transparent)";}document.getElementById("dv-nav").onclick=()=>window.open(`https://www.google.com/maps/dir/?api=1&destination=${loc.lat},${loc.lng}`,"_blank");document.getElementById("dv-cpy").onclick=()=>{navigator.clipboard?.writeText(`https://maps.google.com/?q=${loc.lat},${loc.lng}`);toast(t("copied"));};document.getElementById("dv-del").onclick=()=>adel();pa("pg-dv");}
+function adel(){const dh=document.getElementById("mdel-h");const dt=document.getElementById("mdel-txt");if(dh)dh.textContent="🗑️ "+t("delBtn").replace("🗑️ ","");if(dt)dt.textContent=`"${_sel?.name}" ${t("confirmDel")}`;document.getElementById("mdel-btn").onclick=async()=>{if(_sel?.pid)await dph(_sel.pid);_L=_L.filter(l=>l.id!==_sel.id);slocs(_L);cm("mdel");toast(t("deleted"));sp("pg-list");};om("mdel");}
 
-function hp(inp,m){
-  const f=inp.files[0];if(!f)return;
-  if(f.size>3000000)return toast("Max 3MB","err");
-  const r=new FileReader();
-  r.onload=()=>{
-    const img=new Image();img.onload=()=>{
-      const cv=document.createElement("canvas");const mx=900;let w=img.width,h=img.height;
-      if(w>mx){h=h*(mx/w);w=mx;}if(h>mx){w=w*(mx/h);h=mx;}
-      cv.width=w;cv.height=h;cv.getContext("2d").drawImage(img,0,0,w,h);
-      const d=cv.toDataURL("image/jpeg",.72);
-      if(m==="d")_pd=d;else{_ep=d;_epc=true;}
-      const wid=m==="d"?"dpw":"epw",iid=m==="d"?"dfi":"efi";
-      document.getElementById(wid).innerHTML=`<div style="position:relative"><img src="${d}" style="width:100%;border-radius:12px;max-height:170px;object-fit:cover"/><button onclick="clph('${wid}','${m}')" style="position:absolute;top:8px;right:8px;background:var(--red);border:none;border-radius:50%;width:28px;height:28px;color:#fff;cursor:pointer;font-size:14px">✕</button></div>`;
-    };img.src=r.result;
-  };r.readAsDataURL(f);
-}
-function clph(wid,m){if(m==="d")_pd="";else{_ep="";_epc=true;}document.getElementById(wid).innerHTML=`<button class="btn btgh" style="border:2px dashed var(--br)!important" onclick="document.getElementById('${m==="d"?"dfi":"efi"}').click()">📷 Fotoğraf Ekle</button>`;}
-
-async function svl(){
-  const nm=document.getElementById("dn").value.trim();if(!nm)return toast("İsim girin!","err");if(_plat==null)return toast("Konum seçilmedi","err");
-  const id=Date.now().toString();let pid=null;
-  if(_pd){pid="p_"+id;await sph(pid,_pd);}
-  _L.unshift({id,name:nm,note:document.getElementById("dnt").value.trim(),cat:_pcat,lat:_plat,lng:_plng,pid,date:new Date().toLocaleDateString("tr-TR")});
-  slocs(_L);_plat=null;_plng=null;_pd="";toast("📍 Kaydedildi!");sp("pg-list");
-}
-
-// DETAIL VIEW
-async function odv(loc){
-  _sel=loc;const cat=gc(loc.cat);
-  document.getElementById("dv-tit").textContent=loc.name;
-  document.getElementById("dv-nam").textContent=loc.name;
-  document.getElementById("dv-cat").textContent=`${cat.icon} ${cat.label||cat.id}`;
-  document.getElementById("dv-dat").textContent=loc.date||"";
-  document.getElementById("dv-crd").textContent=`${loc.lat?.toFixed(6)}, ${loc.lng?.toFixed(6)}`;
-  const nw=document.getElementById("dv-not");nw.textContent=loc.note||"";nw.style.display=loc.note?"block":"none";
-  const hero=document.getElementById("dv-hero");const ph=loc.pid?await gph(loc.pid):null;
-  if(ph)hero.innerHTML=`<img src="${ph}" style="width:100%;height:100%;object-fit:cover"/>`;
-  else{hero.innerHTML="";hero.textContent=cat.icon;hero.style.background="linear-gradient(135deg,var(--accD),transparent)";}
-  document.getElementById("dv-nav").onclick=()=>window.open(`https://www.google.com/maps/dir/?api=1&destination=${loc.lat},${loc.lng}`,"_blank");
-  document.getElementById("dv-cpy").onclick=()=>{navigator.clipboard?.writeText(`https://maps.google.com/?q=${loc.lat},${loc.lng}`);toast("🔗 Kopyalandı!");};
-  document.getElementById("dv-del").onclick=()=>adel();
-  pa("pg-dv");
-}
-
-function adel(){
-  document.getElementById("mdel-txt").textContent=`"${_sel?.name}" silinecek. Emin misin?`;
-  document.getElementById("mdel-btn").onclick=async()=>{if(_sel?.pid)await dph(_sel.pid);_L=_L.filter(l=>l.id!==_sel.id);slocs(_L);cm("mdel");toast("🗑️ Silindi");sp("pg-list");};
-  om("mdel");
-}
-
-// EDIT
-async function oed(){
-  if(!_sel)return;_ecat=_sel.cat||"diger";_ep="";_epc=false;
-  document.getElementById("en").value=_sel.name||"";document.getElementById("ent").value=_sel.note||"";
-  rcc("ec","e");
-  const ew=document.getElementById("epw");const ph=_sel.pid?await gph(_sel.pid):null;
-  if(ph){_ep=ph;ew.innerHTML=`<div style="position:relative"><img src="${ph}" style="width:100%;border-radius:12px;max-height:170px;object-fit:cover"/><button onclick="clph('epw','e')" style="position:absolute;top:8px;right:8px;background:var(--red);border:none;border-radius:50%;width:28px;height:28px;color:#fff;cursor:pointer;font-size:14px">✕</button></div>`;}
-  else ew.innerHTML=`<button class="btn btgh" style="border:2px dashed var(--br)!important" onclick="document.getElementById('efi').click()">📷 Fotoğraf Ekle</button>`;
-  pa("pg-edt");
-}
+// ══ EDIT ═════════════════════════════════════════════════════
+async function oed(){if(!_sel)return;_ecat=_sel.cat||"diger";_ep="";_epc=false;document.getElementById("en").value=_sel.name||"";document.getElementById("ent").value=_sel.note||"";rcc("ec","e");const ew=document.getElementById("epw");const ph=_sel.pid?await gph(_sel.pid):null;if(ph){_ep=ph;ew.innerHTML=`<div style="position:relative"><img src="${ph}" style="width:100%;border-radius:12px;max-height:170px;object-fit:cover"/><button onclick="clph('epw','e')" style="position:absolute;top:8px;right:8px;background:var(--red);border:none;border-radius:50%;width:28px;height:28px;color:#fff;cursor:pointer;font-size:14px">✕</button></div>`;}else{ew.innerHTML=`<button class="btn btgh" style="border:2px dashed var(--br)!important" onclick="document.getElementById('efi').click()">${t("addPhoto")}</button>`;}pa("pg-edt");}
 function hch(){if(!_sel)return false;return document.getElementById("en").value.trim()!==(_sel.name||"")||document.getElementById("ent").value.trim()!==(_sel.note||"")||_ecat!==(_sel.cat||"diger")||_epc;}
-function chku(){if(hch()){if(confirm("Değişiklikler kaydedilmedi. Çıkmak istiyor musun?"))odv(_sel);}else odv(_sel);}
-async function sve(){
-  const nm=document.getElementById("en").value.trim();if(!nm)return toast("İsim girin!","err");
-  let pid=_sel.pid;
-  if(_epc){if(_sel.pid)await dph(_sel.pid);if(_ep){pid="p_"+Date.now();await sph(pid,_ep);}else pid=null;}
-  const idx=_L.findIndex(l=>l.id===_sel.id);
-  if(idx>-1){_L[idx]={..._L[idx],name:nm,note:document.getElementById("ent").value.trim(),cat:_ecat,pid};slocs(_L);_sel=_L[idx];}
-  toast("✅ Kaydedildi!");odv(_sel);
-}
+function chku(){if(hch()){document.getElementById("munsv-h").textContent="💾 "+t("save");document.getElementById("munsv-txt").textContent=t("unsaved");document.getElementById("munsv-discard").onclick=()=>{cm("munsv");odv(_sel);};om("munsv");}else odv(_sel);}
+async function sve(){cm("munsv");const nm=document.getElementById("en").value.trim();if(!nm)return toast(t("nameRequired"),"err");let pid=_sel.pid;if(_epc){if(_sel.pid)await dph(_sel.pid);if(_ep){pid="p_"+Date.now();await sph(pid,_ep);}else pid=null;}const idx=_L.findIndex(l=>l.id===_sel.id);if(idx>-1){_L[idx]={..._L[idx],name:nm,note:document.getElementById("ent").value.trim(),cat:_ecat,pid};slocs(_L);_sel=_L[idx];}toast(t("editSaved"));odv(_sel);if(_drvTok)setTimeout(drvSave,1000);}
 
-// SETTINGS
-function toggleTheme(){
-  const panel=document.getElementById("theme-panel");
-  const arrow=document.getElementById("theme-arrow");
-  const open=panel.style.display==="none";
-  panel.style.display=open?"block":"none";
-  arrow.style.transform=open?"rotate(90deg)":"";
-}
+// ══ SETTINGS ═════════════════════════════════════════════════
 function rs(){
   const tg=document.getElementById("tg");tg.innerHTML="";
-  const curT=THS.find(t=>t.id===_S.th)||THS[0];
-  const lbl=document.getElementById("cur-theme-lbl");if(lbl)lbl.textContent=curT.l;
-  THS.forEach(t=>{const b=document.createElement("button");b.className="thbtn"+(t.id===_S.th?" on":"");b.innerHTML=`<div style="width:20px;height:20px;border-radius:50%;background:${t.c};flex-shrink:0"></div><span style="font-size:13px;font-weight:600;color:var(--tx)">${t.l}</span>`;b.onclick=()=>{atm(t.id);sset(_S);rs();};tg.appendChild(b);});
+  THS.forEach(th=>{const b=document.createElement("button");b.className="thbtn"+(th.id===_S.th?" on":"");b.innerHTML=`<div style="width:20px;height:20px;border-radius:50%;background:${th.c};flex-shrink:0"></div><span style="font-size:13px;font-weight:600;color:var(--tx)">${th.l[_lang]||th.l.tr}</span>`;b.onclick=()=>{applyTheme(th.id);sset(_S);rs();applyLang();};tg.appendChild(b);});
   const ptg=document.getElementById("ptg");if(_S.pinOn)ptg.classList.add("on");else ptg.classList.remove("on");
-  document.getElementById("catlbl").textContent=`${_C.length} kategori`;
-  document.getElementById("verlbl").textContent=`v${VER} - Güncelleme kontrol et`;
+  document.getElementById("catlbl").textContent=`${_C.length} ${t("categories").toLowerCase()}`;
+  applyLang();
 }
 
-function sfb(){
-  const e=atob("eWFzaW5kZW1pcmthbjgzQGdtYWlsLmNvbQ==");
-  const s=encodeURIComponent(`Konum Defteri v${VER} - Geri Bildirim`);
-  window.open(`mailto:${e}?subject=${s}`,"_blank");
-}
-
-async function chkupd(){
-  toast("🔄 Kontrol ediliyor...");
-  try{
-    const r=await fetch(`https://api.github.com/repos/${REPO}/releases/latest`);
-    const d=await r.json();const lv=(d.tag_name||"v0").replace("v","");
-    if(lv>VER){if(confirm(`Yeni versiyon v${lv} mevcut!\nŞu an: v${VER}\n\nGüncelleme sayfasını aç?`))window.open(d.html_url||`https://github.com/${REPO}/releases`,"_blank");}
-    else toast("✅ En güncel versiyon!");
-  }catch{toast("Kontrol edilemedi","err");}
-}
-
-// CATS
-function rc(){
-  const eg=document.getElementById("eg");eg.innerHTML="";
-  EMOJ.forEach(e=>{const b=document.createElement("button");b.className="ebtn";b.textContent=e;b.style.cssText=`background:${_sci===e?"var(--acc)":"var(--c2)"};border:1px solid ${_sci===e?"var(--acc)":"var(--br)"}`;b.onclick=()=>{_sci=e;rc();};eg.appendChild(b);});
-  const cl=document.getElementById("cl");cl.innerHTML="";
-  _C.forEach(c=>{
-    const cnt=_L.filter(l=>l.cat===c.id).length,isDef=DID.includes(c.id);
-    const row=document.createElement("div");row.style.cssText="background:var(--card);border:1px solid var(--br);border-radius:14px;padding:13px 16px;display:flex;align-items:center;gap:12px";
-    row.innerHTML=`<span style="font-size:24px">${c.icon}</span><div style="flex:1"><div style="font-weight:600;font-size:14px">${c.label}</div><div style="font-size:11px;color:var(--sub);margin-top:2px">${cnt} konum</div></div>`;
-    if(isDef){const b=document.createElement("span");b.style.cssText="font-size:10px;color:var(--s2);background:var(--c2);padding:3px 8px;border-radius:8px";b.textContent="Varsayılan";row.appendChild(b);}
-    else{const b=document.createElement("button");b.style.cssText="background:none;border:1px solid #ef444430;border-radius:10px;color:var(--red);padding:5px 12px;font-size:12px;cursor:pointer";b.textContent="Sil";b.onclick=()=>{document.getElementById("mdelc-btn").onclick=()=>{_C=_C.filter(x=>x.id!==c.id);scats(_C);cm("mdelc");toast("🗑️ Silindi");rc();};om("mdelc");};row.appendChild(b);}
-    cl.appendChild(row);
+// ══ DİL SAYFASI ════════════════════════════════════════════
+function renderLangPage(){
+  const ll=document.getElementById("lang-list");ll.innerHTML="";
+  Object.entries(LANGS).forEach(([code,lang])=>{
+    const b=document.createElement("button");b.className="langbtn"+(_lang===code?" on":"");
+    b.innerHTML=`<span style="font-size:28px">${lang.flag}</span><div style="flex:1;text-align:left"><div style="font-weight:700;font-size:16px">${lang.name}</div><div style="font-size:12px;color:var(--sub);margin-top:2px">${lang.strings.curLang}</div></div>${_lang===code?`<div class="drv-badge">✓</div>`:""}`;
+    b.onclick=()=>{_lang=code;_S.lang=code;sset(_S);_C=gcats();applyLang();renderLangPage();};
+    ll.appendChild(b);
   });
 }
-function acat(){const l=document.getElementById("ncl").value.trim();if(!l)return toast("İsim girin!","err");const id="c_"+Date.now();_C.push({id,icon:_sci,label:l,order:_C.length});scats(_C);document.getElementById("ncl").value="";toast("✅ Eklendi!");rc();}
 
-
-// ══ FEEDBACK ═══════════════════════════════
-let _fbkT=0;
-const FBK_TYPES=["💡 Öneri","🐛 Hata Bildirimi","⭐ Değerlendirme","❓ Diğer"];
-function selFbk(i){
-  _fbkT=i;
-  for(let j=0;j<4;j++){
-    const b=document.getElementById("fbt-"+j);if(!b)continue;
-    b.style.background=j===i?"var(--acc)":"var(--card)";
-    b.style.borderColor=j===i?"var(--acc)":"var(--br)";
-    b.style.color=j===i?"#fff":"var(--sub)";
-  }
+// ══ KATEGORİLER ══════════════════════════════════════════════
+function rc(){
+  const eg=document.getElementById("eg");eg.innerHTML="";EMOJ.forEach(e=>{const b=document.createElement("button");b.className="ebtn";b.textContent=e;b.style.cssText=`background:${_sci===e?"var(--acc)":"var(--c2)"};border:1px solid ${_sci===e?"var(--acc)":"var(--br)"}`;b.onclick=()=>{_sci=e;rc();};eg.appendChild(b);});
+  const cl=document.getElementById("cl");cl.innerHTML="";
+  _C.forEach(c=>{const cnt=_L.filter(l=>l.cat===c.id).length,isDef=DID.includes(c.id);const row=document.createElement("div");row.style.cssText="background:var(--card);border:1px solid var(--br);border-radius:14px;padding:13px 16px;display:flex;align-items:center;gap:12px";row.innerHTML=`<span style="font-size:24px">${c.icon}</span><div style="flex:1"><div style="font-weight:600;font-size:14px">${c.label}</div><div style="font-size:11px;color:var(--sub);margin-top:2px">${cnt} ${t("locations").replace("📍 ","").toLowerCase()}</div></div>`;if(isDef){const b=document.createElement("span");b.style.cssText="font-size:10px;color:var(--s2);background:var(--c2);padding:3px 8px;border-radius:8px";b.textContent=t("defaultCat");row.appendChild(b);}else{const b=document.createElement("button");b.style.cssText="background:none;border:1px solid #ef444430;border-radius:10px;color:var(--red);padding:5px 12px;font-size:12px;cursor:pointer";b.textContent=t("delBtn").replace("🗑️ ","");b.onclick=()=>{document.getElementById("mdelc-h").textContent="🗑️";document.getElementById("mdelc-txt").textContent=`"${c.label}" ${t("confirmDel")}`;document.getElementById("mdelc-btn").onclick=()=>{_C=_C.filter(x=>x.id!==c.id);scats(_C);cm("mdelc");toast(t("deleted"));rc();};om("mdelc");};row.appendChild(b);}cl.appendChild(row);});
 }
+function acat(){const l=document.getElementById("ncl").value.trim();if(!l)return toast(t("nameRequired"),"err");const id="c_"+Date.now();_C.push({id,icon:_sci,label:l,order:_C.length});scats(_C);document.getElementById("ncl").value="";toast("✅ "+t("addCat"));rc();}
+
+// ══ FEEDBACK ════════════════════════════════════════════════
+function selFbk(i){_fbkT=i;const types=t("fbkTypes");for(let j=0;j<4;j++){const b=document.getElementById("fbt-"+j);if(!b)continue;b.style.background=j===i?"var(--acc)":"var(--card)";b.style.borderColor=j===i?"var(--acc)":"var(--br)";b.style.color=j===i?"#fff":"var(--sub)";if(types&&types[j])b.textContent=types[j];}}
 function sendFbk(){
   const msg=document.getElementById("fbk-msg")?.value?.trim();
-  if(!msg)return toast("Mesaj yazın!","err");
+  if(!msg)return toast(t("fbkRequired"),"err");
   const name=document.getElementById("fbk-name")?.value?.trim()||"Anonim";
-  const type=FBK_TYPES[_fbkT];
-  const body=encodeURIComponent(`Ad: ${name}\nTür: ${type}\nUygulama: Konum Defteri v${VER}\n\nMesaj:\n${msg}`);
+  const types=t("fbkTypes");const type=types?.[_fbkT]||"";
+  const body=encodeURIComponent(`${t("fbkName")}: ${name}
+${t("fbkType")}: ${type}
+App: Konum Defteri v${VER}
+
+${t("fbkMsg")}:
+${msg}`);
   const sub=encodeURIComponent(`Konum Defteri - ${type}`);
   const e=atob("eWFzaW5kZW1pcmthbjgzQGdtYWlsLmNvbQ==");
   window.open(`mailto:${e}?subject=${sub}&body=${body}`,"_blank");
-  document.getElementById("fbk-msg").value="";
-  document.getElementById("fbk-name").value="";
-  toast("✅ Mail uygulaması açıldı!");
+  document.getElementById("fbk-msg").value="";toast(t("fbkSent"));
 }
-// ══ YEDEKLEME ══════════════════════════════
-function drvBackup(){
+
+// ══ YEDEKLEME ════════════════════════════════════════════════
+function expBkp(){
   try{
-    const data={locs:_L,cats:_C,ver:VER,date:new Date().toISOString()};
+    const data={locs:_L,cats:_C,ver:VER,lang:_lang,date:new Date().toISOString()};
     const json=JSON.stringify(data,null,2);
-    const dateStr=new Date().toLocaleDateString("tr-TR").replace(/\./g,"-");
-    const fname=`konum-defteri-${dateStr}.json`;
-    // Web Share API (Android'de Drive, WhatsApp vb.)
-    if(navigator.share){
-      const file=new File([json],fname,{type:"application/json"});
-      if(navigator.canShare&&navigator.canShare({files:[file]})){
-        navigator.share({title:"Konum Defteri Yedek",files:[file]}).catch(()=>{});
-        return;
-      }
-    }
-    // Fallback: indir
-    const blob=new Blob([json],{type:"application/json"});
-    const url=URL.createObjectURL(blob);
-    const a=document.createElement("a");a.href=url;a.download=fname;a.click();
-    setTimeout(()=>URL.revokeObjectURL(url),1000);
-    toast("📤 Yedek dosyası hazır!");
-  }catch(e){toast("Yedekleme hatası: "+e.message,"err");}
+    const fname=`konum-defteri-${new Date().toLocaleDateString("tr-TR").replace(/\./g,"-")}.json`;
+    if(navigator.share){const file=new File([json],fname,{type:"application/json"});if(navigator.canShare&&navigator.canShare({files:[file]})){navigator.share({title:"Konum Defteri",files:[file]}).catch(()=>{});return;}}
+    const blob=new Blob([json],{type:"application/json"});const url=URL.createObjectURL(blob);const a=document.createElement("a");a.href=url;a.download=fname;a.click();setTimeout(()=>URL.revokeObjectURL(url),1000);toast(t("expDone"));
+  }catch(e){toast(e.message,"err");}
 }
-
-function drvRestore(){
+function impBkp(){
   const inp=document.createElement("input");inp.type="file";inp.accept=".json,application/json";
-  inp.onchange=async(e)=>{
-    const file=e.target.files[0];if(!file)return;
-    try{
-      const text=await file.text();
-      const data=JSON.parse(text);
-      if(!data.locs&&!data.cats){toast("Geçersiz yedek dosyası","err");return;}
-      if(data.locs){_L=data.locs;slocs(_L);}
-      if(data.cats){_C=data.cats;scats(_C);}
-      toast(`✅ Geri yüklendi! ${_L.length} konum`);
-      rl();
-    }catch{toast("Dosya okunamadı","err");}
-  };
-  inp.click();
+  inp.onchange=async(e)=>{const file=e.target.files[0];if(!file)return;try{const text=await file.text();const data=JSON.parse(text);if(!data.locs&&!data.cats)return toast(t("impErr"),"err");if(data.locs){_L=data.locs;slocs(_L);}if(data.cats){_C=data.cats;scats(_C);}if(data.lang&&LANGS[data.lang]){_lang=data.lang;_S.lang=data.lang;sset(_S);}toast(`✅ ${t("impDone")} (${_L.length})`);rl();}catch{toast(t("impErr"),"err");}};inp.click();
 }
 
+// ══ GOOGLE DRIVE ═════════════════════════════════════════════
+let _tc=null,_drvTok=null,_drvReady=false;
+
+function loadGIS(){
+  if(window.google?.accounts?.oauth2){initTC();return;}
+  const s=document.createElement("script");
+  s.src="https://accounts.google.com/gsi/client";
+  s.onload=()=>{setTimeout(()=>{initTC();},500);};
+  s.onerror=()=>{console.log("GIS yüklenemedi");};
+  document.head.appendChild(s);
+}
+
+function initTC(){
+  if(_tc||!window.google?.accounts?.oauth2)return;
+  try{
+    _tc=google.accounts.oauth2.initTokenClient({
+      client_id:DRV_CID,scope:DRV_SCOPE,
+      callback:async(resp)=>{
+        if(resp.error){toast(t("drvErr"),"err");return;}
+        _drvTok=resp.access_token;_drvReady=true;
+        updateDrvUI();toast(t("drvConnOk"));
+        await drvSave();
+      }
+    });_drvReady=true;
+  }catch(e){console.log("TC hata:",e);}
+}
+
+function updateDrvUI(){
+  const badge=document.getElementById("drv-badge");const lbl=document.getElementById("drv-status-lbl");const btn=document.getElementById("drv-conn-btn");
+  if(_drvTok){if(badge)badge.style.display="block";if(lbl)lbl.textContent=t("drvConnected");if(btn)btn.textContent="🔄 "+(_lang==="de"?"Synchronisieren":_lang==="en"?"Sync Now":"Şimdi Yedekle");}
+  else{if(badge)badge.style.display="none";if(lbl)lbl.textContent=t("drvNotConn");if(btn)btn.textContent=t("drvConnect");}
+}
+
+async function drvConnect(){
+  if(_drvTok){await drvSave();return;}
+  if(!_tc){toast(t("drvLoading"));loadGIS();setTimeout(()=>{if(_tc)_tc.requestAccessToken();else toast(t("drvErr"),"err");},2000);return;}
+  _tc.requestAccessToken();
+}
+
+async function drvSave(){
+  if(!_drvTok)return;
+  try{
+    const body=JSON.stringify({locs:_L,cats:_C,ver:VER,date:new Date().toISOString()});
+    const qr=await fetch("https://www.googleapis.com/drive/v3/files?spaces=appDataFolder&q=name%3D'konum-defteri.json'&fields=files(id)",{headers:{Authorization:"Bearer "+_drvTok}});
+    const qd=await qr.json();
+    if(qd.files?.length){await fetch(`https://www.googleapis.com/upload/drive/v3/files/${qd.files[0].id}?uploadType=media`,{method:"PATCH",headers:{Authorization:"Bearer "+_drvTok,"Content-Type":"application/json"},body});}
+    else{const mr=await fetch("https://www.googleapis.com/drive/v3/files",{method:"POST",headers:{Authorization:"Bearer "+_drvTok,"Content-Type":"application/json"},body:JSON.stringify({name:"konum-defteri.json",parents:["appDataFolder"]})});const md=await mr.json();await fetch(`https://www.googleapis.com/upload/drive/v3/files/${md.id}?uploadType=media`,{method:"PATCH",headers:{Authorization:"Bearer "+_drvTok,"Content-Type":"application/json"},body});}
+    toast(t("drvSaved"));
+  }catch(e){console.log("Drive kayıt hatası:",e);}
+}
+
+async function drvRestore(){
+  if(!_drvTok){drvConnect();return;}
+  try{
+    const qr=await fetch("https://www.googleapis.com/drive/v3/files?spaces=appDataFolder&q=name%3D'konum-defteri.json'&fields=files(id)",{headers:{Authorization:"Bearer "+_drvTok}});
+    const qd=await qr.json();
+    if(!qd.files?.length){toast(t("drvNoBackup"),"err");return;}
+    const r=await fetch(`https://www.googleapis.com/drive/v3/files/${qd.files[0].id}?alt=media`,{headers:{Authorization:"Bearer "+_drvTok}});
+    const d=await r.json();
+    if(d.locs){_L=d.locs;slocs(_L);}if(d.cats){_C=d.cats;scats(_C);}
+    toast(`✅ ${t("drvRestored")} (${_L.length})`);rl();
+  }catch(e){toast(t("drvErr"),"err");}
+}
 </script>
 </body>
 </html>
