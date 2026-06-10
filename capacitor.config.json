@@ -3,7 +3,8 @@
   "appName": "Konum Defteri",
   "webDir": "www",
   "server": {
-    "androidScheme": "https"
+    "androidScheme": "https",
+    "hostname": "localhost"
   },
   "android": {
     "allowMixedContent": false,
