@@ -643,7 +643,7 @@ window.addEventListener("load",async()=>{
   if(!od){pa("pg-ob");return;}
   if(_S.pinOn&&_S.pin){pa("pg-pin");_pmode="u";}
   else sp("pg-list");
-  setTimeout(loadGIS,3000);
+  checkDrvToken();
 });
 
 // ══ DİL ═════════════════════════════════════════════════════
@@ -1000,42 +1000,62 @@ function impBkp(){
 }
 
 // ══ GOOGLE DRIVE ═════════════════════════════════════════════
-let _tc=null,_drvTok=null,_drvReady=false;
-
-function loadGIS(){
-  if(window.google?.accounts?.oauth2){initTC();return;}
-  const s=document.createElement("script");
-  s.src="https://accounts.google.com/gsi/client";
-  s.onload=()=>{setTimeout(()=>{initTC();},500);};
-  s.onerror=()=>{console.log("GIS yüklenemedi");};
-  document.head.appendChild(s);
-}
-
-function initTC(){
-  if(_tc||!window.google?.accounts?.oauth2)return;
-  try{
-    _tc=google.accounts.oauth2.initTokenClient({
-      client_id:DRV_CID,scope:DRV_SCOPE,
-      callback:async(resp)=>{
-        if(resp.error){toast(t("drvErr"),"err");return;}
-        _drvTok=resp.access_token;_drvReady=true;
-        updateDrvUI();toast(t("drvConnOk"));
-        await drvSave();
-      }
-    });_drvReady=true;
-  }catch(e){console.log("TC hata:",e);}
-}
+let _drvTok=null;
 
 function updateDrvUI(){
-  const badge=document.getElementById("drv-badge");const lbl=document.getElementById("drv-status-lbl");const btn=document.getElementById("drv-conn-btn");
-  if(_drvTok){if(badge)badge.style.display="block";if(lbl)lbl.textContent=t("drvConnected");if(btn)btn.textContent="🔄 "+(_lang==="de"?"Synchronisieren":_lang==="en"?"Sync Now":"Şimdi Yedekle");}
-  else{if(badge)badge.style.display="none";if(lbl)lbl.textContent=t("drvNotConn");if(btn)btn.textContent=t("drvConnect");}
+  const badge=document.getElementById("drv-badge");
+  const lbl=document.getElementById("drv-status-lbl");
+  const btn=document.getElementById("drv-conn-btn");
+  if(_drvTok){
+    if(badge)badge.style.display="block";
+    if(lbl)lbl.textContent=t("drvConnected");
+    if(btn)btn.textContent="🔄 "+(_lang==="de"?"Synchronisieren":_lang==="en"?"Sync Now":"Şimdi Yedekle");
+  } else {
+    if(badge)badge.style.display="none";
+    if(lbl)lbl.textContent=t("drvNotConn");
+    if(btn)btn.textContent=t("drvConnect");
+  }
 }
 
-async function drvConnect(){
-  if(_drvTok){await drvSave();return;}
-  if(!_tc){toast(t("drvLoading"));loadGIS();setTimeout(()=>{if(_tc)_tc.requestAccessToken();else toast(t("drvErr"),"err");},2000);return;}
-  _tc.requestAccessToken();
+function checkDrvToken(){
+  // Sayfa yüklenince URL hash'te token var mı bak (OAuth redirect sonrası)
+  const h=window.location.hash||"";
+  if(h.includes("access_token")){
+    const p=new URLSearchParams(h.substring(1));
+    const tok=p.get("access_token");
+    if(tok){
+      _drvTok=tok;
+      // Token'ı localStorage'a kaydet (1 saat geçerli)
+      localStorage.setItem("kd_drv",JSON.stringify({tok,exp:Date.now()+3500000}));
+      // URL'den temizle
+      history.replaceState({},"",location.pathname);
+      updateDrvUI();
+      toast(t("drvConnOk"));
+      setTimeout(drvSave,500);
+    }
+  } else {
+    // Kaydedilmiş token var mı?
+    try{
+      const saved=JSON.parse(localStorage.getItem("kd_drv")||"null");
+      if(saved&&saved.tok&&saved.exp>Date.now()){
+        _drvTok=saved.tok;updateDrvUI();
+      }
+    }catch{}
+  }
+}
+
+function drvConnect(){
+  if(_drvTok){drvSave();return;}
+  // Implicit OAuth flow - redirect to Google, come back with token
+  const params=new URLSearchParams({
+    client_id:DRV_CID,
+    redirect_uri:"https://localhost",
+    response_type:"token",
+    scope:DRV_SCOPE,
+    include_granted_scopes:"true",
+    prompt:"select_account"
+  });
+  window.location.href="https://accounts.google.com/o/oauth2/v2/auth?"+params.toString();
 }
 
 async function drvSave(){
